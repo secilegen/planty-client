@@ -6,7 +6,7 @@ const API_URL = "http://localhost:5005";
 
 function AddPlantForm(props) {
   const [nickname, setNickname] = useState("");
-  const [sunlight, setSunlight] = useState("Low");
+  const [sunlightPositioning, setSunlightPositioning] = useState("Low");
   const [plantImage, setPlantImage] = useState("");
   const [plantHeight, setPlantHeight] = useState("");
   const [birthDate, setBirthDate] = useState("");
@@ -14,7 +14,7 @@ function AddPlantForm(props) {
   const [apiId, setApiId] = useState("");
 
   const handleSelect = e => {
-    setSunlight(e.target.value);
+    setSunlightPositioning(e.target.value);
     setCurrentCondition(e.target.value);
 
     console.log("selected", e.target.value);
@@ -28,11 +28,12 @@ function AddPlantForm(props) {
 
     const requestBody = {
       nickname,
-      sunlight,
+      sunlightPositioning,
       plantImage,
       plantHeight,
       birthDate,
       currentCondition,
+      apiId
     };
 
     axios
@@ -40,11 +41,12 @@ function AddPlantForm(props) {
       .then((response) => {
         // Reset the state
         setNickname("");
-        setSunlight("");
+        setSunlightPositioning("Low");
         setPlantImage("");
         setPlantHeight("");
         setBirthDate("");
-        setCurrentCondition("");
+        setCurrentCondition("Thriving");
+        setApiId("")
        
       })
       .catch((error) => console.log(error));
@@ -66,7 +68,7 @@ function AddPlantForm(props) {
         <br/>
 
         <label>Sunlight Positioning</label>
-        <select value={sunlight} onChange={handleSelect}>
+        <select value={sunlightPositioning} onChange={handleSelect}>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>

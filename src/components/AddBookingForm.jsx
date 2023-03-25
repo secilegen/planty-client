@@ -6,13 +6,19 @@ const API_URL = "http://localhost:5005";
 function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
-  const [isOnline, setIsOnline] = useState("yes");
+  const [isOnline, setIsOnline] = useState("Yes");
+
+  const handleSelect = e => {
+    setIsOnline(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { description, reasonWhy };
+    const requestBody = { description, reasonWhy, isOnline };
 
     axios
       .post(`${API_URL}/api/get-support`, requestBody)
@@ -20,6 +26,7 @@ function AddBookingForm(props) {
         // Reset the state
         setDescription("");
         setReasonWhy("");
+        setIsOnline("yes")
       })
       .catch((error) => console.log(error));
   };
@@ -51,12 +58,11 @@ function AddBookingForm(props) {
 {/* e.target.checked is a boolean value from the `checkbox` input*/}
 
         <label>Select location</label>
-        <textarea
-          type="text"
-          name="isOnline"
-          checked={isOnline}
-          onChange={(e) => setIsOnline(e.target.checked)}
-        />
+        <select value={isOnline} onChange={handleSelect}>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        </select>
+       
         
         
 
