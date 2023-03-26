@@ -1,13 +1,13 @@
 import './App.css';
 
-import { Route } from 'react-router';
-import { BrowserRouter as Routes } from 'react-router-dom';
+// import { Route } from 'react-router';
+// import { BrowserRouter as Routes } from 'react-router-dom';
 import SignupPage from './pages/SignupPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/LoginPage';
 import IsPrivate from "./components/IsPrivate"
 import IsAnon from "./components/IsAnon"
-// import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import AddUser from "./pages/AddUser";

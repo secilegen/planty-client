@@ -11,6 +11,7 @@ function SignupPage(props) {
     const [password, setPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [isCompany, setIsCompany] = useState(false)
     const [errorMessage, setErrorMessage] = useState(undefined)
 
     const navigate = useNavigate()
@@ -19,10 +20,11 @@ function SignupPage(props) {
     const handlePassword = (e) => setPassword(e.target.value)
     const handleFirstName = (e) => setFirstName(e.target.value)
     const handleLastName = (e) => setLastName(e.target.value)
+    const handleIsCompany = (e) => setIsCompany(e.target.checked)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const requestBody = { email, password, firstName, lastName };
+        const requestBody = { email, password, firstName, lastName, isCompany };
 
         axios.post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
@@ -71,6 +73,13 @@ function SignupPage(props) {
           onChange={handlePassword}
         />
  
+        <label>I would like to sign up as a business owner</label>
+        <input
+          type="checkbox"  
+          name='isCompany'
+          value={isCompany}
+          onChange={handleIsCompany}     
+        />
         <button type="submit">Sign Up</button>
       </form>
 
