@@ -54,19 +54,12 @@ function AddBookingForm(props) {
         />
         <br/>
 
-      
-{/* e.target.checked is a boolean value from the `checkbox` input*/}
-
         <label>Select location</label>
         <select value={isOnline} onChange={handleSelect}>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+        <option value="Online">Online</option>
+        <option value="Offline">Offline</option>
         </select>
        
-        
-        
-
-
         <button type="submit">Submit</button>
       </form>
     </div>
