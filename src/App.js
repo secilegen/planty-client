@@ -13,10 +13,12 @@ import UserPage from "./pages/UserPage";
 import AddUser from "./pages/AddUser";
 import AddPlant from "./pages/AddPlant";
 import AddBooking from './pages/AddBooking';
+import EditBooking from './pages/EditBooking';
 
 
 function App() {
   return (
+
     <div className="App">
 
       <Navbar />
@@ -28,6 +30,7 @@ function App() {
         <Route path="/user/:id" element={<UserPage/>}/>
         <Route path="/plants" element={<AddPlant/>}/>
         <Route path="/get-support" element={<AddBooking/>}/>
+        <Route path="/get-support/edit/:id" element={<EditBooking/>}/>
 
       </Routes>
 

@@ -7,17 +7,29 @@ const API_URL = "http://localhost:5005";
 function EditBooking(props) {
     const [description, setDescription] = useState("");
     const [reasonWhy, setReasonWhy] = useState("");
+    const [isOnline, setIsOnline] = useState("");
   
   const { bookingId } = useParams();
   const navigate = useNavigate();
+
+  const handleSelect = e => {
+    setIsOnline(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
   
   useEffect(() => {
+    const storedToken = localStorage.getItem('authToken')
+
     axios
-      .get(`${API_URL}/api/get-support/${bookingId}`)
+      .get(`${API_URL}/api/get-support/edit/${bookingId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } } 
+      )
       .then((response) => {
-        const oneProject = response.data;
-        setDescription(oneProject.description);
-        setReasonWhy(oneProject.reasonWhy);
+        const oneBooking = response.data;
+        setDescription(oneBooking.description);
+        setReasonWhy(oneBooking.reasonWhy);
+        setIsOnline(oneBooking.isOnline)
       })
       .catch((error) => console.log(error));
     
@@ -26,20 +38,29 @@ function EditBooking(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { description, reasonWhy };
+    const requestBody = { description, reasonWhy, isOnline };
+
+     // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken');
 
     axios
-      .put(`${API_URL}/api/get-support/${bookingId}`, requestBody)
+      .put(`${API_URL}/api/get-support/edit/${bookingId}`, requestBody, 
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
       .then((response) => {
         navigate(`/get-support/${bookingId}`)
       });
   };
   
   
-  const deleteProject = () => {
+  const deleteBooking = () => {
+     // Get the token from the localStorage
+     const storedToken = localStorage.getItem('authToken'); 
     
     axios
-      .delete(`${API_URL}/api/get-support/${bookingId}`)
+      .delete(`${API_URL}/api/get-support/edit/${bookingId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
       .then(() => {
         navigate("/"); // navigate to user/id?
       })
@@ -49,11 +70,12 @@ function EditBooking(props) {
   
   return (
     <div className="EditBooking">
-      <h3>Edit Your Plant</h3>
+      <h3>Edit Your Booking</h3>
 
       <form onSubmit={handleFormSubmit}>
         
       
+
         <label>Description</label>
         <input
           type="text"
@@ -70,11 +92,19 @@ function EditBooking(props) {
           onChange={(e) => setReasonWhy(e.target.value)}
         />
 
+<label>Select location</label>
+        <select value={isOnline} onChange={handleSelect}>
+        <option value="Online">Online</option>
+        <option value="Offline">Offline</option>
+        </select>
 
-        <button type="submit">Update Your Plant</button>
+
+
+
+        <button type="submit">Update Your Booking</button>
       </form>
 
-      <button onClick={deleteProject}>Delete Your Plant</button>
+      <button onClick={deleteBooking}>Delete Your Booking</button>
     </div>
   );
 }
