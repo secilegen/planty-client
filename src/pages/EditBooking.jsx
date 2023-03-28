@@ -9,7 +9,7 @@ function EditBooking(props) {
     const [reasonWhy, setReasonWhy] = useState("");
     const [isOnline, setIsOnline] = useState("");
   
-  const { bookingId } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleSelect = e => {
@@ -22,7 +22,7 @@ function EditBooking(props) {
     const storedToken = localStorage.getItem('authToken')
 
     axios
-      .get(`${API_URL}/api/get-support/edit/${bookingId}`,
+      .get(`${API_URL}/api/get-support/${id}`,
       { headers: { Authorization: `Bearer ${storedToken}` } } 
       )
       .then((response) => {
@@ -33,7 +33,7 @@ function EditBooking(props) {
       })
       .catch((error) => console.log(error));
     
-  }, [bookingId]);
+  }, [id]);
   
 
   const handleFormSubmit = (e) => {
@@ -44,11 +44,11 @@ function EditBooking(props) {
     const storedToken = localStorage.getItem('authToken');
 
     axios
-      .put(`${API_URL}/api/get-support/edit/${bookingId}`, requestBody, 
+      .put(`${API_URL}/api/get-support/${id}`, requestBody, 
       { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then((response) => {
-        navigate(`/get-support/${bookingId}`)
+        navigate(`/get-support/${id}`)
       });
   };
   
@@ -58,7 +58,7 @@ function EditBooking(props) {
      const storedToken = localStorage.getItem('authToken'); 
     
     axios
-      .delete(`${API_URL}/api/get-support/edit/${bookingId}`,
+      .delete(`${API_URL}/api/get-support/${id}`,
       { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then(() => {

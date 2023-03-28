@@ -6,7 +6,7 @@ const API_URL = "http://localhost:5005";
 function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
-  const [isOnline, setIsOnline] = useState("Yes");
+  const [isOnline, setIsOnline] = useState("Online");
 
   const handleSelect = e => {
     setIsOnline(e.target.value);
@@ -18,15 +18,28 @@ function AddBookingForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // const { id } = props;
+
+    // const requestBody = { description, reasonWhy, isOnline, id };
+
     const requestBody = { description, reasonWhy, isOnline };
 
-    axios
-      .post(`${API_URL}/api/get-support`, requestBody)
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken');
+
+    // Send the token through the request "Authorization" Headers
+
+   axios
+      .post(`${API_URL}/api/get-support`, requestBody,
+      { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
       .then((response) => {
         // Reset the state
         setDescription("");
         setReasonWhy("");
-        setIsOnline("yes")
+        setIsOnline("Online")
+
+        // props.refreshUser();  refresh user page with new booking?
       })
       .catch((error) => console.log(error));
   };
@@ -37,7 +50,7 @@ function AddBookingForm(props) {
 
       <form onSubmit={handleSubmit}>
         <label>Description</label>
-        <input
+        <textarea
           type="text"
           name="description"
           value={description}
@@ -67,3 +80,4 @@ function AddBookingForm(props) {
 }
 
 export default AddBookingForm;
+

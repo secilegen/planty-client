@@ -14,6 +14,9 @@ import AddUser from "./pages/AddUser";
 import AddPlant from "./pages/AddPlant";
 import AddBooking from './pages/AddBooking';
 import EditBooking from './pages/EditBooking';
+import EditPlant from './pages/EditPlant';
+import PlantDetails from './pages/PlantDetails';
+import BookingDetails from './pages/BookingDetails';
 
 
 function App() {
@@ -27,10 +30,13 @@ function App() {
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
         <Route path="/" element={<HomePage />} />
         <Route path="/user" element={<AddUser/>}/>
-        <Route path="/user/:id" element={<UserPage/>}/>
+        <Route path="/user/:id" element={<IsPrivate><UserPage/></IsPrivate>}/>
         <Route path="/plants" element={<AddPlant/>}/>
+        <Route path="/plants/:plantId" element={<IsPrivate><PlantDetails/></IsPrivate>}/>
+        <Route path="/plants/edit/:plantId" element={<IsPrivate><EditPlant/></IsPrivate>}/>
         <Route path="/get-support" element={<AddBooking/>}/>
-        <Route path="/get-support/edit/:id" element={<EditBooking/>}/>
+        <Route path="/get-support/:id" element={<IsPrivate><BookingDetails/></IsPrivate>}/>
+        <Route path="/get-support/edit/:id" element={<IsPrivate><EditBooking/></IsPrivate>}/>
 
       </Routes>
 
