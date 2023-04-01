@@ -7,19 +7,24 @@ const API_URL = "http://localhost:5005";
 function AddPlantForm(props) {
   const [nickname, setNickname] = useState("");
   const [sunlightPositioning, setSunlightPositioning] = useState("Low");
-  const [plantImage, setPlantImage] = useState("");
+  const [image, setImage] = useState("");
   const [plantHeight, setPlantHeight] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [currentCondition, setCurrentCondition] = useState("Thriving");
   const [apiId, setApiId] = useState("");
 
-  const handleSelect = e => {
+  const handleSelectSunlight = e => {
     setSunlightPositioning(e.target.value);
-    setCurrentCondition(e.target.value);
+    
 
     console.log("selected", e.target.value);
   };
 
+  const handleSelectCondition = e => {
+    setCurrentCondition(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
 
  
   const handleSubmit = (e) => {
@@ -29,7 +34,7 @@ function AddPlantForm(props) {
     const requestBody = {
       nickname,
       sunlightPositioning,
-      plantImage,
+      image,
       plantHeight,
       birthDate,
       currentCondition,
@@ -42,11 +47,13 @@ function AddPlantForm(props) {
         // Reset the state
         setNickname("");
         setSunlightPositioning("Low");
-        setPlantImage("");
+        setImage("");
         setPlantHeight("");
         setBirthDate("");
         setCurrentCondition("Thriving");
         setApiId("")
+
+        console.log("add plant", response)
        
       })
       .catch((error) => console.log(error));
@@ -58,7 +65,7 @@ function AddPlantForm(props) {
 
       <form onSubmit={handleSubmit}>
         <label>Nickname</label>
-        <input
+        <textarea
           type="text"
           name="nickname"
           value={nickname}
@@ -68,7 +75,7 @@ function AddPlantForm(props) {
         <br/>
 
         <label>Sunlight Positioning</label>
-        <select value={sunlightPositioning} onChange={handleSelect}>
+        <select value={sunlightPositioning} onChange={handleSelectSunlight}>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>
@@ -78,16 +85,16 @@ function AddPlantForm(props) {
         <label>Plant Image</label>
         <textarea
           type="text"
-          name="plantImage"
-          value={plantImage}
-          onChange={(e) => setPlantImage(e.target.value)}
+          name="image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
 
         <br/>
 
         <label>Plant Height</label>
-        <textarea
-          type="text"
+        <input
+          type="number"
           name="plantHeight"
           value={plantHeight}
           onChange={(e) => setPlantHeight(e.target.value)}
@@ -96,8 +103,8 @@ function AddPlantForm(props) {
         <br/>
 
         <label>Birth Date</label>
-        <textarea
-          type="text"
+        <input
+          type="date"
           name="birthDate"
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
@@ -106,7 +113,7 @@ function AddPlantForm(props) {
         <br/>
 
         <label>Current Condition</label>
-        <select value={currentCondition} onChange={handleSelect}>
+        <select value={currentCondition} onChange={handleSelectCondition}>
         <option value="Thriving">Thriving</option>
         <option value="Needs some attention">Needs some attention</option>
         <option value="Not good condition">Not good condition</option>
@@ -115,8 +122,8 @@ function AddPlantForm(props) {
         <br/>
 
         <label>apiId</label>
-        <textarea
-          type="text"
+        <input
+          type="number"
           name="apiId"
           value={apiId}
           onChange={(e) => setApiId(e.target.value)}

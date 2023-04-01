@@ -6,26 +6,43 @@ const API_URL = "http://localhost:5005";
 
 function EditPlant(props) {
     const [nickname, setNickname] = useState("");
-    const [sunlight, setSunlight] = useState("");
-    const [plantImage, setPlantImage] = useState("");
+    const [sunlightPositioning, setSunlightPositioning] = useState("");
+    const [image, setImage] = useState("");
     const [plantHeight, setPlantHeight] = useState("");
     const [birthDate, setBirthDate] = useState("");
     const [currentCondition, setCurrentCondition] = useState("");
   
   const { plantId } = useParams();
   const navigate = useNavigate();
+
+  const handleSelectSunlight = e => {
+    setSunlightPositioning(e.target.value);
+    
+
+    console.log("selected", e.target.value);
+  };
+
+  const handleSelectCondition = e => {
+    setCurrentCondition(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
   
   useEffect(() => {
+     // Get the token from the localStorage
+     const storedToken = localStorage.getItem('authToken');
     axios
-      .get(`${API_URL}/api/plants/${plantId}`)
+      .get(`${API_URL}/api/plants/${plantId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } }  
+      )
       .then((response) => {
-        const oneProject = response.data;
-        setNickname(oneProject.nickname);
-        setSunlight(oneProject.sunlight);
-        setPlantImage(oneProject.plantImage);
-        setPlantHeight(oneProject.plantHeight);
-        setBirthDate(oneProject.birthDate);
-        setCurrentCondition(oneProject.currentCondition);
+        const onePlant = response.data;
+        setNickname(onePlant.nickname);
+        setSunlightPositioning(onePlant.sunlightPositioning);
+        setImage(onePlant.image);
+        setPlantHeight(onePlant.plantHeight);
+        setBirthDate(onePlant.birthDate);
+        setCurrentCondition(onePlant.currentCondition);
       })
       .catch((error) => console.log(error));
     
@@ -34,20 +51,33 @@ function EditPlant(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { nickname, sunlight, plantImage, plantHeight, birthDate, currentCondition };
+    const requestBody = { nickname, sunlightPositioning, image, plantHeight, birthDate, currentCondition };
+
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken');  
+
+    // Send the token through the request "Authorization" Headers  
 
     axios
-      .put(`${API_URL}/api/plants/${plantId}`, requestBody)
+      .put(`${API_URL}/api/plants/${plantId}`, requestBody,
+      { headers: { Authorization: `Bearer ${storedToken}` } } 
+      )
       .then((response) => {
-        navigate(`/projects/${plantId}`)
+        navigate(`/plants/${plantId}`)
       });
   };
   
   
-  const deleteProject = () => {
+  const deletePlant = () => {
+     // Get the token from the localStorage
+     const storedToken = localStorage.getItem('authToken');      
+    
+     // Send the token through the request "Authorization" Headers 
     
     axios
-      .delete(`${API_URL}/api/plants/${plantId}`)
+      .delete(`${API_URL}/api/plants/${plantId}`,
+      { headers: { Authorization: `Bearer ${storedToken}` } } 
+      )
       .then(() => {
         navigate("/"); // navigate to user/id?
       })
@@ -56,62 +86,63 @@ function EditPlant(props) {
 
   
   return (
-    <div className="EditProjectPage">
+    <div className="EditPlant">
       <h3>Edit Your Plant</h3>
 
       <form onSubmit={handleFormSubmit}>
         <label>Nickname</label>
-        <input
+        <textarea
           type="text"
           name="nickname"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
 
-        <label>Sunlight Positioning</label>
-        <textarea
-          type="text"
-          name="sunlight"
-          value={sunlight}
-          onChange={(e) => setSunlight(e.target.value)}
-        />
+<label>Sunlight Positioning</label>
+        <select value={sunlightPositioning} onChange={handleSelectSunlight}>
+        <option value="Low">Low</option>
+        <option value="Moderate">Moderate</option>
+        <option value="High">High</option>
+        </select>
+        <br/>
 
 <label>Plant Image</label>
         <textarea
           type="text"
-          name="plantImage"
-          value={plantImage}
-          onChange={(e) => setPlantImage(e.target.value)}
+          name="image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
         />
 
 <label>Plant Height</label>
-        <textarea
-          type="text"
+        <input
+          type="number"
           name="plantHeight"
           value={plantHeight}
           onChange={(e) => setPlantHeight(e.target.value)}
         />
 
 <label>Birth Date</label>
-        <textarea
-          type="text"
+        <input
+          type="date"
           name="birthDate"
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
         />
 
 <label>Current Condition</label>
-        <textarea
-          type="text"
-          name="currentCondition"
-          value={currentCondition}
-          onChange={(e) => setCurrentCondition(e.target.value)}
-        />
+        <select value={currentCondition} onChange={handleSelectCondition}>
+        <option value="Thriving">Thriving</option>
+        <option value="Needs some attention">Needs some attention</option>
+        <option value="Not good condition">Not good condition</option>
+        </select>
+
+        <br/>
 
         <button type="submit">Update Your Plant</button>
       </form>
 
-      <button onClick={deleteProject}>Delete Your Plant</button>
+      <button onClick={deletePlant}>Delete Your Plant</button>
     </div>
   );
 }
