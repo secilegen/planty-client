@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 
@@ -8,6 +9,8 @@ function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("Online");
+
+  const navigate = useNavigate();
 
   const {user} = useContext(AuthContext)
 
@@ -41,6 +44,8 @@ function AddBookingForm(props) {
         setDescription("");
         setReasonWhy("");
         setIsOnline("Online")
+
+        navigate("/profile")
 
         // props.refreshUser();  refresh user page with new booking?
       })
