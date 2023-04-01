@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
@@ -7,6 +8,8 @@ function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("Online");
+
+  const {user} = useContext(AuthContext)
 
   const handleSelect = e => {
     setIsOnline(e.target.value);
@@ -22,7 +25,7 @@ function AddBookingForm(props) {
 
     // const requestBody = { description, reasonWhy, isOnline, id };
 
-    const requestBody = { description, reasonWhy, isOnline };
+    const requestBody = { description, reasonWhy, isOnline, user:user._id };
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');

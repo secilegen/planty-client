@@ -35,13 +35,14 @@ function PlantDetails(props) {
 
     {plant && (
         <>
-          <h1>{plant.nickname}</h1>
-          
-          <p>{plant.sunlightPositioning}</p>
+          <h1>{plant.common_name}</h1>
           <p>{plant.image}</p>
+          <p>{plant.nickname}</p>
+          <p>{plant.sunlightPositioning}</p>     
           <p>{plant.plantHeight}</p>
           <p>{plant.birthDate}</p>
           <p>{plant.currentCondition}</p>
+          <p>{plant.watering}</p>
         </>
       )}
 
