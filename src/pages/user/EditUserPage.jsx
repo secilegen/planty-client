@@ -2,7 +2,7 @@ import React from 'react'
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../context/auth.context"; 
+import { AuthContext } from "../../context/auth.context"; 
 
 const API_URL = "http://localhost:5005";
 
@@ -76,9 +76,9 @@ function EditUserPage() {
         <label>Company Name</label>
         <input 
             type="text" 
-            name="lastName" 
-            value={lastName} 
-            onChange={(e)=> setLastName(e.target.value)}
+            name="companyName" 
+            value={companyName} 
+            onChange={(e)=> setCompanyName(e.target.value)}
             />
 
         <label>Type of Company</label>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context"; 
+import PlantForInspiration from '../components/PlantForInspiration';
  
 
 function HomePage() {
@@ -10,7 +11,18 @@ function HomePage() {
     <div>
 
       {isLoggedIn && (
-        <div></div>
+        <div>
+          <div>
+          <h1>My Plants</h1>
+          {/* Insert plant cards here */}
+          </div>
+          <div>
+            <h1>Get help with your plants</h1>
+            <h5>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
+            <Link to="/get-support"> <button>Book an expert</button> </Link>
+          </div>
+        <PlantForInspiration/>
+        </div>
       )}
       {!isLoggedIn && (
         <div>
