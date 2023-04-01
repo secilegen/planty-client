@@ -1,6 +1,6 @@
 
 import React from 'react'
-import AddPlantForm from '../components/AddPlantForm'
+import AddPlantForm from '../../components/AddPlantForm'
 // import SearchApiPlant from '../components/SearchApiPlant'
 // import ShowPlantFromAPI from '../components/ShowPlantFromAPI'
 

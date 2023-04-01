@@ -1,5 +1,5 @@
 import React from 'react'
-import AddBookingForm from '../components/AddBookingForm'
+import AddBookingForm from '../../components/AddBookingForm'
 
 function AddBooking() {
   return (
