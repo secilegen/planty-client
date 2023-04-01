@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 
 
@@ -9,7 +10,7 @@ const API_URL = "http://localhost:5005";
 function AddPlantForm(props) {
   const [common_name, setCommon_Name] = useState("");
   const [watering, setWatering] = useState("");
-  const [imageAPI, setImageAPI] = ("");
+  // const [imageAPI, setImageAPI] = ("");
   const [nickname, setNickname] = useState("");
   const [sunlightPositioning, setSunlightPositioning] = useState("Low");
   const [image, setImage] = useState("");
@@ -21,7 +22,7 @@ function AddPlantForm(props) {
   const [plant, setPlant] = useState([]);
   const [query, setQuery] = useState("");
  
-  
+  const {user} = useContext(AuthContext)
 
   const handleSelectSunlight = e => {
     setSunlightPositioning(e.target.value);
@@ -76,6 +77,7 @@ const handleClick = (e) => {
 
     const requestBody = {
       common_name,
+      user:user._id,
       watering,
       nickname,
       sunlightPositioning,
@@ -99,7 +101,7 @@ const handleClick = (e) => {
         setApiId("");
         setCommon_Name("");
         setWatering("");
-        setImageAPI("");
+        // setImageAPI("");
 
         console.log("add plant", response)
        
