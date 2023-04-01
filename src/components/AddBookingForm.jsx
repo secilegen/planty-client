@@ -14,15 +14,24 @@ function AddBookingForm(props) {
 
   const {user} = useContext(AuthContext)
 
-  const handleSelect = e => {
+  
+  // Handle drop down
+  
+  const handleSelectOnline = e => {
     setIsOnline(e.target.value);
 
     console.log("selected", e.target.value);
   };
 
+  const handleSelectReason = e => {
+    setReasonWhy(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     // const { id } = props;
 
@@ -67,16 +76,16 @@ function AddBookingForm(props) {
         <br/>
 
         <label>Reason Why</label>
-        <textarea
-          type="text"
-          name="reasonWhy"
-          value={reasonWhy}
-          onChange={(e) => setReasonWhy(e.target.value)}
-        />
+        <select value={reasonWhy} onChange={handleSelectReason}>
+        <option value="Plant Positioning">Plant Positioning</option>
+        <option value="Support with Disease">Support with Disease</option>
+        <option value="Plant Concept">Plant Concept</option>
+        </select>
+
         <br/>
 
         <label>Select location</label>
-        <select value={isOnline} onChange={handleSelect}>
+        <select value={isOnline} onChange={handleSelectOnline}>
         <option value="Online">Online</option>
         <option value="Offline">Offline</option>
         </select>
