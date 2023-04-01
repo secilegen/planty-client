@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import service from "../api/service";
 import axios from "axios";
 
 const API_URL = "http://localhost:5005";
@@ -14,6 +15,29 @@ function EditPlant(props) {
   
   const { plantId } = useParams();
   const navigate = useNavigate();
+
+    // ******** this method handles the file upload ********
+    const handleFileUpload = (e) => {
+      // console.log("The file to be uploaded is: ", e.target.files[0]);
+   
+      const uploadData = new FormData();
+   
+      // imageUrl => this name has to be the same as in the model since we pass
+      // req.body to .create() method when creating a new movie in '/api/movies' POST route
+      uploadData.append("image", e.target.files[0]);
+   
+      service
+        .uploadImage(uploadData)
+        .then(response => {
+          console.log("fileURL", response.fileUrl)
+          // console.log("response is: ", response);
+          // response carries "fileUrl" which we can use to update the state
+          setImage(response.fileUrl);
+        })
+        .catch(err => console.log("Error while uploading the file: ", err));
+    };
+
+    // Drop down
 
   const handleSelectSunlight = e => {
     setSunlightPositioning(e.target.value);
@@ -65,6 +89,7 @@ function EditPlant(props) {
       .then((response) => {
         navigate(`/plants/${plantId}`)
       });
+
   };
   
   
@@ -107,11 +132,10 @@ function EditPlant(props) {
         <br/>
 
 <label>Plant Image</label>
-        <textarea
-          type="text"
+        <input
+          type="file"
           name="image"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+          onChange={(e) => handleFileUpload(e)}
         />
 
 <label>Plant Height</label>
