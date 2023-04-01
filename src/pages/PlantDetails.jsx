@@ -36,6 +36,7 @@ function PlantDetails(props) {
     {plant && (
         <>
           <h1>{plant.nickname}</h1>
+          
           <p>{plant.sunlightPositioning}</p>
           <p>{plant.image}</p>
           <p>{plant.plantHeight}</p>
