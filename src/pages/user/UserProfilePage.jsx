@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/auth.context";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import UserHeader from "../../components/UserHeader";
+import PlantCard from "../../components/PlantCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -15,19 +16,20 @@ function UserProfilePage() {
   useEffect(()=>{
     axios.get(`${API_URL}/api/user/${user._id}`)
     .then(result=>{
+
       setUserToView(result.data)
+      console.log('User to view is', userToView)
+      console.log(userToView)
      })
   },[user._id])
 
   return (
     <div>
+      {userToView && (<div>
     <UserHeader user={userToView}/>
-    <h1>Welcome {userToView.firstName} {userToView.lastName}</h1>
-    <img src={userToView.image}/>
-
-    <Link to="/profile/edit">
-            <button>Edit Profile</button>
-          </Link>   
+    <PlantCard plants={userToView.myPlants}/>
+    
+    </div>)}  
     
     </div>
   )
