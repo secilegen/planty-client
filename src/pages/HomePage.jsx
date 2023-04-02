@@ -21,7 +21,7 @@ function HomePage() {
             <h5>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
             <Link to="/get-support"> <button>Book an expert</button> </Link>
           </div>
-        <PlantForInspiration/>
+        {/* <PlantForInspiration/> */}
         </div>
       )}
       {!isLoggedIn && (
