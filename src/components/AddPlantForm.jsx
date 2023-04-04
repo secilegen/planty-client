@@ -49,6 +49,8 @@ function AddPlantForm(props) {
       .catch(err => console.log("Error while uploading the file: ", err));
   };
 
+  // Handle drop down
+
   const handleSelectSunlight = e => {
     setSunlightPositioning(e.target.value);
     
