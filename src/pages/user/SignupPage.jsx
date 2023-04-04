@@ -3,17 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios'
 
-const API_URL = "http://localhost:5005";
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
 
-function ExpertSignupPage() {
-
+function SignupPage(props) {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [isCompany, setIsCompany] = useState(false)
     const [errorMessage, setErrorMessage] = useState(undefined)
-    const isExpert = true
+    const isExpert = false
+
 
     const navigate = useNavigate()
 
@@ -21,14 +22,16 @@ function ExpertSignupPage() {
     const handlePassword = (e) => setPassword(e.target.value)
     const handleFirstName = (e) => setFirstName(e.target.value)
     const handleLastName = (e) => setLastName(e.target.value)
+    const handleIsCompany = (e) => setIsCompany(e.target.checked)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const requestBody = { email, password, firstName, lastName, isExpert };
-
+        console.log('Request bosy on submit page is', requestBody)
         axios.post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
-        navigate('/expert/login');
+        console.log('Submit response is: ', response)
+        navigate('/login');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -37,8 +40,7 @@ function ExpertSignupPage() {
     }
 
   return (
-    
-    <div className="ExpertSignupPage">
+    <div className="SignupPage">
        <h1> Sign Up </h1> 
        <form onSubmit={handleSubmit}>
 
@@ -74,16 +76,23 @@ function ExpertSignupPage() {
           onChange={handlePassword}
         />
  
+        <label>I would like to sign up as a business owner</label>
+        <input
+          type="checkbox"  
+          name='isCompany'
+          value={isCompany}
+          onChange={handleIsCompany}     
+        />
         <button type="submit">Sign Up</button>
       </form>
 
       { errorMessage && <p className="error-message">{errorMessage}</p> }
  
       <p>Already have an account?</p>
-      <Link to={"/expert/login"}>Login</Link>
+      <Link to={"/login"}>Login</Link>
 
        </div>
   )
 }
 
-export default ExpertSignupPage
+export default SignupPage
