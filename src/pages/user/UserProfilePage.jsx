@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import UserHeader from "../../components/UserHeader";
 import PlantCard from "../../components/PlantCard";
 
-const API_URL = "http://localhost:5005";
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
 
 // add islogged in feature hgere
 

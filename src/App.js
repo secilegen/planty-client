@@ -1,7 +1,5 @@
 import './App.css';
 
-// import { Route } from 'react-router';
-// import { BrowserRouter as Routes } from 'react-router-dom';
 import SignupPage from './pages/user/SignupPage';
 import Navbar from './components/Navbar';
 import LoginPage from './pages/user/LoginPage';
@@ -15,13 +13,12 @@ import EditBooking from './pages/booking/EditBooking';
 import EditPlant from './pages/plant/EditPlant';
 import PlantDetails from './pages/plant/PlantDetails';
 import BookingDetails from './pages/booking/BookingDetails';
-import ExpertSignupPage from './pages/ExpertSignupPage';
-import ExpertLoginPage from './pages/ExpertLoginPage';
-import ExpertPage from './pages/ExpertDetailsPage';
-import EditExpertPage from './pages/EditExpertPage';
+import ExpertSignupPage from './pages/expert/ExpertSignupPage';
+import ExpertLoginPage from './pages/expert/ExpertLoginPage';
+import EditExpertPage from './pages/expert/EditExpertPage';
 import UserProfilePage from './pages/user/UserProfilePage';
-import ExpertProfilePage from './pages/ExpertProfilePage';
-import ExpertDetailsPage from './pages/ExpertDetailsPage';
+import ExpertProfilePage from './pages/expert/ExpertProfilePage';
+import ExpertDetailsPage from './pages/expert/ExpertDetailsPage';
 import EditUserPage from './pages/user/EditUserPage';
 import ErrorPage from './pages/ErrorPage';
 
