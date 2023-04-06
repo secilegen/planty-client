@@ -7,7 +7,7 @@ import service from "../api/service";
 
 
 const apiURL = "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
+const API_URL = "http://localhost:5005";
 
 function AddPlantForm(props) {
   const [common_name, setCommon_Name] = useState("");

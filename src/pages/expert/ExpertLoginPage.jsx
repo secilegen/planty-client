@@ -1,15 +1,16 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "../context/auth.context";
+import { AuthContext } from "../../context/auth.context";
 import { Link, useNavigate } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 
-function LoginPage(props) {
+function ExpertLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const isExpert = true
   
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ function LoginPage(props) {
   const handleLoginSubmit = (e) => {
 
     e.preventDefault();
-    const requestBody = { email, password };
+    const requestBody = { email, password, isExpert };
  
     axios.post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
@@ -65,9 +66,9 @@ function LoginPage(props) {
       { errorMessage && <p className="error-message">{errorMessage}</p> }
 
       <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+      <Link to={"/expert/signup"}> Sign Up</Link>
     </div>
   )
 }
 
-export default LoginPage;
+export default ExpertLoginPage

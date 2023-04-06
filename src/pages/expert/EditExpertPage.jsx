@@ -2,7 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+<<<<<<< HEAD:src/pages/EditExpertPage.jsx
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
+=======
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
+>>>>>>> main:src/pages/expert/EditExpertPage.jsx
 
 function EditExpertPage(props) {
   const [profileImage, setProfileImage] = useState("");
