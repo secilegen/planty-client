@@ -24,6 +24,8 @@ import UserProfilePage from './pages/UserProfilePage';
 import ExpertProfilePage from './pages/ExpertProfilePage';
 import ExpertDetailsPage from './pages/ExpertDetailsPage';
 import EditUserPage from './pages/EditUserPage';
+import AddDisease from './components/AddDisease';
+
 
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
         <Route path='/expert/:expertId' element={<ExpertProfilePage/>}/>
         <Route path='/expert/:expertId/edit' element={<EditExpertPage/>}/>
         <Route path='/expert-details/:expertId' element={<ExpertDetailsPage/>}/>
+        <Route path="/disease/:plantId" element={<AddDisease/>}/>
 
 
 
