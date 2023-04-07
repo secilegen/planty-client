@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Black Spot",
+        "symptoms": "Black, round spots that form on the upper sides of leaves. Lower leaves are usually infected first.",
+        "treatment": "Disinfect your pruners with a household disinfectant after every use. Remove dead leaves and infected canes from around the plants and disguard in the trash. Do not add to the compost pile.",
+        "recoveryTime": "6 weeks",
+        "isContagious": true,
+        "supplements": "Keep your plants healthy by providing regular feedings of organic fertilizer.",
+        "image": "https://earthsally.com/wp-content/uploads/2021/03/blackspot-plant-disease.jpg"
+    },
+
+    {
+        "name": "Powdery Mildew",
+        "symptoms": "Infected plants will display a white powdery substance that is most visible on upper leaf surfaces",
+        "treatment": "Trim and remove infected plant parts. Do not till the debris into the soil or use in the compost pile. ",
+        "recoveryTime": "4 weeks",
+        "isContagious": true,
+        "supplements": "Keep your plants healthy by providing regular feedings of organic fertilizer.",
+        "image": "https://earthsally.com/wp-content/uploads/2021/03/powdery-mildew-plant-disease.jpg"
+    },
+
+    {
+        "name": "Downy Mildew",
+        "symptoms": "White powdery substance on the upper leaves.",
+        "treatment": "Downy mildew needs water to survive and spread.  It there is no water on your leaves, the disease cannot spread. Keep water off leaves as much as possible.",
+        "recoveryTime": "8 weeks",
+        "isContagious": true,
+        "supplements": "Keep plants healthy by planting in healthy soils and maintaining nutritional requirements.",
+        "image":"https://earthsally.com/wp-content/uploads/2021/03/downy-mildew-plant-disease.jpg"
+    
+    },
+
+
+    {
+        "name": "Canker",
+        "symptoms": "Symptoms may include sunken, swollen, cracked or dead areas found on stems, limbs or trunk.",
+        "treatment": "Remove diseased parts in dry weather. Avoid overwatering and overcrowding; avoid mechanical wounds such as damage from lawn mowers.",
+        "recoveryTime": "2 weeks",
+        "isContagious": false,
+        "supplements": "Keep plants healthy by planting in healthy soils and maintaining nutritional requirements.",
+        "image": "https://earthsally.com/wp-content/uploads/2021/03/canker-plant-disease.jpg"
+    }
+
+
+
+]
