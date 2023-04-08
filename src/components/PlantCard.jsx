@@ -9,7 +9,7 @@ function PlantCard(props) {
             return (
                 <div key={onePlant._id}>
                     <h3>{onePlant.nickname}</h3>
-                    <img src={onePlant.image}/>
+                    <img src={onePlant.image} style={{width: "300px"}}/>
                     <h5>Watering status will come here</h5>
                     <h5>{onePlant.currentCondition}</h5>
                     <Link to={`/plants/edit/${onePlant._id}`}>

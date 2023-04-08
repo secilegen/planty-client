@@ -7,7 +7,7 @@ import service from "../api/service";
 
 
 const apiURL = "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 function AddPlantForm(props) {
   const [common_name, setCommon_Name] = useState("");
@@ -34,8 +34,8 @@ function AddPlantForm(props) {
  
     const uploadData = new FormData();
  
-    // imageUrl => this name has to be the same as in the model since we pass
-    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    // image => this name has to be the same as in the model since we pass
+    
     uploadData.append("image", e.target.files[0]);
  
     service
@@ -91,6 +91,7 @@ function AddPlantForm(props) {
 
 // Thanks to Henrique it works
 const handleClick = (e) => {
+  e.preventDefault();
   console.log("handleClick", e.target.parentNode.childNodes[1].childNodes[1].value)
   setCommon_Name(e.target.parentNode.childNodes[1].childNodes[1].value)
   setWatering(e.target.parentNode.childNodes[2].childNodes[1].value)

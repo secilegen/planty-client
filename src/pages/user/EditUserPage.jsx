@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context"; 
+import service from "../../api/service";
 
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 
 function EditUserPage() {
@@ -15,9 +16,34 @@ function EditUserPage() {
     const [isCompany, setIsCompany] = useState("")
     const [typeOfCompany, setTypeOfCompany] = useState("")
     const [companyName, setCompanyName] = useState("")
+    const [image, setImage] = useState("");
 
     const {userId} = useParams()
     const navigate = useNavigate()
+
+    // ******** this method handles the file upload ********
+    const handleFileUpload = (e) => {
+        // console.log("The file to be uploaded is: ", e.target.files[0]);
+     
+        const uploadData = new FormData();
+     
+        // image => this name has to be the same as in the model since we pass
+       
+        uploadData.append("image", e.target.files[0]);
+     
+        service
+          .uploadImage(uploadData)
+          .then(response => {
+            console.log("fileURL", response.fileUrl)
+            // console.log("response is: ", response);
+            // response carries "fileUrl" which we can use to update the state
+            setImage(response.fileUrl);
+          })
+          .catch(err => console.log("Error while uploading the file: ", err));
+      };
+  
+
+
 
     useEffect(()=>{
         axios
@@ -40,7 +66,8 @@ function EditUserPage() {
             lastName,
             isCompany,
             companyName,
-            typeOfCompany
+            typeOfCompany,
+            image
         }
         axios.put(`${API_URL}/api/user/${user._id}`,requestBody)
         .then(response =>{
@@ -91,6 +118,13 @@ function EditUserPage() {
             <option value="Other">Other</option>
 
         </select>
+
+        <label>Profile Image</label>
+        <input
+          type="file"
+          name="image"
+          onChange={(e) => handleFileUpload(e)}
+        />
 
         <button type="submit">Save Changes</button>
       </form>
