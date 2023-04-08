@@ -4,15 +4,19 @@ import { AuthContext } from "../context/auth.context";
  
 function NavbarUserProfile() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
   return (
     <div className="navbar-right">
-            {/* profile page yet to be created */}
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>        
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.firstName}</span>
 
+        <div className="navbar-right-top">
+          <span>Hello {user && user.firstName}</span>
+          </div>
+          <div className="navbar-right-bottom">
+          <Link to="/profile">
+            <button className="navbar-button">Profile</button>
+          </Link>        
+          <button className="navbar-button" onClick={logOutUser}>Logout</button>
+          </div>
         </div>
   )
 }

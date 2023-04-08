@@ -41,7 +41,7 @@ function AddBookingForm(props) {
     // const requestBody = { description, reasonWhy, isOnline, id };
 
 
-    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id, expert:expert._id };
+    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id, expert:expert };
 
 
     // Get the token from the localStorage
