@@ -71,7 +71,7 @@ function ExpertLoginPage() {
         />
         </div>
         </div>
-        <div>
+        <div className="login-button">
         <button type="submit" className="small-button button-filled-green">Login</button>
         </div>
       </form>
