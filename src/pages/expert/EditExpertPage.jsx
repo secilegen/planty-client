@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import service from "../../api/service";
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
@@ -15,6 +16,27 @@ function EditExpertPage(props) {
 
   const { expertId } = useParams();
   const navigate = useNavigate();
+
+ // ******** this method handles the file upload ********
+ const handleFileUpload = (e) => {
+  // console.log("The file to be uploaded is: ", e.target.files[0]);
+
+  const uploadData = new FormData();
+
+  // imageUrl => this name has to be the same as in the model since we pass
+  // req.body to .create() method when creating a new movie in '/api/movies' POST route
+  uploadData.append("image", e.target.files[0]);
+
+  service
+    .uploadImage(uploadData)
+    .then(response => {
+      console.log("fileURL", response.fileUrl)
+      // console.log("response is: ", response);
+      // response carries "fileUrl" which we can use to update the state
+      setProfileImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+};
 
   useEffect(() => {
     axios
@@ -38,6 +60,7 @@ function EditExpertPage(props) {
       availableOnline,
       expertLocation,
       price,
+      profileImage
     };
 
     axios.put(``).then((response) => {
@@ -84,6 +107,13 @@ function EditExpertPage(props) {
           name="price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
+        />
+
+<label>Profile Image</label>
+        <input
+          type="file"
+          name="profileImage"
+          onChange={(e) => handleFileUpload(e)}
         />
 
         <button type="submit">Save Changes</button>

@@ -11,7 +11,7 @@ function UserHeader(props) {
     <Link to="/profile/edit">
             <button>Edit Profile</button>
           </Link>
-    <img src={props.user.image}/>
+    <img src={props.user.image} style={{width: "300px"}}/>
     <h3>{numberOfPlants} plants</h3>
     <h3>{numberOfBookings} bookings</h3>  
     
