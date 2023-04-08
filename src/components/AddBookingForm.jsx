@@ -15,6 +15,7 @@ function AddBookingForm(props) {
 
   const {user} = useContext(AuthContext)
 
+  const expert = props.expert
   
   // Handle drop down
   
@@ -39,7 +40,9 @@ function AddBookingForm(props) {
 
     // const requestBody = { description, reasonWhy, isOnline, id };
 
-    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id };
+
+    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id, expert:expert._id };
+
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');
@@ -55,7 +58,11 @@ function AddBookingForm(props) {
         setDescription("");
         setReasonWhy("");
         setIsOnline("Online")
+
+        console.log('Booking created:', response.data)
+
         setIsConfirmed("pending")
+
 
         navigate("/profile")
 
