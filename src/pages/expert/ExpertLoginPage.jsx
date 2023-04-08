@@ -45,23 +45,35 @@ function ExpertLoginPage() {
       <h1>Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
+        <div className="login-box">
+          <div className="login-label">
         <label>Email:</label>
+        </div>
+        <div className="login-input">
         <input 
           type="email"
           name="email"
           value={email}
           onChange={handleEmail}
         />
-
+        </div>
+        </div>
+        <div className="login-box">
+        <div className="login-label">
         <label>Password:</label>
+        </div>
+        <div className="login-input">
         <input
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
-
-        <button type="submit">Login</button>
+        </div>
+        </div>
+        <div className="login-button">
+        <button type="submit" className="small-button button-filled-green">Login</button>
+        </div>
       </form>
       { errorMessage && <p className="error-message">{errorMessage}</p> }
 

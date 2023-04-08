@@ -8,14 +8,15 @@ function NavbarExpertProfile() {
   return (
     <div className="navbar-right">
         
-        <div>
+        <div className="navbar-right-top">
         <span>Hello {user && user.firstName}</span>
         </div>
-        <div>
+        <div className="navbar-right-bottom">
+          
           <Link to="/expert/profile">
-            <button>Profile</button>
+            <button className="navbar-button">Profile</button>
           </Link>        
-          <button onClick={logOutUser}>Logout</button>
+          <button className="navbar-button" onClick={logOutUser}>Logout</button>
           </div>
         </div>
   )
