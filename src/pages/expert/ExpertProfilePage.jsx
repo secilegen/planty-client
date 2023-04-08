@@ -12,14 +12,17 @@ function ExpertProfilePage() {
   const [expertToView, setExpertToView] = useState("")
 
   useEffect(()=>{
+    (user &&
     axios.get(`${API_URL}/api/expert/${user._id}`)
     .then(result=>{
 
       setExpertToView(result.data)
+      console.log("This is the result from expert api call",result.data)
+
       console.log('Expert to view is', expertToView)
-      console.log(expertToView)
      })
-  },[user._id])
+    )
+  },[])
 
   return (
     <div>

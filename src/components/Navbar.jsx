@@ -1,35 +1,31 @@
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context"; 
+import NavbarUserProfile from "./NavbarUserProfile";
+import NavbarGuest from "./NavbarGuest";
+import NavbarExpertProfile from "./NavbarExpertProfile";
+import Logo from "../images/PlantyLogo500-300.png"
+
  
 function Navbar() {
   
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  const {userId} = useParams()   
+  const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
+  console.log("Logged in status",isLoggedIn)
+  console.log("Expert status",isExpert)
+  console.log("User is", user)
   return (
-    <nav>
+    <nav className="navbar">
+      <div className="logo">
       <Link to="/">
+            <img src={Logo} alt="Planty Logo" height="75px"/>
+            </Link>
+        </div>
+      {/* <Link to="/">
         <button>Home</button>
-      </Link>
+      </Link> */}
  
-      {isLoggedIn && (
-        <div>
-            {/* profile page yet to be created */}
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>        
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
-
-        </div>
-      )}
+      {isLoggedIn ? isExpert ? <NavbarExpertProfile/> : <NavbarUserProfile/> : <NavbarGuest/> }
  
-      {!isLoggedIn && (
-        <div>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
-          <Link to="/login"> <button>Login</button> </Link>
-        </div>
-      )}
     </nav>
   );
 }

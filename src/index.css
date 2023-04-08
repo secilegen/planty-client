@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +10,98 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates");
+body {
+  margin: 10px;
+  background-color: #fdf7f2;
+  font-family: "Montserrat Alternates", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+.navbar{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c48b84;
+  border-color: #084d26;
+  padding-top: 20px;
+}
+
+.button{
+  font-weight: 400;
+    /* font-size: 12px; */
+  padding: 5px 10px;
+  margin: 0px 20px 10px 0px;
+  border-radius: 5px 5px 5px;
+  /* width: 60%; */
+  text-align: center;
+  width: 80%;
+  font-family: "Montserrat Alternates", Helvetica, Arial, sans-serif
+}
+
+.button-filled{
+  background-color: #c48b84;
+  border-color: #c48b84; 
+  /* border: transparent; */
+  color: #fdf7f2;
+}
+
+.button-filled:hover{
+  background-color: lightgray; 
+  color: white;
+  transition: 0.5s;
+}
+
+.button-framed{
+  background-color: #fdf7f2; 
+  border-color: #c48b84;
+  color: #c48b84
+}
+
+.button-framed:hover{
+  background-color: #fdf7f2; 
+  border: transparent;
+  color: #c48b84
+}
+
+.home{
+
+}
+
+.header{
+
+}
+
+.header-image{
+  width: 100%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  background-color: #c48b84;
+}
+
+.header-info {
+  background-color: #fdf7f2;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.home h1{
+  font-weight: 900;
+  font-size: 36px;
+  color: #084d26;
+}
+.home h5{
+  font-weight: 900;
+  font-size: 16px;
+  color: #084d26;
+}
+
+.home-expert{
+
+}
+
+.home-expert-image{
+  width: 100%;
 }

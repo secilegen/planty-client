@@ -13,7 +13,7 @@ function ExpertHeader(props) {
     return (
       <div>
       <h1>{props.expert.firstName} {props.expert.lastName}</h1>
-      <Link to="/profile/edit">
+      <Link to="./edit">
               <button>Edit Profile</button>
             </Link>
       <img src={props.expert.image}/>
