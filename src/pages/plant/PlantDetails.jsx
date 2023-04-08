@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
+
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 function PlantDetails(props) {
@@ -44,6 +45,8 @@ function PlantDetails(props) {
           <p>{plant.watering}</p>
         </>
       )}
+
+    
       <Link to={`/disease/${plantId}`}>
         <button>Add disease</button>
       </Link>  

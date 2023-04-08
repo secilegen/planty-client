@@ -39,6 +39,7 @@ function BookingDetails(props) {
           <h1>{booking.description}</h1>
           <p>{booking.reasonWhy}</p>
           <p>{booking.isOnline}</p>
+          <p>{booking.isConfirmed}</p>
         </>
       )}
 

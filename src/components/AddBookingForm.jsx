@@ -9,6 +9,7 @@ function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("Online");
+  const [isConfirmed, setIsConfirmed] = useState("pending")
 
   const navigate = useNavigate();
 
@@ -31,13 +32,14 @@ function AddBookingForm(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsConfirmed("pending")
 
 
     // const { id } = props;
 
     // const requestBody = { description, reasonWhy, isOnline, id };
 
-    const requestBody = { description, reasonWhy, isOnline, user:user._id };
+    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id };
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');
@@ -53,6 +55,7 @@ function AddBookingForm(props) {
         setDescription("");
         setReasonWhy("");
         setIsOnline("Online")
+        setIsConfirmed("pending")
 
         navigate("/profile")
 
