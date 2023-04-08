@@ -9,7 +9,7 @@ function ExpertHeader(props) {
     }
     const avgRating = ratingSum/props.expert.booking.length
     const numberOfBookings = props.expert.booking.length
-    
+    console.log('Expert from props is', props.expert)
     return (
       <div>
       <h1>{props.expert.firstName} {props.expert.lastName}</h1>
@@ -17,7 +17,7 @@ function ExpertHeader(props) {
               <button>Edit Profile</button>
             </Link>
       <img src={props.expert.image}/>
-      <h3>{avgRating} plants</h3>
+      <h3>{avgRating} rating</h3>
       <h3>{numberOfBookings} bookings</h3>  
       
       </div>  
