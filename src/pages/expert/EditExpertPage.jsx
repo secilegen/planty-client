@@ -1,11 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context"; 
+const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
 import service from "../../api/service";
 
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 function EditExpertPage(props) {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
   const [profileImage, setProfileImage] = useState("");
   const [experienceLevel, setExperienceLevel] = useState();
   const [favoritePlants, setFavoritePlants] = useState([]);
@@ -40,7 +43,7 @@ function EditExpertPage(props) {
 
   useEffect(() => {
     axios
-      .get()
+      .get(`${API_URL}/api/expert/${user._id}`)
       .then((response) => {
         const expertToEdit = response.data;
         setExperienceLevel(expertToEdit.experienceLevel);
@@ -50,7 +53,7 @@ function EditExpertPage(props) {
         setPrice(expertToEdit.price);
       })
       .catch((error) => console.log("Error occured editing expert:", error));
-  }, [expertId]);
+  }, [user._id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,8 +66,8 @@ function EditExpertPage(props) {
       profileImage
     };
 
-    axios.put(``).then((response) => {
-      navigate(``);
+    axios.put(`${API_URL}/api/expert/${user._id}`, requestBody).then((response) => {
+      navigate('/expert/profile');
     });
   };
 

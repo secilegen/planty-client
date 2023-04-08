@@ -45,8 +45,8 @@ function App() {
         <Route path="/get-support/edit/:id" element={<IsPrivate><EditBooking/></IsPrivate>}/>
         <Route path='/expert/signup' element={<IsAnon><ExpertSignupPage/></IsAnon>}/>
         <Route path='/expert/login' element={<IsAnon><ExpertLoginPage/></IsAnon>}/>
-        <Route path='/expert/:expertId' element={<ExpertProfilePage/>}/>
-        <Route path='/expert/:expertId/edit' element={<EditExpertPage/>}/>
+        <Route path='/expert/profile' element={<ExpertProfilePage/>}/>
+        <Route path='/expert/profile/edit' element={<EditExpertPage/>}/>
         <Route path='/expert-details/:expertId' element={<ExpertDetailsPage/>}/>
         <Route path="/disease/:plantId" element={<AddDisease/>}/>
         <Route path="*" element={ <ErrorPage /> } />

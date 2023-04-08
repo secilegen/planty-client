@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context"; 
 import PlantForInspiration from '../components/PlantForInspiration';
+import Header from '../images/leaves.png'
+import Body from '../images/Body.png'
+import CtaButton from '../components/CtaButton';
  
 
 function HomePage() {
@@ -11,7 +14,7 @@ function HomePage() {
     <div>
 
       {isLoggedIn && (
-        <div>
+        <div className='header'>
           <div>
           <h1>My Plants</h1>
           {/* Insert plant cards here */}
@@ -19,22 +22,28 @@ function HomePage() {
           <div>
             <h1>Get help with your plants</h1>
             <h5>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
-            <Link to="/get-support"> <button>Book an expert</button> </Link>
+            <Link to="/get-support"> <CtaButton cta="Book an expert" className="button-filled"/> </Link>
           </div>
         {/* <PlantForInspiration/> */}
         </div>
       )}
       {!isLoggedIn && (
-        <div>
+        <div className='home'>
+        <div className='header'>
+          <img src={Header} className='header-image'/>
+          <div className='header-info'>
         <h1>Happy plants, happy homes</h1>
         <h5>We know how hard it can get to keep your plants alive. Planty is here to support you with caring tips and more to make your plants happy
         </h5>
-        <Link to="/signup"> <button>Create an account</button> </Link>
-        <Link to="/login"> <button>Login</button> </Link>
-        <div>
+        <Link to="/signup" > <CtaButton cta="Create an account" className="button-filled"/> </Link>
+        <Link to="/login"> <CtaButton cta="Login" className="button-framed"/> </Link>
+        </div>
+        </div>
+        <div className='home-expert'>
+        <img src={Body} className='home-expert-image'/>
           <h1>Are you a plant expert?</h1>
           <h5>Planty is a community where plant owners meet experts to get caring tips & tricks in person or online</h5>
-          <Link to="/signup-expert"> <button>Sign up as Planty expert</button> </Link>
+          <Link to="/expert/signup"> <CtaButton cta="Become a Planty expert" className="button-filled"/> </Link>
           </div>
           </div>
       )}
