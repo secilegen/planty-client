@@ -34,7 +34,7 @@ function AddPlantForm(props) {
  
     const uploadData = new FormData();
  
-    // imageUrl => this name has to be the same as in the model since we pass
+    // image => this name has to be the same as in the model since we pass
     
     uploadData.append("image", e.target.files[0]);
  
