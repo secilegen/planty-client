@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import avatar from '../images/human.png'
+import editIcon from "../images/editIcon.png"
 
 function UserHeader(props) {
   const numberOfPlants = props.user.myPlants.length;
@@ -13,7 +14,7 @@ function UserHeader(props) {
           {props.user.firstName} {props.user.lastName}
         </h1>
         <Link to="/profile/edit">
-          <button>Edit Profile</button>
+          <img src={editIcon} alt="edit icon" height="25px" />
         </Link>
       </div>
       <div className="profile-header-bottom">
@@ -33,5 +34,6 @@ function UserHeader(props) {
     </div>
   );
 }
+
 
 export default UserHeader;

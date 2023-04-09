@@ -18,6 +18,13 @@ function EditBooking(props) {
     console.log("selected", e.target.value);
   };
 
+
+  const handleSelectReason = e => {
+    setReasonWhy(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
+  
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -59,7 +66,7 @@ function EditBooking(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        navigate("/"); // navigate to user/id?
+        navigate("/profile"); 
       })
       .catch((err) => console.log(err));
   };
