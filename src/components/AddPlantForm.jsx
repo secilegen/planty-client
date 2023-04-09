@@ -23,6 +23,7 @@ function AddPlantForm(props) {
   const [fetching, setFetching] = useState(true);
   const [plant, setPlant] = useState([]);
   const [query, setQuery] = useState("");
+  const [errorMessage, setErrorMesage] = useState('')
 
   const navigate = useNavigate();
  
@@ -115,6 +116,12 @@ const handleClick = (e) => {
       currentCondition,
       apiId
     };
+
+    // Error handling
+
+    if (!nickname) {
+      setErrorMesage("We need a nickname for your plant")
+    }
 
    axios
       .post(`${API_URL}/api/plants`, requestBody)

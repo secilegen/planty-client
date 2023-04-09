@@ -43,6 +43,7 @@ function AddDisease(props) {
             navigate(`/plants/${plantId}`)
            
         })
+        .catch((err) => console.log(err));
 
       }
 
@@ -56,14 +57,14 @@ function AddDisease(props) {
     {diseaseAll.map(disease => {
 
         return (
-        <div>
-        <img key="{image}" src={disease.image} alt="plant" style={{width: "300px"}}/>
-        <p key="{name}">Name: {disease.name}</p>
-        <p key="{symptoms}">Symptoms: {disease.symptoms}</p>
-        <p key="{treatment}">Treatment: {disease.treatment}</p>
-        <p key="{recoveryTime}">Recovery Time: {disease.recoveryTime}</p>
-        <p key="{isContagious}">Contagious: {disease.isContagious}</p>
-        <p key="{supplements}">Supplements: {disease.supplements}</p>
+        <div key={disease._id}>
+        <img  src={disease.image} alt="plant" style={{width: "300px"}}/>
+        <p>Name: {disease.name}</p>
+        <p>Symptoms: {disease.symptoms}</p>
+        <p>Treatment: {disease.treatment}</p>
+        <p>Recovery Time: {disease.recoveryTime}</p>
+        <p>Contagious: {disease.isContagious}</p>
+        <p>Supplements: {disease.supplements}</p>
 
         <button onClick={()=>{setSelectedDisease(disease._id) ;addDiseaseToPlant()}}>add disease to your plant</button>
         </div>

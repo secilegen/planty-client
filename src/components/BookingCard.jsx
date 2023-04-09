@@ -4,7 +4,7 @@ function BookingCard(props) {
 
   return (
     <div>
-    <h1>My Booking</h1>
+    <h1>My Bookings</h1>
 
     <div>{props.bookings.map(oneBooking => {
         return (
