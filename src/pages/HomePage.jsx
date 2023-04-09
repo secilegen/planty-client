@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";                     
 import { AuthContext } from "../context/auth.context"; 
 import PlantForInspiration from '../components/PlantForInspiration';
-import Header from '../images/leaves.png'
-import Body from '../images/Body.png'
+import Header from '../images/Header.png'
+import Body from '../images/Body.jpg'
 import CtaButton from '../components/CtaButton';
 import Footer from '../components/Footer';
  
@@ -41,12 +41,16 @@ function HomePage() {
         </div>
         </div>
         <div className='home-expert'>
-        <img src={Body} className='home-expert-image'/>
-          <h1>Are you a plant expert?</h1>
+        {/* <img src={Body} className='home-expert-image'/> */}
+         
+         <div className='home-expert-text'> 
+         <h1>Are you a plant expert?</h1>
           <h5>Planty is a community where plant owners meet experts to get caring tips & tricks in person or online</h5>
-          <Link to="/expert/signup"> <CtaButton cta="Become a Planty expert" className="button-filled"/> </Link>
           </div>
-          {/* <Footer/> */}
+          <div>  <Link to="/expert/signup"> <CtaButton cta="Become a Planty expert" className="button-framed"/> </Link>
+</div>
+          </div>
+          <Footer/>
           </div>
       )}
       
