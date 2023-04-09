@@ -6,6 +6,7 @@ import PlantForInspiration from '../components/PlantForInspiration';
 import Header from '../images/leaves.png'
 import Body from '../images/Body.png'
 import CtaButton from '../components/CtaButton';
+import Footer from '../components/Footer';
  
 
 function HomePage() {
@@ -45,10 +46,10 @@ function HomePage() {
           <h5>Planty is a community where plant owners meet experts to get caring tips & tricks in person or online</h5>
           <Link to="/expert/signup"> <CtaButton cta="Become a Planty expert" className="button-filled"/> </Link>
           </div>
+          {/* <Footer/> */}
           </div>
       )}
       
-
     </div>
   )
 }
