@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import DiseaseCard from "../../components/DiseaseCard";
 
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
@@ -43,6 +44,7 @@ function PlantDetails(props) {
           <p>{plant.birthDate}</p>
           <p>{plant.currentCondition}</p>
           <p>{plant.watering}</p>
+          <DiseaseCard disease={plant.disease}/>
         </>
       )}
 
