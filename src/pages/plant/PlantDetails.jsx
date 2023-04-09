@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import DiseaseCard from "../../components/DiseaseCard";
 
 
@@ -9,6 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 function PlantDetails(props) {
   const [plant, setPlant] = useState(null);
   const { plantId } = useParams();
+  const navigate = useNavigate();
 
   const getPlant = () => {
     // Get the token from the localStorage
@@ -25,6 +26,24 @@ function PlantDetails(props) {
       })
       .catch((error) => console.log(error));
   };
+
+  const deletePlant = () => {
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem('authToken');      
+   
+    // Send the token through the request "Authorization" Headers 
+   
+   axios
+     .delete(`${API_URL}/api/plants/${plantId}`,
+     { headers: { Authorization: `Bearer ${storedToken}` } } 
+     )
+     .then((response) => {
+        console.log(response.data)
+
+       navigate(`/profile`); 
+     })
+     .catch((err) => console.log(err));
+ };  
 
   useEffect(() => {
     getPlant();
@@ -56,6 +75,7 @@ function PlantDetails(props) {
       <Link to={`/plants/edit/${plantId}`}>
         <button>Edit Plant</button>
       </Link>
+      <button onClick={deletePlant}>Delete Plant</button>
     </div>
   );
 }

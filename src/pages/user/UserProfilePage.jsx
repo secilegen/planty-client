@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";                     
 import { AuthContext } from "../../context/auth.context"; 
 import axios from 'axios'
-import { Link } from "react-router-dom";
+
 import UserHeader from "../../components/UserHeader";
 import PlantCard from "../../components/PlantCard";
 import BookingCard from "../../components/BookingCard";
@@ -28,7 +28,9 @@ function UserProfilePage() {
     <div>
       {userToView && (<div>
     <UserHeader user={userToView}/>
+   
     <PlantCard plants={userToView.myPlants}/>
+   
     <BookingCard bookings={userToView.bookings}/>
     
     </div>)}  
