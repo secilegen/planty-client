@@ -11,10 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-@import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
   margin: 10px;
-  background-color: #fdf7f2;
+  background-color: #f4e0dd;
   font-family: "Montserrat Alternates", Helvetica, Arial, sans-serif;
   text-align: center;
 }
@@ -27,6 +28,8 @@ body {
   background-color: #c48b84;
   padding-top: 20px;
   border: solid 1px red ;
+  position: sticky;
+  top: 0
 
 }
 
@@ -64,7 +67,7 @@ body {
 }
 
 .button{
-  font-weight: 400;
+  font-weight: 600;
     /* font-size: 12px; */
   padding: 5px 10px;
   margin: 0px 20px 10px 0px;
@@ -116,7 +119,7 @@ body {
 }
 
 .header-info {
-  background-color: #fdf7f2;
+  background-color: #f4e0dd;
   margin-top: 0px;
   padding-top: 0px;
 }
@@ -127,7 +130,7 @@ body {
   color: #084d26;
 }
 .home h5{
-  font-weight: 900;
+  font-weight: 500;
   font-size: 16px;
   color: #084d26;
 }
@@ -181,7 +184,7 @@ body {
 }
 
 .small-button{
-  font-weight: 400;
+  font-weight: 600;
     /* font-size: 12px; */
   padding: 5px 10px;
   margin: 0px 20px 10px 0px;
@@ -210,4 +213,122 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+.SignupPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+  
+}
+
+.signup-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: solid 1px magenta; */
+  width: 80vw;
+  margin: 10px;
+}
+
+.signup-label{
+  margin: 10px;
+}
+
+.signup-input{
+  width: 80%;
+  /* border: solid 1px red; */
+  margin: 10px;
+}
+
+.signup-input input{
+  width: 100%;
+  
+}
+
+.SignupPage > form {
+  margin: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.AddBookingForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+  
+}
+
+.EditBooking{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+  
+}
+
+.booking-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: solid 1px magenta; */
+  width: 80vw;
+  margin: 10px;
+}
+
+.booking-label{
+  margin: 10px;
+}
+
+.booking-input{
+  width: 80%;
+  /* border: solid 1px red; */
+  margin: 10px;
+}
+/* 
+.booking-input input{
+  width: 100%;
+  
+} */
+
+.AddBookingForm > form {
+  margin: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ErrorPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  
+}
+/* .giphy-embed{
+  width: 1000px;
+} */
+
+.ErrorPage > p{
+  font-size: 10px;
+  margin-bottom: 50px;
 }
