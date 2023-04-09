@@ -38,43 +38,66 @@ function ExpertSignupPage() {
 
   return (
     
-    <div className="ExpertSignupPage">
+    <div className="SignupPage">
        <h1> Sign Up </h1> 
        <form onSubmit={handleSubmit}>
-
+       <div className="signup-box">
+          <div className="signup-label">
        <label>First Name:</label>
+       </div>
+          <div className="signup-input">
         <input 
           type="text"
           name="firstName"
           value={firstName}
           onChange={handleFirstName}
         />
-
+</div>
+        </div>
+        <div className="signup-box">
+          <div className="signup-label">
         <label>Last Name:</label>
+        </div>
+          <div className="signup-input">
         <input 
           type="text"
           name="lastName"
           value={lastName}
           onChange={handleLastName}
         />
-
+</div>
+        </div>
+        <div className="signup-box">
+          <div className="signup-label">
         <label>Email:</label>
+        </div>
+          <div className="signup-input">
         <input 
           type="email"
           name="email"
           value={email}
           onChange={handleEmail}
         />
- 
+           </div>
+        </div>
+        <div className="signup-box">
+          <div className="signup-label">
+
         <label>Password:</label>
+        </div>
+          <div className="signup-input">
         <input 
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
- 
-        <button type="submit">Sign Up</button>
+      </div>
+        </div>
+        
+        <div className="signup-button">
+        <button type="submit" className="small-button button-filled-green">Sign Up</button>
+        </div>
       </form>
 
       { errorMessage && <p className="error-message">{errorMessage}</p> }

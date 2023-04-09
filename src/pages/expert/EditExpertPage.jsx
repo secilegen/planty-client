@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../context/auth.context"; 
+import { AuthContext } from "../../context/auth.context";
 import service from "../../api/service";
 
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
-
-
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function EditExpertPage(props) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -22,26 +20,26 @@ function EditExpertPage(props) {
   const { expertId } = useParams();
   const navigate = useNavigate();
 
- // ******** this method handles the file upload ********
- const handleFileUpload = (e) => {
-  // console.log("The file to be uploaded is: ", e.target.files[0]);
+  // ******** this method handles the file upload ********
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
 
-  const uploadData = new FormData();
+    const uploadData = new FormData();
 
-  // image => this name has to be the same as in the model since we pass
+    // image => this name has to be the same as in the model since we pass
 
-  uploadData.append("image", e.target.files[0]);
+    uploadData.append("image", e.target.files[0]);
 
-  service
-    .uploadImage(uploadData)
-    .then(response => {
-      console.log("fileURL", response.fileUrl)
-      // console.log("response is: ", response);
-      // response carries "fileUrl" which we can use to update the state
-      setProfileImage(response.fileUrl);
-    })
-    .catch(err => console.log("Error while uploading the file: ", err));
-};
+    service
+      .uploadImage(uploadData)
+      .then((response) => {
+        console.log("fileURL", response.fileUrl);
+        // console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setProfileImage(response.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
 
   useEffect(() => {
     axios
@@ -55,7 +53,7 @@ function EditExpertPage(props) {
         setPrice(expertToEdit.price);
       })
       .catch((error) => console.log("Error occured editing expert:", error));
-  }, [user._id]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,63 +63,110 @@ function EditExpertPage(props) {
       availableOnline,
       expertLocation,
       price,
-      profileImage
+      profileImage,
     };
 
-    axios.put(`${API_URL}/api/expert/${user._id}`, requestBody).then((response) => {
-      navigate('/expert/profile');
-    });
+    axios
+      .put(`${API_URL}/api/expert/${user._id}`, requestBody)
+      .then((response) => {
+        navigate("/expert/profile");
+      });
   };
 
   return (
-    <div className="EditExpertPage">
+    <div className="EditProfile">
       <h3>Edit Your Profile</h3>
 
       <form onSubmit={handleSubmit}>
-        <label>Experience Level</label>
-        <select id="" name="experienceLevel" value={experienceLevel} onChange={(e)=> setExperienceLevel(e.target.value)}>
-            <option value="1-3 years">1-3 years</option>
-            <option value="4-6 years">4-6 years</option>
-            <option value="more than 6 years">more than 6 years</option>
+        <div className="edit-profile-box">
+          <div className="edit-profile-label">
+            <label>Experience Level</label>
+          </div>
+          <div className="edit-profile-input">
+            <select
+              id=""
+              name="experienceLevel"
+              value={experienceLevel}
+              onChange={(e) => setExperienceLevel(e.target.value)}
+            >
+              <option value="1-3 years">1-3 years</option>
+              <option value="4-6 years">4-6 years</option>
+              <option value="more than 6 years">more than 6 years</option>
+            </select>
+          </div>
+        </div>
+        <div className="edit-profile-box">
+          <div className="edit-profile-label">
+            <label>Availability</label>
+          </div>
+          <div className="edit-profile-input">
+            <select
+              id=""
+              name="availability"
+              value={availability}
+              onChange={(e) => setAvailability(e.target.value)}
+            >
+              <option value="true">I am available for new bookings</option>
+              <option value="false">I am NOT available for new bookings</option>
+            </select>
+          </div>
+        </div>
+        <div className="edit-profile-box">
+          <div className="edit-profile-label">
+            <label>Do you want to offer your services online?</label>
+          </div>
+          <div className="edit-profile-input">
+            <select
+              id=""
+              name="availableOnline"
+              value={availableOnline}
+              onChange={(e) => setAvailableOnline(e.target.value)}
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
 
-        </select>
-
-        <label>Availability</label>
-        <select id="" name="availability" value={availability} onChange={(e)=> setAvailability(e.target.value)}>
-            <option value="true">I am available for new bookings</option>
-            <option value="false">I am NOT available for new bookings</option>
-        </select>
-
-        <label>Do you want to offer your services online?</label>
-        <select id="" name="availableOnline" value={availableOnline} onChange={(e)=> setAvailableOnline(e.target.value)}>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>
-
-        <label>Location</label>
-        <input
-          type="text"
-          name="expertLocation"
-          value={expertLocation}
-          onChange={(e) => setExpertLocation(e.target.value)}
-        />
-
-        <label>Price</label>
-        <input
-          type="number"
-          name="price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-
-<label>Profile Image</label>
-        <input
-          type="file"
-          name="profileImage"
-          onChange={(e) => handleFileUpload(e)}
-        />
-
-        <button type="submit">Save Changes</button>
+            <label>Location</label>
+          </div>
+          <div className="edit-profile-input">
+            <input
+              type="text"
+              name="expertLocation"
+              value={expertLocation}
+              onChange={(e) => setExpertLocation(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="edit-profile-box">
+          <div className="edit-profile-label">
+            <label>Price</label>
+          </div>
+          <div className="edit-profile-input">
+            <input
+              type="number"
+              name="price"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="edit-profile-box">
+          <div className="edit-profile-label">
+            <label>Profile Image</label>
+          </div>
+          <div className="edit-profile-input">
+            <input
+              type="file"
+              name="profileImage"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
+        </div>
+        <div className="submit-button">
+          <button type="submit" className="small-button button-filled-green">
+            Save Changes
+          </button>
+        </div>
       </form>
 
       {/* <button onClick={deleteProject}>Delete Your Plant</button> */}
