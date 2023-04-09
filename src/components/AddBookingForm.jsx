@@ -10,6 +10,7 @@ function AddBookingForm(props) {
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("Online");
   const [isConfirmed, setIsConfirmed] = useState("pending")
+  const [image, setImage] = useState("")
 
   const navigate = useNavigate();
 
@@ -35,13 +36,30 @@ function AddBookingForm(props) {
     e.preventDefault();
     setIsConfirmed("pending")
 
+    if (setReasonWhy("Plant Positioning")) {
+      
+      return setImage("cactus-vertical.png")
+      
 
-    // const { id } = props;
+    }
+    if (setReasonWhy === "Support with Disease") {
+      return setImage("banana-plant.png")
 
-    // const requestBody = { description, reasonWhy, isOnline, id };
+    }
+
+    if (setReasonWhy === "Plant Concept") {
+      return setImage("deleteIcon.png")
+
+    }
+
+   
 
 
-    const requestBody = { description, reasonWhy, isOnline, isConfirmed, user:user._id, expert:expert };
+    const requestBody = { description, reasonWhy, isOnline, isConfirmed, image, user:user._id, expert:expert };
+
+ 
+
+    
 
 
     // Get the token from the localStorage
@@ -62,6 +80,13 @@ function AddBookingForm(props) {
         console.log('Booking created:', response.data)
 
         setIsConfirmed("pending")
+
+        if (setReasonWhy("Plant Positioning")) {
+      
+          return setImage("cactus-vertical.png")
+          
+    
+        }
 
 
         navigate("/profile")

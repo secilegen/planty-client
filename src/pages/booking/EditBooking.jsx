@@ -17,6 +17,12 @@ function EditBooking(props) {
 
     console.log("selected", e.target.value);
   };
+
+  const handleSelectReason = e => {
+    setReasonWhy(e.target.value);
+
+    console.log("selected", e.target.value);
+  };
   
   useEffect(() => {
     const storedToken = localStorage.getItem('authToken')
@@ -62,7 +68,7 @@ function EditBooking(props) {
       { headers: { Authorization: `Bearer ${storedToken}` } }
       )
       .then(() => {
-        navigate("/"); // navigate to user/id?
+        navigate("/profile"); 
       })
       .catch((err) => console.log(err));
   };  
@@ -84,13 +90,13 @@ function EditBooking(props) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label>Reason Why</label>
-        <textarea
-          type="text"
-          name="reasonWhy"
-          value={reasonWhy}
-          onChange={(e) => setReasonWhy(e.target.value)}
-        />
+<label>Reason Why</label>
+        <select value={reasonWhy} onChange={handleSelectReason}>
+        <option value="Plant Positioning">Plant Positioning</option>
+        <option value="Support with Disease">Support with Disease</option>
+        <option value="Plant Concept">Plant Concept</option>
+        </select>
+       
 
 <label>Select location</label>
         <select value={isOnline} onChange={handleSelect}>
