@@ -169,7 +169,7 @@ function EditExpertPage(props) {
         </div>
       </form>
 
-      {/* <button onClick={deleteProject}>Delete Your Plant</button> */}
+      {/* <button onClick={deleteExpert}>Delete Your Plant</button> */}
     </div>
   );
 }

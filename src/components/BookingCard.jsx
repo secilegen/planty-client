@@ -23,7 +23,7 @@ function BookingCard(props) {
         <img src={addIcon} alt="add icon" height="30px" />
       </Link>
 
-    <div>{props.bookings.map(oneBooking => {
+    <div>{props.bookings.length > 0 && props.bookings.map(oneBooking => {
         return (
             <div key={oneBooking._id}>
   

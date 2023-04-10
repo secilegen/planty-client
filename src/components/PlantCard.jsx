@@ -19,7 +19,8 @@ function PlantCard(props) {
       </div>
 
       <div>
-        {props.plants.map((onePlant) => {
+        
+        {props?.plants && props.plants.map((onePlant) => {
           return (
             <div key={onePlant._id} className="plantCard">
               <img
