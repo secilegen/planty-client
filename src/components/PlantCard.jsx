@@ -8,17 +8,20 @@ import wateringIcon from "../images/wateringIconBlack.png";
 
 function PlantCard(props) {
   return (
-    <div>
-      <h1>My Plants</h1>
+    <div >
+
+<div className='diseaseHeader'>
+      <h2>My Plants</h2>
 
       <Link to={`/plants`}>
         <img src={addIcon} alt="add icon" height="30px" />
       </Link>
+      </div>
 
       <div>
         {props.plants.map((onePlant) => {
           return (
-            <div key={onePlant._id}>
+            <div key={onePlant._id} className="plantCard">
               <img
                 src={onePlant.image}
                 alt="plant"
@@ -51,7 +54,7 @@ function PlantCard(props) {
                 <img
                   src={wateringIcon}
                   alt="watering"
-                  className="plantDetailIcon"
+                  className="plantCardIcon"
                 />
                 <p className="plantCardContent">{onePlant.watering}</p>
               </div>
@@ -59,7 +62,7 @@ function PlantCard(props) {
                 <img
                   src={conditionIcon}
                   alt="condition"
-                  className="plantDetailIcon"
+                  className="plantCardIcon"
                 />
                 <p className="plantCardContent">{onePlant.currentCondition}</p>
                 </div>
@@ -68,6 +71,7 @@ function PlantCard(props) {
           );
         })}
       </div>
+      <br/>
     </div>
   );
 }
