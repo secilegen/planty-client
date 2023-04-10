@@ -59,7 +59,7 @@ function AddDisease(props) {
   return (
     <div>
     
-    <h2>Add a disease to your planty</h2>
+    <h2 className="detailHeadline">Add a disease to your planty</h2>
 
     {diseaseAll.map(disease => {
       console.log("disease", disease)
@@ -69,8 +69,8 @@ function AddDisease(props) {
 
         <div className='diseaseType'>
         <p className='diseaseName'>{disease.name}</p>
-       <img src={addIcon} alt="add" onClick={()=>{setSelectedDisease(disease._id) ;addDiseaseToPlant()}} className="diseaseDeleteIcon" />
-        <button onClick={()=>{addDiseaseToPlant(disease._id)}}>add disease to your plant</button>
+       <img src={addIcon} alt="add" onClick={()=>{addDiseaseToPlant(disease._id)}} className="diseaseDeleteIcon" />
+        {/* <button onClick={()=>{addDiseaseToPlant(disease._id)}}>add disease to your plant</button> */}
         </div>
 
         <div className='diseaseSubline'>
@@ -106,8 +106,9 @@ function AddDisease(props) {
         </div>
         <p className='diseaseContent'>{disease.supplements}</p>
 
-        
+        <br/>
         </div>
+        
         )
     })}
 
