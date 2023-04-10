@@ -16,6 +16,9 @@ function PlantDetails(props) {
   const [plant, setPlant] = useState(null);
   const { plantId } = useParams();
   const navigate = useNavigate();
+  const [watering, setWatering] = useState()
+  const [sunFactor, setSunFactor] = useState(1)
+  const [apiWaterFactor, setApiWaterFactor] = useState(1)
 
   const getPlant = () => {
     // Get the token from the localStorage
@@ -29,9 +32,25 @@ function PlantDetails(props) {
       .then((response) => {
         const onePlant = response.data;
         setPlant(onePlant);
+        onePlant.sunlightPositioning === "Low" ? setSunFactor(0.8) : onePlant.sunlightPositioning === "High" ? setSunFactor(1.2) : setSunFactor(1);
+        onePlant.watering === "Minimal" ?  setApiWaterFactor(0.5) : onePlant.watering === "Frequent" ? setApiWaterFactor(1.5) : setApiWaterFactor(1);
+        console.log(onePlant)
+        console.log("Watering is", apiWaterFactor)
+        console.log("Sun factor is ", sunFactor)
       })
+      // .then(()=>{
+      //   plant.sunlightPositioning === "Low" ? setSunFactor(0.8) : plant.sunlightPositioning === "High" ? setSunFactor(1.2) : setSunFactor(1);
+      //   plant.watering === "Minimal" ?  setApiWaterFactor(0.5) : plant.watering === "Frequent" ? setApiWaterFactor(1.5) : setApiWaterFactor(1);
+      //   console.log(plant)
+      //   console.log("Watering is", apiWaterFactor)
+      //   console.log("Sun factor is ", sunFactor)
+      // })
       .catch((error) => console.log(error));
   };
+
+  // const calculateWatering = (plant) => {
+  //   const amount = plant.plantHeight * 0.4 * sunFactor * apiWaterFactor
+  // } 
 
   const deletePlant = () => {
     // Get the token from the localStorage
@@ -53,6 +72,7 @@ function PlantDetails(props) {
 
   useEffect(() => {
     getPlant();
+    // calculateWatering(plant)
   }, []);
 
   return (
