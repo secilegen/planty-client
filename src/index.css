@@ -211,3 +211,187 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+
+/* Plant details and card */
+
+.plantImage{
+  width: 80%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+
+}
+
+
+
+
+.plantDetailContainer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* header */
+
+.plantDetailHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+ }
+
+.plantHeaderLeft{
+ 
+margin-right: 60px;
+  
+
+}
+
+.plantHeaderRight{
+  display: flex;
+  flex-direction: row;
+  margin-right: 35px;
+  
+}
+
+.plantName {
+ text-align:left ;
+  font-size: 18px;
+  font-weight: bold;
+  color: #c48b84;
+  margin-left: 35px;
+}
+
+.commonName{
+  text-align: left;
+  margin: -10px 0 30px 0;
+  font-size: 14px;
+  color:#084d26;
+  margin-left: 35px;
+}
+
+
+.plantDetailsEdit{
+  margin-right: 15px;
+}
+
+.center{
+  justify-content: center;
+}
+
+.plantDetailContent{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+ }
+
+
+.detailsPlant{
+  display: flex;
+  flex-direction: row;
+  margin-top: -5px;
+  margin-left: 35px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  justify-content: flex-start;
+  align-items: center;
+  
+
+}
+
+.plantDetailIcon{
+  height: 25px;
+  margin-right: 20px;
+}
+
+.detailsCategory{
+ 
+ font-weight:bold;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.detailsResults{
+ font-size: 14px;
+}
+
+.diseaseHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 35px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+ }
+
+ .diseaseHeader h3{
+ /* margin-right: 190px; */
+ }
+
+ .addDiseaseIcon{
+  text-align: right;
+ }
+
+ .diseaseImage {
+  width: 80%;
+ }
+
+ .diseaseName {
+  text-align:left ;
+  font-size: 18px;
+  font-weight: bold;
+  color: #c48b84;
+  margin-left: 35px;
+ }
+
+
+.diseaseIcon{
+  height: 25px;
+  margin-right: 20px;
+}
+
+.diseaseSubline{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 35px;
+  margin-bottom: 5px;
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: bold;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.diseaseContent{
+  font-size: 14px;
+  text-align: justify;
+	text-align-last: none;
+  max-width: 80%;
+  margin-left: 35px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+
+}
+
+.diseaseDeleteIcon{
+  height:20px;
+}
+
+.diseaseType{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-right:45px;
+}
+
+.diseaseDetailsImage{
+  width:80%;
+  margin-top: 25px;
+}
+
+
+

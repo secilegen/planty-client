@@ -1,7 +1,11 @@
 import React from 'react'
 import axios from "axios";
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useState } from "react";
+import addIcon from "../images/addIconSalmon.png";
+import treatmentIcon from "../images/treatmentIconBlack.png";
+import supplementIcon from "../images/supplementIconBlack.png";
+import deleteIcon from "../images/deleteIcon.png";
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
@@ -34,17 +38,38 @@ function DiseaseCard(props) {
   return (
 
     <div>
-    <h1>Disease</h1>
+    <div className='diseaseHeader'>
+    <h3>Disease</h3>
+    <Link to={`/disease/${plantId}`}>
+      <img src={addIcon} alt="edit icon" height="25px" className='addDiseaseIcon'/>
+      </Link>
+    </div>
 
     <div>{props.disease.map(oneDisease => {
         return (
             <div key={oneDisease._id}>
-            <img src={oneDisease.image} alt="disease" style={{width: "300px"}}/>
-            <p>{oneDisease.name}</p>
-            <p>Treatment: {oneDisease.treatment}</p>
-            <p>Supplements: {oneDisease.supplements}</p>
+            <img src={oneDisease.image} alt="disease" className='diseaseImage'/>
 
-            <button onClick={()=> {setSelectedDisease(oneDisease.id) ;deleteDisease()}}>Delete Disease</button>
+            <div className='diseaseType'>
+            <p className='diseaseName'>{oneDisease.name}</p>
+            {/* <button onClick={()=> {setSelectedDisease(oneDisease.id) ;deleteDisease()}}></button> */}
+            <img src={deleteIcon} alt="delete" onClick={()=> {setSelectedDisease(oneDisease.id) ;deleteDisease()}} className="diseaseDeleteIcon"/>
+            
+            </div>
+
+            <div className='diseaseSubline'>
+            <img src={treatmentIcon} alt="treatment" className='diseaseIcon'/>
+            <p>Treatment </p>
+            </div>
+            <p className='diseaseContent'>{oneDisease.treatment}</p>
+
+            <div className='diseaseSubline'>
+            <img src={supplementIcon} alt="supplement" className='diseaseIcon'/>
+            <p>Supplements </p>
+            </div>
+            <p className='diseaseContent'>{oneDisease.supplements}</p>
+
+            
 
             <br/>
 

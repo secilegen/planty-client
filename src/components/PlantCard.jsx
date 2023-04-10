@@ -20,12 +20,13 @@ function PlantCard(props) {
         {props.plants.map((onePlant) => {
           return (
             <div key={onePlant._id}>
-              <h3>{onePlant.nickname}</h3>
+              
               <img
                 src={onePlant.image}
                 alt="plant"
                 style={{ width: "300px" }}
               />
+              <h3>{onePlant.nickname}</h3>
               <h5>Watering status will come here</h5>
               <h5>{onePlant.currentCondition}</h5>
 
