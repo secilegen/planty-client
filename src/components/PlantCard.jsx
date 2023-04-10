@@ -2,12 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import addIcon from "../images/addIconSalmon.png";
 import editIcon from "../images/editIcon.png";
-import viewDetails from "../images/viewDetails.png"
+import viewDetails from "../images/viewDetails.png";
+import conditionIcon from "../images/conditionIconBlack.png";
+import wateringIcon from "../images/wateringIconBlack.png";
 
 function PlantCard(props) {
-
-   
-
   return (
     <div>
       <h1>My Plants</h1>
@@ -20,25 +19,51 @@ function PlantCard(props) {
         {props.plants.map((onePlant) => {
           return (
             <div key={onePlant._id}>
-              
               <img
                 src={onePlant.image}
                 alt="plant"
                 style={{ width: "300px" }}
+                className="plantCardImage"
               />
-              <h3>{onePlant.nickname}</h3>
-              <h5>Watering status will come here</h5>
-              <h5>{onePlant.currentCondition}</h5>
+              <div className="plantDetailHeader">
+                <div className="plantHeaderLeft">
+                  <h3 className="plantName">{onePlant.nickname}</h3>
+                </div>
 
-              <Link to={`/plants/${onePlant._id}`}>
-                <img src={viewDetails} alt="details icon" height="25px" />
-              </Link>
+                <div className="plantHeaderRight">
+                  <Link to={`/plants/${onePlant._id}`}>
+                    <img
+                      src={viewDetails}
+                      alt="details icon"
+                      height="25px"
+                      className="viewDetailsIcon"
+                    />
+                  </Link>
 
-              <Link to={`/plants/edit/${onePlant._id}`}>
-                <img src={editIcon} alt="edit icon" height="25px" />
-              </Link>
+                  <Link to={`/plants/edit/${onePlant._id}`}>
+                    <img src={editIcon} alt="edit icon" height="25px" />
+                  </Link>
+                </div>
+              </div>
 
-            
+<div className="plantCardContainer">
+              <div className="plantCardLeft">
+                <img
+                  src={wateringIcon}
+                  alt="watering"
+                  className="plantDetailIcon"
+                />
+                <p className="plantCardContent">{onePlant.watering}</p>
+              </div>
+              <div className="plantCardRight">
+                <img
+                  src={conditionIcon}
+                  alt="condition"
+                  className="plantDetailIcon"
+                />
+                <p className="plantCardContent">{onePlant.currentCondition}</p>
+                </div>
+              </div>
             </div>
           );
         })}
