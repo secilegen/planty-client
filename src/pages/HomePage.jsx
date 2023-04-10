@@ -21,7 +21,16 @@ function HomePage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
-   user && axios.get(`${API_URL}/api/user/${user._id}`)
+   !isExpert && (user && axios.get(`${API_URL}/api/user/${user._id}`)
+    .then(result=>{
+
+      setUserToView(result.data)
+      setIsLoading(false)
+      console.log('User to view is', userToView)
+      console.log(userToView)
+     }))
+    isExpert && (
+      user && axios.get(`${API_URL}/api/expert/${user._id}`)
     .then(result=>{
 
       setUserToView(result.data)
@@ -29,6 +38,7 @@ function HomePage() {
       console.log('User to view is', userToView)
       console.log(userToView)
      })
+    )
   },[user])
 
   return (
@@ -37,23 +47,25 @@ function HomePage() {
         
         <div className='header'>
           <div>
-          {!isExpert && user && (
+          {!isExpert && user && (<>
               <PlantCard plants={userToView.myPlants}/>
-            )}
-            <BookingCard bookings={userToView.bookings}/>
-          </div>
-          <div>
+              <div>
             <h1>Get help with your plants</h1>
             <h5>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
             <Link to="/get-support"> <CtaButton cta="Book an expert" className="button-filled"/> </Link>
           </div>
+          </>
+            )}
+          {user &&  <BookingCard bookings={userToView.bookings}/> }
+          </div>
+          
         {/* <PlantForInspiration/> */}
         </div>
       )
       ) 
       
       }
-      {isLoading && <h1>Loading</h1>}
+      {/* {isLoading && <h1>Loading</h1>} */}
       {!isLoggedIn && <GuestHomePage/>}
       
     </div>

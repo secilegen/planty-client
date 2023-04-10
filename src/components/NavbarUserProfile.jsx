@@ -9,7 +9,7 @@ function NavbarUserProfile() {
     <div className="navbar-right">
 
         <div className="navbar-right-top">
-          <span>Hello {user && user.firstName}</span>
+          {/* <span>Hello {user && user.firstName}</span> */}
           </div>
           <div className="navbar-right-bottom">
           <Link to="/profile">
