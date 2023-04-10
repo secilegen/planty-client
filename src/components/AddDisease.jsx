@@ -17,7 +17,8 @@ const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 function AddDisease(props) {
     
     const [diseaseAll, setDiseaseAll] = useState([])
-    const [selectedDisease, setSelectedDisease] = useState("")
+    const [selectedDisease, setSelectedDisease] = useState("1")
+    const [newDisease,setNewDisease]=useState('')
 
     const { plantId } = useParams();
     const navigate = useNavigate();
@@ -37,12 +38,13 @@ function AddDisease(props) {
 
       // Edit plant and add disease to plant
 
-      const addDiseaseToPlant = (e) => {
+      const addDiseaseToPlant = (diseaseId) => {
         const storedToken = localStorage.getItem('authToken');
-       
+       console.log("selcted disease", selectedDisease)
         axios
-        .put(`${API_URL}/api/disease/${plantId}`,{disease:selectedDisease} ,
+        .put(`${API_URL}/api/disease/${plantId}`,{disease:diseaseId} ,
         { headers: { Authorization: `Bearer ${storedToken}` } })
+
         .then((response) => { 
             console.log(response.data)
 
@@ -52,16 +54,15 @@ function AddDisease(props) {
         .catch((err) => console.log(err));
 
       }
-
-    
-
+      
+      
   return (
     <div>
     
     <h2>Add a disease to your planty</h2>
 
     {diseaseAll.map(disease => {
-
+      console.log("disease", disease)
         return (
         <div key={disease._id}>
         <img  src={disease.image} alt="plant" style={{width: "300px"}} className="diseaseDetailsImage"/>
@@ -69,7 +70,7 @@ function AddDisease(props) {
         <div className='diseaseType'>
         <p className='diseaseName'>{disease.name}</p>
        <img src={addIcon} alt="add" onClick={()=>{setSelectedDisease(disease._id) ;addDiseaseToPlant()}} className="diseaseDeleteIcon" />
-        {/* <button onClick={()=>{setSelectedDisease(disease._id) ;addDiseaseToPlant()}}>add disease to your plant</button> */}
+        <button onClick={()=>{addDiseaseToPlant(disease._id)}}>add disease to your plant</button>
         </div>
 
         <div className='diseaseSubline'>
