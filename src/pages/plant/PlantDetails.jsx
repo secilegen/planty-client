@@ -127,7 +127,7 @@ function PlantDetails(props) {
 
           <hr width="65%" />
           <br/>
-          <DiseaseCard disease={plant.disease} />
+          <DiseaseCard disease={plant.disease} getPlant={getPlant} />
         </>
       )}
     </div>

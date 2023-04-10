@@ -10,6 +10,7 @@ import deleteIcon from "../images/deleteIcon.png";
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 function DiseaseCard(props) {
+    console.log("props", props)
     const [selectedDisease, setSelectedDisease] = useState("")
 
 
@@ -17,19 +18,19 @@ function DiseaseCard(props) {
     const navigate = useNavigate();
 
 
-    const deleteDisease = () => {
+    const deleteDisease = (diseaseId) => {
         // Get the token from the localStorage
         const storedToken = localStorage.getItem('authToken');      
        
         // Send the token through the request "Authorization" Headers 
        
        axios
-         .delete(`${API_URL}/api/disease/${plantId}`, {disease:selectedDisease},
+         .put(`${API_URL}/api/disease/${plantId}/delete`, {disease:diseaseId},
          { headers: { Authorization: `Bearer ${storedToken}` } } 
          )
          .then((response) => {
             console.log(response.data)
-
+            props.getPlant()
            navigate(`/plants/${plantId}`); 
          })
          .catch((err) => console.log(err));
@@ -46,6 +47,7 @@ function DiseaseCard(props) {
     </div>
 
     <div>{props.disease.map(oneDisease => {
+        console.log("oneDisease", oneDisease._id)
         return (
             <div key={oneDisease._id}>
             <img src={oneDisease.image} alt="disease" className='diseaseImage'/>
@@ -53,7 +55,7 @@ function DiseaseCard(props) {
             <div className='diseaseType'>
             <p className='diseaseName'>{oneDisease.name}</p>
             {/* <button onClick={()=> {setSelectedDisease(oneDisease.id) ;deleteDisease()}}></button> */}
-            <img src={deleteIcon} alt="delete" onClick={()=> {setSelectedDisease(oneDisease.id) ;deleteDisease()}} className="diseaseDeleteIcon"/>
+            <img src={deleteIcon} alt="delete" onClick={()=> {deleteDisease(oneDisease._id)}} className="diseaseDeleteIcon"/>
             
             </div>
 
