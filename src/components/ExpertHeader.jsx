@@ -23,7 +23,7 @@ function ExpertHeader(props) {
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
-         ({props.expert.image} ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>)
+         {props.expert.image ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
         <div className="profile-header-bottom-image">
           <p>

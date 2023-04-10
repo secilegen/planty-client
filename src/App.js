@@ -22,6 +22,7 @@ import ExpertDetailsPage from './pages/expert/ExpertDetailsPage';
 import EditUserPage from './pages/user/EditUserPage';
 import ErrorPage from './pages/ErrorPage';
 import AddDisease from './components/AddDisease';
+import Footer from './components/Footer';
 
 
 
@@ -54,7 +55,7 @@ function App() {
 
 
       </Routes>
-
+      <Footer />
     </div>
   );
 }
