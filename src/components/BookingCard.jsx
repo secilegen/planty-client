@@ -3,19 +3,19 @@ import addIcon from "../images/addIconSalmon.png";
 import editIcon from "../images/editIcon.png";
 import viewDetails from "../images/viewDetails.png";
 import { Link } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { AuthContext } from "../context/auth.context";
 
 import pictureTest from "../images/testBooking.png";
 
 
 function BookingCard(props) {
-  const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
+
   
-  import pictureTest from "../images/banana-plant.png";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../context/auth.context";
+const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
+  
 
-
-  const bookingPicture = () => {
+const bookingPicture = () => {
     if (props.oneBooking.reasonWhy === "Plant Positioning") {
       return <img src={pictureTest} alt="booking" />;
     }
