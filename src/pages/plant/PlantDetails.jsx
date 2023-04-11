@@ -31,20 +31,29 @@ function PlantDetails(props) {
       })
       .then((response) => {
         const onePlant = response.data;
+        console.log("Response is", response.data)
         setPlant(onePlant);
-        onePlant.sunlightPositioning === "Low" ? setSunFactor(0.8) : onePlant.sunlightPositioning === "High" ? setSunFactor(1.2) : setSunFactor(1);
-        onePlant.watering === "Minimal" ?  setApiWaterFactor(0.5) : onePlant.watering === "Frequent" ? setApiWaterFactor(1.5) : setApiWaterFactor(1);
+        if (onePlant.sunlightPositioning === "Low") {
+          setSunFactor(0.8)
+        }
+        else if (onePlant.sunlightPositioning === "High" ) {
+          setSunFactor(1.2)
+        }
+        else {setSunFactor(1)}
+
+        if (onePlant.watering === "Minimum") {
+          setApiWaterFactor(0.5)        }
+        else if (onePlant.watering === "Frequent"  ) {
+          setApiWaterFactor(1.5)
+        }
+        else {setApiWaterFactor(1)}
+
+        // onePlant.sunlightPositioning === "Low" ? setSunFactor(0.8) : onePlant.sunlightPositioning === "High" ? setSunFactor(1.2) : setSunFactor(1);
+        // onePlant.watering === "Minimal" ?  setApiWaterFactor(0.5) : onePlant.watering === "Frequent" ? setApiWaterFactor(1.5) : setApiWaterFactor(1);
         console.log(onePlant)
         console.log("Watering is", apiWaterFactor)
         console.log("Sun factor is ", sunFactor)
       })
-      // .then(()=>{
-      //   plant.sunlightPositioning === "Low" ? setSunFactor(0.8) : plant.sunlightPositioning === "High" ? setSunFactor(1.2) : setSunFactor(1);
-      //   plant.watering === "Minimal" ?  setApiWaterFactor(0.5) : plant.watering === "Frequent" ? setApiWaterFactor(1.5) : setApiWaterFactor(1);
-      //   console.log(plant)
-      //   console.log("Watering is", apiWaterFactor)
-      //   console.log("Sun factor is ", sunFactor)
-      // })
       .catch((error) => console.log(error));
   };
 
@@ -138,8 +147,10 @@ function PlantDetails(props) {
             <div className="detailsPlant">
             <img src={wateringIcon} alt="watering" className="plantDetailIcon"/>
               <p className="detailsCategory">Watering: </p>
-              <p className="detailsResult">{plant.watering}</p>
+              <p className="detailsResult">{plant.plantHeight * 0.4 * sunFactor * apiWaterFactor *5} ml every 5 days</p>
             </div>
+
+            {/* <div>Watering amount: {plant.plantHeight * 0.4 * sunFactor * apiWaterFactor *5}</div> */}
           </div>
           </div>
 

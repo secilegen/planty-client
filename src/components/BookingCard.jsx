@@ -2,13 +2,17 @@ import React from "react";
 import addIcon from "../images/addIconSalmon.png";
 import editIcon from "../images/editIcon.png";
 import viewDetails from "../images/viewDetails.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pictureTest from "../images/banana-plant.png";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
+import axios from "axios";
+
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function BookingCard(props) {
   const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const bookingPicture = () => {
     if (props.oneBooking.reasonWhy === "Plant Positioning") {
@@ -16,7 +20,17 @@ function BookingCard(props) {
     }
   };
 
-  const [status, setStatus] = useState("pending");
+  const [isConfirmed, setIsConfirmed] = useState("pending");
+
+  const handleClick = (status, bookingId) =>{
+    
+    const requestBody = {isConfirmed:status}
+
+    axios.put(`${API_URL}/api/get-support/${bookingId}`, requestBody)
+    .then((response) => {
+      navigate(`/get-support/${bookingId}`);
+    });
+  }
 
   return (
     <div>
@@ -47,10 +61,10 @@ function BookingCard(props) {
                 </Link>
                {isExpert && ( oneBooking.isConfirmed === "pending" && (
                   <div>
-                    <button onClick={() => setStatus("accepted")}>
+                    <button onClick={() => handleClick("accepted",oneBooking._id)}>
                       Accept
                     </button>
-                    <button onClick={() => setStatus("rejected")}>
+                    <button onClick={() => handleClick("rejected", oneBooking._id) }>
                       Reject
                     </button>
                   </div>
