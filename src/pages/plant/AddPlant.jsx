@@ -6,19 +6,13 @@ import AddPlantForm from '../../components/AddPlantForm'
 
 
 function AddPlant() {
-  // const [searchPlants, setSearchPlants] = useState([])
 
-  // const addPlants = (plantsToShow) => {
-  //   const showPlants = [plantsToShow, ...searchPlants]
-  //   setSearchPlants(showPlants)
-  // }
   
   return (
     <div>
     
-    <h1>AddPlant</h1>
-    {/* <ShowPlantFromAPI/> */}
-    {/* <SearchApiPlant/> */}
+    <h1 className="detailHeadline">Add Your Planty</h1>
+ 
     <AddPlantForm/>
     
     </div>

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import pictureTest from "../images/testBooking.png";
 
 function BookingCard(props) {
+  
   const bookingPicture = () => {
     if (props.oneBooking.reasonWhy === "Plant Positioning") {
       return <img src={pictureTest} alt="booking" />;

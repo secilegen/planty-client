@@ -8,13 +8,13 @@ import wateringIcon from "../images/wateringIconBlack.png";
 
 function PlantCard(props) {
 
-  const showDisease = () => {
-    if (props.plants.length === 0) {
-      return <p>no disease</p>
-    } else if (props.plants.length > 0) {
-      return <p>disease</p>
-    }
-  }
+  // const showDisease = () => {
+  //   if (props.plants.length === 0) {
+  //     return <p>no disease</p>
+  //   } else if (props.plants.length > 0) {
+  //     return <p>disease</p>
+  //   }
+  // }
   return (
     <div >
 
@@ -29,6 +29,7 @@ function PlantCard(props) {
       <div>
         {props.plants.map((onePlant) => {
           console.log("Plant length", props.plants.length)
+          console.log("onePlant", onePlant)
           return (
             <div key={onePlant._id} className="plantCard">
               <img
@@ -77,7 +78,8 @@ function PlantCard(props) {
                 <p className="plantCardContent">{onePlant.currentCondition}</p>
                 </div>
               </div>
-              <p className="plantCardDiseaseLabel">{showDisease(onePlant.disease)}</p>
+              {/* <p className="plantCardDiseaseLabel">{showDisease(onePlant.disease)}</p> */}
+              {onePlant.disease.length > 0 && (<p className="plantCardDiseaseLabel">your planty has a disease</p>)}
             </div>
           );
         })}
