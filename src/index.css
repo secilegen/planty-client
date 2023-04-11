@@ -238,6 +238,8 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
+  border-radius: 5%;
+  border: solid white 5px;
 
 }
 
@@ -298,11 +300,15 @@ margin-right: 60px;
   justify-content: center;
 }
 
-.plantDetailContent{
+.plantDetailsContent{
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
  }
+
+.plantDetailBG{
+  background-color: solid white;
+}
 
 
 .detailsPlant{
@@ -334,6 +340,13 @@ margin-right: 60px;
  font-size: 14px;
 }
 
+.detailHeadline{
+  color: white;
+  max-width: 70%;
+  text-align: center;
+  margin-left: 50px;
+  
+}
 .diseaseHeader{
   display: flex;
   flex-direction: row;
@@ -344,9 +357,7 @@ margin-right: 60px;
   margin-bottom: 10px;
  }
 
- .diseaseHeader h3{
- /* margin-right: 190px; */
- }
+
 
  .addDiseaseIcon{
   text-align: right;
@@ -354,6 +365,9 @@ margin-right: 60px;
 
  .diseaseImage {
   width: 80%;
+ 
+ margin-top: 20px;
+
  }
 
  .diseaseName {
@@ -406,9 +420,21 @@ margin-right: 60px;
   margin-right:45px;
 }
 
+.plantCardDiseaseLabel{
+  background: #084d26;
+  font-size: 14px;
+  font-weight: bolder;
+  padding: px;
+  border-radius: 5px;
+  color: white;
+
+}
+
 .diseaseDetailsImage{
   width:80%;
-  margin-top: 25px;
+  margin-top: 15px;
+  border: solid white 3px;
+  border-radius: 15px;
 }
 
 .viewDetailsIcon{
@@ -456,6 +482,181 @@ margin-right: 60px;
   height:20px;
   margin-right: 10px;
   
+}
+
+
+.bookingCard{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: white;
+ margin-bottom: 10px;
+ max-width: 90%;
+ margin-left: 20px;
+ border-radius: 15px;
+}
+.bookingCardImg{
+  width:30%;
+  margin-top: 15px;
+  margin-left: 10px;
+  
+}
+
+.bookingCardLeft{
+  margin-left: -140px;
+}
+
+.bookingCardRight p{
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  margin-left: -150px;
+  margin-top: 20px;
+}
+
+
+
+.bookingCardReason{
+  font-size: 14px;
+  font-weight: bold;
+  
+}
+.bookingCardRight1{
+  margin-left: 30px;
+  text-align: left;
+}
+
+.bookingCardIcons{
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  
+}
+
+.bookingCardLabels{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ margin-left: -25px;
+  margin-top: -15px;
+
+ }
+
+ .bookingConfirmedCard{
+  background: #084d26;
+  
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+  padding: 5px;
+  
+ }
+
+ .bookingLocationCard{
+  background: #c48b84;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 20px;
+  
+ }
+
+ .bookingConfirmed{
+  background: #084d26;
+  
+  border-radius: 5px;
+  color: white;
+  margin-right: 20px;
+  padding: 5px 10px;
+  
+ }
+
+ .bookingLocation{
+  background: #c48b84;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 15px;
+  
+ }
+
+ .bookingDetailCard{
+  background-color: white;
+  border-radius: 20px;
+  max-width: 95%;
+  margin-left: 8px;
+  margin-bottom: 30px;
+
+}
+
+.bookingDetailHeader{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+ .bookingDetailsEdit{
+  height: 25px;
+  margin-right: 10px;
+ }
+
+ .bookingDetailsDelete{
+  height: 25px;
+ }
+
+ .bookingDetailReason{
+  font-size: 16px;
+  font-weight: bold;
+ }
+
+ .descriptionHead{
+  font-weight: bold;
+  font-size: 14px;
+ }
+ .descriptionRow{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 18px;
+ }
+
+ .descriptionIcon{
+  height: 30px;
+  margin-right: 10px;
+ }
+
+ .bookingText{
+  font-size: 14px;
+  text-align: justify;
+	text-align-last: none;
+  max-width: 90%;
+  margin-left: 17px;
+  margin-top:-5px;
+ }
+
+ .bookingLabels{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+ }
+
+ .buttonFramedBooking{
+  background-color: #fdf7f2; 
+  border-color: #c48b84;
+  color: #c48b84;
+  padding: 5px;
+padding-left:60px;
+padding-right: 60px;
+}
+
+.buttonFramedBooking:hover{
+  background-color: #fdf7f2; 
+  border: transparent;
+  color: #c48b84
 }
 
 
