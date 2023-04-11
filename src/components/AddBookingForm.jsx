@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
+import testImage from "../images/banana-plant.png"
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -29,6 +30,14 @@ function AddBookingForm(props) {
   const handleSelectReason = (e) => {
     setReasonWhy(e.target.value);
 
+    if (setReasonWhy("Plant Positioning")) {
+      setImage("banana-plant.png")
+    }
+    
+   else if (setReasonWhy === "Plant Concept") {
+      setImage("leaves.png")
+    }
+
     console.log("selected", e.target.value);
   };
 
@@ -37,24 +46,12 @@ function AddBookingForm(props) {
 
     setIsConfirmed("pending")
 
-    if (setReasonWhy("Plant Positioning")) {
-      
-      return setImage("cactus-vertical.png")
-      
-    }
-    if (setReasonWhy === "Support with Disease") {
-      return setImage("banana-plant.png")
-
-    }
-
-
-    if (setReasonWhy === "Plant Concept") {
-      return setImage("deleteIcon.png")
-
-    }
+    
 
 
     const requestBody = { description, reasonWhy, isOnline, isConfirmed, image, user:user._id, expert:expert };
+
+
 
  
     // Get the token from the localStorage

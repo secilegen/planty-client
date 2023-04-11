@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import editIcon from "../../images/editIcon.png"
+import deleteIcon from "../../images/deleteIcon.png"
+import descriptionIcon from "../../images/descriptionIcon.png"
+
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
@@ -51,23 +55,44 @@ function BookingDetails(props) {
 
   return (
     <div className="BookingDetails">
-    <h1>Booking Details</h1>
+    <h2 className="detailHeadline">Booking Details</h2>
 
     {booking && (
         <>
-          <h1>{booking.description}</h1>
-          <p>{booking.reasonWhy}</p>
-          <p>{booking.isOnline}</p>
-          <p>{booking.isConfirmed}</p>
-        </>
-      )}
+      <div className='bookingDetailCard'>
+        <div className='bookingDetailHeader'>
+        <div className='bookingDetailLeft'>
+          <p className='bookingDetailReason'>{booking.reasonWhy}</p>
+          </div>
 
-    <Link to={`/get-support/edit/${id}`}>
-        <button>Edit Booking</button>
+          <div className='bookingDetailRight'> 
+          <Link to={`/get-support/edit/${id}`}>
+        <img src={editIcon} alt='"edit' className="bookingDetailsEdit"/>
       </Link>
 
       <Link to={`/get-support/edit/${id}`}>
-        <button onClick={deleteBooking}>Delete Booking</button>
+      <img src={deleteIcon} alt="delete" onClick={deleteBooking} className="bookingDetailsDelete"/>
+        {/* <button onClick={deleteBooking}>Delete Booking</button> */}
+      </Link>
+</div>
+      </div>
+          
+          <div className='descriptionRow'>
+          <img src={descriptionIcon} alt="description" className='descriptionIcon'/>
+          <p className='descriptionHead'>Description</p>
+          </div>
+          <p className='bookingText'>{booking.description}</p>
+          
+          <div className='bookingLabels'>
+          <p className='bookingLocation'>{booking.isOnline}</p>
+          <p className="bookingConfirmed">{booking.isConfirmed}</p>
+          </div>
+          </div>
+        </>
+      )}
+      <Link to={`/profile`}>
+      <button  className="buttonFramedBooking">Profile</button>
+      
       </Link>
       </div>
   )

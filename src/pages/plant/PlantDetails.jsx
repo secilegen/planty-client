@@ -88,6 +88,7 @@ function PlantDetails(props) {
     <div className="plantDetails">
       {plant && (
         <>
+        <div className="plantDetailsBG">
          <img className="plantImage" src={plant.image} alt="plant" />
 
 
@@ -113,6 +114,7 @@ function PlantDetails(props) {
                 className="plantDetailsDelete"
               />
               </Link>
+              </div>
             </div>
           </div>
 

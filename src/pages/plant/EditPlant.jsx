@@ -114,8 +114,15 @@ function EditPlant(props) {
     <div className="EditPlant">
       <h3>Edit Your Plant</h3>
 
+      
+
       <form onSubmit={handleFormSubmit}>
+
+      <div className="booking-box">
+          <div className="booking-label">
         <label>Nickname</label>
+
+        </div>
         <textarea
           type="text"
           name="nickname"
@@ -123,22 +130,38 @@ function EditPlant(props) {
           onChange={(e) => setNickname(e.target.value)}
         />
 
+        </div>
+        <br/>
+
+        <div className="booking-box">
+          <div className="booking-label">
 <label>Sunlight Positioning</label>
+</div>
         <select value={sunlightPositioning} onChange={handleSelectSunlight}>
         <option value="Low">Low</option>
         <option value="Moderate">Moderate</option>
         <option value="High">High</option>
         </select>
-        <br/>
+       </div>
+       <br/>
 
+       <div className="booking-box">
+          <div className="booking-label">
 <label>Plant Image</label>
+</div>
         <input
           type="file"
           name="image"
           onChange={(e) => handleFileUpload(e)}
         />
+        </div>
+        <br/>
+
+        <div className="booking-box">
+          <div className="booking-label">
 
 <label>Plant Height</label>
+</div>
         <input
           type="number"
           name="plantHeight"
@@ -146,27 +169,43 @@ function EditPlant(props) {
           onChange={(e) => setPlantHeight(e.target.value)}
         />
 
+        </div>
+        <br/>
+
+<div className="booking-box">
+          <div className="booking-label">
 <label>Birth Date</label>
+</div>
         <input
           type="date"
           name="birthDate"
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
         />
+        </div>
+        <br/>
+
+        <div className="booking-box">
+          <div className="booking-label">
 
 <label>Current Condition</label>
+</div>
         <select value={currentCondition} onChange={handleSelectCondition}>
         <option value="Thriving">Thriving</option>
         <option value="Needs some attention">Needs some attention</option>
         <option value="Not good condition">Not good condition</option>
         </select>
+        </div>
 
-        <br/>
+       <br/>
+       <br/>
 
-        <button type="submit">Update Your Plant</button>
+        <button className="small-button button-filled-green" type="submit">Update Your Plant</button>
       </form>
 
-      <button onClick={deletePlant}>Delete Your Plant</button>
+      <br/>
+
+      <button  className="small-button" onClick={deletePlant}>Delete Your Plant</button>
     </div>
   );
 }

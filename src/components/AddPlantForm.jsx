@@ -4,10 +4,9 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import service from "../api/service";
 
-
-
-const apiURL = "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
-const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
+const apiURL =
+  "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function AddPlantForm(props) {
   const [common_name, setCommon_Name] = useState("");
@@ -23,43 +22,42 @@ function AddPlantForm(props) {
   const [fetching, setFetching] = useState(true);
   const [plant, setPlant] = useState([]);
   const [query, setQuery] = useState("");
-  const [errorMessage, setErrorMesage] = useState('')
+  const [errorMessage, setErrorMesage] = useState("");
 
   const navigate = useNavigate();
- 
-  const {user} = useContext(AuthContext)
 
-   // ******** this method handles the file upload ********
-   const handleFileUpload = (e) => {
+  const { user } = useContext(AuthContext);
+
+  // ******** this method handles the file upload ********
+  const handleFileUpload = (e) => {
     // console.log("The file to be uploaded is: ", e.target.files[0]);
- 
+
     const uploadData = new FormData();
- 
+
     // image => this name has to be the same as in the model since we pass
-    
+
     uploadData.append("image", e.target.files[0]);
- 
+
     service
       .uploadImage(uploadData)
-      .then(response => {
-        console.log("fileURL", response.fileUrl)
+      .then((response) => {
+        console.log("fileURL", response.fileUrl);
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setImage(response.fileUrl);
       })
-      .catch(err => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err));
   };
 
   // Handle drop down
 
-  const handleSelectSunlight = e => {
+  const handleSelectSunlight = (e) => {
     setSunlightPositioning(e.target.value);
-    
 
     console.log("selected", e.target.value);
   };
 
-  const handleSelectCondition = e => {
+  const handleSelectCondition = (e) => {
     setCurrentCondition(e.target.value);
 
     console.log("selected", e.target.value);
@@ -68,45 +66,41 @@ function AddPlantForm(props) {
   useEffect(() => {
     console.log("useEffect - initial render");
     if (query !== "") {
+      axios
+        .get(apiURL, { params: { q: query } })
+        .then((response) => {
+          console.log("api values", response.data.data)
+          setPlant(response.data.data);
+          setFetching(false);
 
-    axios.get(apiURL, {params:{q:query}}).then((response) => {
-      setPlant(response.data.data);
-      setFetching(false);
+          console.log("show api plants", response);
+          console.log("query", query);
+          console.log("plants", plant.length);
+        })
 
-      console.log("show api plants", response);
-      console.log("query", query)
-      console.log("plants", plant.length)
-    })
-    
-    .catch(error => {
-        console.log("Error calling API" + error)
-    })
+        .catch((error) => {
+          console.log("Error calling API" + error);
+        });
+    } else if (query === "") {
+      setPlant([]);
+    }
+  }, [query]);
 
-    
-  } else if (query === "") {
-    setPlant([])
-  }
-    
+  // Thanks to Henrique it works
+  const handleClick = (common_name, watering, apiId) => {
+    // e.preventDefault();
+    // console.log("handleClick for API plant", e.target.parentNode.childNodes[1].childNodes[1]);
+    setCommon_Name(common_name);
+    setWatering(watering);
+    setApiId(apiId);
+  };
 
-}, [query]);
-
-// Thanks to Henrique it works
-const handleClick = (e) => {
-  e.preventDefault();
-  console.log("handleClick", e.target.parentNode.childNodes[1].childNodes[1].value)
-  setCommon_Name(e.target.parentNode.childNodes[1].childNodes[1].value)
-  setWatering(e.target.parentNode.childNodes[2].childNodes[1].value)
-  setApiId(e.target.parentNode.childNodes[3].childNodes[1].value)
-}
-
- 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     const requestBody = {
       common_name,
-      user:user._id,
+      user: user._id,
       watering,
       nickname,
       sunlightPositioning,
@@ -114,16 +108,16 @@ const handleClick = (e) => {
       plantHeight,
       birthDate,
       currentCondition,
-      apiId
+      apiId,
     };
 
     // Error handling
 
     if (!nickname) {
-      setErrorMesage("We need a nickname for your plant")
+      setErrorMesage("We need a nickname for your plant");
     }
 
-   axios
+    axios
       .post(`${API_URL}/api/plants`, requestBody)
       .then((response) => {
         // Reset the state
@@ -138,123 +132,181 @@ const handleClick = (e) => {
         setWatering("");
         // setImageAPI("");
 
-        navigate("/profile")
+        navigate("/profile");
 
-        console.log("add plant", response)
-       
+        console.log("add plant", response);
       })
       .catch((error) => console.log(error));
   };
 
-
-
-
   return (
     <div className="AddPlant">
-     
-   
-     
+      {fetching && <p className="loading">Loading ...</p>}
 
-      {fetching && <p>Loading ...</p>}
+      <div className="booking-box">
+          <div className="booking-label">
+      <label>Search Plant</label>
+      </div>
+      <div className="booking-input">
+      <input
+        value={query}
+        type="search"
+        placeholder="search for plant names"
+        onChange={(e) => {
+          setQuery(e.target.value);
+        }}
+      />
+      </div>
+      </div>
+      {/* {search(plant).map((result) => { */}
 
-<label>Search Plant</label>
-<input
-  value={query}
-  type="search"
-  placeholder="search for plant names"
-  onChange={(e) => {
-    setQuery(e.target.value);
-  }}
-/>
-{/* {search(plant).map((result) => { */}
+      {plant.map((result) => {
+        return (
+          
+          <div key={result.id} className="apiPlant">
+          <div className="searchCard">
+          <div className="searchInfo">
+          <div className="searchCardLeft">
+            <img
+              src={result.default_image.thumbnail}
+              id="imageAPI"
+              alt="plant"
+              className="apiImage"
+            />
+            </div>
 
-{plant.map((result) => {
-  return (
-    <div key={result.id} className="apiPlant">
-    <img src={result.default_image.thumbnail} id="imageAPI" alt="plant"/>
-   <p>Common Name:  <input id="commonName" type="text" name="common_name" readOnly={true} value={result.common_name}/></p>
-   <p>Watering: <input id="watering" type="text" name="watering" readOnly={true} value={result.watering}/></p>
-   <p>Plant Number: <input id="apiId" type="text" name="apiId" readOnly={true} value={result.id}/></p>
-   {/* <p>Plant Id: {result.id}</p> */}
-   <button onClick={handleClick}>add to plant profile</button>
-  
-   </div>
-  );
-})}
+            <div className="searchCardRight">
+            <p className="labelSearch">
+              Common Name:
+              <input
+                id="commonName"
+                type="text"
+                name="common_name"
+                readOnly={true}
+                value={result.common_name}
+                className="inputSearch"
+              />
+            </p>
+            <p className="labelSearch">
+              Watering:
+              <input
+                id="watering"
+                type="text"
+                name="watering"
+                readOnly={true}
+                value={result.watering}
+                className="inputSearch"
+              />
+            </p>
+          
+            <p className="labelSearch">
+              Plant Number:
+              <input
+                id="apiId"
+                type="text"
+                name="apiId"
+                readOnly={true}
+                value={result.id}
+                className="inputSearch"
+              />
+            </p>
+            
+            </div>
+            </div>
+            {/* <p>Plant Id: {result.id}</p> */}
+            <button className="small-button" type="button" onClick={()=> {handleClick(result.common_name, result.watering, result.id)}}>add to plant profile</button>
+          </div>
+          </div>
+        );
+      })}
 
+      <form onSubmit={handleSubmit}>
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Nickname</label>
+          </div>
 
-<form onSubmit={handleSubmit}>
+          <div className="booking-input">
+            <textarea
+              type="text"
+              name="nickname"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </div>
+        </div>
 
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Sunlight Positioning</label>
+          </div>
+          <div className="booking-input">
+            <select value={sunlightPositioning} onChange={handleSelectSunlight}>
+              <option value="Low">Low</option>
+              <option value="Moderate">Moderate</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+        </div>
 
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Plant Image</label>
+          </div>
 
-     
-      {/* <SearchApiPlant/> */}
+          <div className="booking-input">
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => handleFileUpload(e)}
+            />
+          </div>
+        </div>
 
-        <label>Nickname</label>
-        <textarea
-          type="text"
-          name="nickname"
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Plant Height</label>
+          </div>
 
-        <br/>
+          <div className="booking-input">
+            <input
+              type="number"
+              name="plantHeight"
+              value={plantHeight}
+              onChange={(e) => setPlantHeight(e.target.value)}
+            />
+          </div>
+        </div>
 
-        <label>Sunlight Positioning</label>
-        <select value={sunlightPositioning} onChange={handleSelectSunlight}>
-        <option value="Low">Low</option>
-        <option value="Moderate">Moderate</option>
-        <option value="High">High</option>
-        </select>
-        <br/>
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Birth Date</label>
+          </div>
 
-        <label>Plant Image</label>
-        <input
-          type="file"
-          name="image"
-          onChange={(e) => handleFileUpload(e)}
-        />
+          <div className="booking-input">
+            <input
+              type="date"
+              name="birthDate"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
+          </div>
+        </div>
 
-        <br/>
+        <div className="booking-box">
+          <div className="booking-label">
+            <label>Current Condition</label>
+          </div>
+          <div className="booking-input">
+            <select value={currentCondition} onChange={handleSelectCondition}>
+              <option value="Thriving">Thriving</option>
+              <option value="Needs some attention">Needs some attention</option>
+              <option value="Not good condition">Not good condition</option>
+            </select>
+          </div>
+        </div>
 
-        <label>Plant Height</label>
-        <input
-          type="number"
-          name="plantHeight"
-          value={plantHeight}
-          onChange={(e) => setPlantHeight(e.target.value)}
-        />
-
-        <br/>
-
-        <label>Birth Date</label>
-        <input
-          type="date"
-          name="birthDate"
-          value={birthDate}
-          onChange={(e) => setBirthDate(e.target.value)}
-        />
-
-        <br/>
-
-        <label>Current Condition</label>
-        <select value={currentCondition} onChange={handleSelectCondition}>
-        <option value="Thriving">Thriving</option>
-        <option value="Needs some attention">Needs some attention</option>
-        <option value="Not good condition">Not good condition</option>
-        </select>
-
-        <br/>
-
-        {/* <label>apiId</label>
-        <input
-          type="number"
-          name="apiId"
-          value={apiId}
-          onChange={(e) => setApiId(e.target.value)}
-        /> */}
-
-        <button type="submit">Submit</button>
+        <button type="submit" className="small-button button-filled-green">Submit</button>
       </form>
     </div>
   );

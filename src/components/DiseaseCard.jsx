@@ -50,6 +50,7 @@ function DiseaseCard(props) {
         console.log("oneDisease", oneDisease._id)
         return (
             <div key={oneDisease._id}>
+            <div className="plantCard">
             <img src={oneDisease.image} alt="disease" className='diseaseImage'/>
 
             <div className='diseaseType'>
@@ -74,7 +75,7 @@ function DiseaseCard(props) {
             
 
             <br/>
-
+            </div>
             </div>
             )
             
