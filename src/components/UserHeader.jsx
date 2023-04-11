@@ -19,8 +19,8 @@ function UserHeader(props) {
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
-        <img src={avatar} alt="avatar"/>
-          {/* ({props.user.image} ? <img src={props.user.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>) */}
+        {/* <img src={avatar} alt="avatar"/> */}
+          {props.user.image ? <img src={props.user.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
         <div className="profile-header-bottom-info">
           <p>

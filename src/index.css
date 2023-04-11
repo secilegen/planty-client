@@ -20,6 +20,18 @@ body {
   text-align: center;
 }
 
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 10px;
+  background-color: #c48b84;
+  padding-top: 20px;
+  height: 30px;
+  /* border: solid 1px red ; */
+}
+
 .navbar{
   list-style: none;
   display: flex;
@@ -30,7 +42,7 @@ body {
   /* border: solid 1px red ; */
   position: sticky;
   top: 0;
-  width: 100vw;
+  /* width: 100vw; */
 
 }
 
@@ -834,18 +846,6 @@ width: 80%;
 .profile-header-bottom-info span{
 font-weight: 900;
 font-size: 24px;
-}
-
-.footer{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  font-size: 10px;
-  background-color: #c48b84;
-  padding-top: 20px;
-  height: 30px;
-  /* border: solid 1px red ; */
 }
 
 .home-expert {
