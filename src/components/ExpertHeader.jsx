@@ -5,11 +5,11 @@ import avatar from '../images/human.png'
 
 function ExpertHeader(props) {
   let ratingSum;
-  for (let i = 0; i < props.expert.booking.length; i++) {
-    ratingSum = ratingSum + props.expert.booking[i].rating;
+  for (let i = 0; i < props.expert.bookings.length; i++) {
+    ratingSum = ratingSum + props.expert.bookings[i].rating;
   }
-  const avgRating = ratingSum / props.expert.booking.length;
-  const numberOfBookings = props.expert.booking.length;
+  const avgRating = ratingSum / props.expert.bookings.length;
+  const numberOfBookings = props.expert.bookings.length;
   console.log("Expert from props is", props.expert);
   return (
     <div className="profile-header">
@@ -23,7 +23,7 @@ function ExpertHeader(props) {
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
-         ({props.expert.image} ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>)
+         {props.expert.image ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
         <div className="profile-header-bottom-image">
           <p>

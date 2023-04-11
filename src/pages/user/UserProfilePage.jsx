@@ -20,6 +20,7 @@ function UserProfilePage() {
 
       setUserToView(result.data)
       console.log('User to view is', userToView)
+      console.log("REsult data is", result.data)
       console.log(userToView)
      })
   },[user._id])

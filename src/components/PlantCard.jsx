@@ -27,8 +27,12 @@ function PlantCard(props) {
       </div>
 
       <div>
-        {props.plants.map((onePlant) => {
-          console.log("Plant length", props.plants.length)
+
+    
+
+        
+        {props?.plants && props.plants.map((onePlant) => {
+
           return (
             <div key={onePlant._id} className="plantCard">
               <img
