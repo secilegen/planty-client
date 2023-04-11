@@ -10,7 +10,7 @@ import pictureTest from "../images/testBooking.png";
 
 
 function BookingCard(props) {
-
+const [status, setStatus] = useState("pending");
   
 const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
   
@@ -21,7 +21,7 @@ const bookingPicture = () => {
     }
   };
 
- const [status, setStatus] = useState("pending");
+
  
   return (
     <div>
@@ -64,6 +64,7 @@ const bookingPicture = () => {
                     <Link to={`/get-support/edit/${oneBooking._id}`}>
                       <img src={editIcon} alt="edit icon" height="25px" />
                     </Link>
+
                     {isExpert && ( oneBooking.isConfirmed === "pending" && (
                   <div>
                     <button onClick={() => setStatus("accepted")}>
@@ -73,16 +74,20 @@ const bookingPicture = () => {
                       Reject
                     </button>
                   </div>
+          ))}
                   </div>
                 </div>
               </div>
-            
+              </div>
           );
+          
         })}
 
-      </div>
+      
     </div>
-  );
+    </div>
+    
+  )
 }
 
 export default BookingCard;
