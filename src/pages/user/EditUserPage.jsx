@@ -18,7 +18,8 @@ function EditUserPage() {
   const [image, setImage] = useState("");
   const [errorMessageFirstName, setErrorMessageFirstName] = useState("");
   const [errorMessageLastName, setErrorMessageLastName] = useState("");
-  const [successMessage, setSuccessMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState("");
+  const [submit, setSubmit] = useState(false);
 
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -58,8 +59,25 @@ function EditUserPage() {
       .catch((error) => console.log("Error occured editing the user", error));
   }, [userId]);
 
+  useEffect(() => {
+    if (submit) {
+      if (!firstName) {
+        setErrorMessageFirstName("Please add your first name");
+      } else {
+        setErrorMessageFirstName("");
+      }
+
+      if (!lastName) {
+        setErrorMessageLastName("Please add your last name");
+      } else {
+        setErrorMessageLastName("");
+      }
+    }
+  }, [firstName, lastName, submit]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true);
     const requestBody = {
       firstName,
       lastName,
@@ -69,35 +87,23 @@ function EditUserPage() {
       image,
     };
 
-    if (!firstName) {
-      setErrorMessageFirstName("Please add your first name");
-    } else {
-      setErrorMessageFirstName("");
-    }
-
-    if (!lastName) {
-      setErrorMessageLastName("Please add your last name")
-    } else {
-      setErrorMessageLastName("");
-    }
-      
     if (firstName && lastName) {
-
-    axios
-      .put(`${API_URL}/api/user/${user._id}`, requestBody)
-      .then((response) => {
-        console.log("Updated user info:", response);
-        setSuccessMessage(`You just updated your planty profile - it looks pretty`)
-				setTimeout(() => {
-                    
-					navigate("/profile")
-				}, 3000)
-        
-      })
-      .catch((error) => {
-       console.log("error with sign up", error)
-      });
-  }};
+      axios
+        .put(`${API_URL}/api/user/${user._id}`, requestBody)
+        .then((response) => {
+          console.log("Updated user info:", response);
+          setSuccessMessage(
+            `You just updated your planty profile - it looks pretty`
+          );
+          setTimeout(() => {
+            navigate("/profile");
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log("error with sign up", error);
+        });
+    }
+  };
 
   return (
     <div className="EditProfile">
@@ -129,7 +135,7 @@ function EditUserPage() {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
-             <p className="errorText">{errorMessageLastName}</p>
+            <p className="errorText">{errorMessageLastName}</p>
           </div>
         </div>
         <div className="edit-profile-box">

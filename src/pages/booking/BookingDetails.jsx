@@ -6,6 +6,7 @@ import editIcon from "../../images/editIcon.png"
 import deleteIcon from "../../images/deleteIcon.png"
 import descriptionIcon from "../../images/descriptionIcon.png"
 import expertIcon from "../../images/plantExpertIcon.png"
+import calendarIcon from "../../images/calendarIconBlack.png"
 
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
@@ -86,16 +87,19 @@ function BookingDetails(props) {
           <p className='bookingText'>{booking.description}</p>
 
           </div>
-          <p className='descriptionHead'>Date</p>
-          <p className='bookingText'>{booking.date}</p>
 
+          <div className='descriptionRow'>
+          <img src={calendarIcon} alt="expert" className='descriptionIcon'/>
+          <p className='descriptionHead expertAlign'>Date</p>
+          <p className='expertAlign2'>{booking.date}</p>
+          </div>
 
           <div className='descriptionRow'>
           <img src={expertIcon} alt="expert" className='descriptionIcon'/>
           
           <p className='descriptionHead expertAlign'>Your Expert: </p>
-          <p className='expertAlign2'>{booking.expert.firstName}</p>
-          <p className='expertAlign3'>{booking.expert.lastName}</p>
+          <p className='expertAlign2'>{booking.expert.firstName} {booking.expert.lastName}</p>
+         
           </div>
           
           <div className='bookingLabels'>

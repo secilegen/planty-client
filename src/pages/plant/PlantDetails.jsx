@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { format } from 'date-fns'
 import DiseaseCard from "../../components/DiseaseCard";
 import editIcon from "../../images/editIcon.png";
 import deleteIcon from "../../images/deleteIcon.png";
@@ -14,11 +15,14 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function PlantDetails(props) {
   const [plant, setPlant] = useState(null);
-  const { plantId } = useParams();
-  const navigate = useNavigate();
   const [watering, setWatering] = useState()
   const [sunFactor, setSunFactor] = useState(1)
   const [apiWaterFactor, setApiWaterFactor] = useState(1)
+
+  const { plantId } = useParams();
+  const navigate = useNavigate();
+
+
 
   const getPlant = () => {
     // Get the token from the localStorage

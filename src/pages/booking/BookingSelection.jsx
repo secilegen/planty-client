@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useNavigate, useParams,Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import addIcon from "../../images/addIconGreen.png"
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
@@ -25,13 +26,30 @@ function BookingSelection(props) {
 
   return (
     <div>
-        <h3>Select an expert</h3>
+        <h3 className="addSubs2">1. Select an expert</h3>
         {experts.map(expert=>{
             return (
                 <div key={expert._id}>
-                <img src={expert.image}/>
-                <h3>{expert.firstName} {expert.lastName}</h3>
-                <button onClick={()=>props.selectExpert(expert._id)}>Select</button>
+                <div className="bookingExpert">
+                <div className="booking ExpertLeft">
+                <img src={expert.profileImage} alt="expert" className="bookingExpertImg"/>
+                </div>
+
+                <div className="bookingExpertRight">
+                <div className="bookingExpertRow1">
+                <p className="bookingExpertName">{expert.firstName} {expert.lastName}</p>
+                {/* <button onClick={()=>props.selectExpert(expert._id)}>Select</button> */}
+                
+                </div>
+
+                <div className="bookingExpertRow2">
+                <p className="bookingLocationCard2">{expert.expertLocation}</p>
+                <p className="bookingLocationCard2">{expert.price} €</p>
+                </div>
+                
+                </div>
+                <img src={addIcon} alt="add icon" height="30px" onClick={()=>props.selectExpert(expert._id)} className="addIconBooking"/>
+                </div>
                 </div>)
         })}
     </div>
