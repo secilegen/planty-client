@@ -16,6 +16,9 @@ function EditExpertPage(props) {
   const [availableOnline, setAvailableOnline] = useState("");
   const [expertLocation, setExpertLocation] = useState("");
   const [price, setPrice] = useState();
+  const [errorMessageLocation, setErrorMessageLocation] = useState("");
+  const [errorMessagePrice, setErrorMessagePrice] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
 
   const { expertId } = useParams();
   const navigate = useNavigate();
@@ -66,16 +69,39 @@ function EditExpertPage(props) {
       profileImage,
     };
 
+    if (!expertLocation) {
+      setErrorMessageLocation("Please add your location");
+    } else {
+      setErrorMessageLocation("");
+    }
+
+    if (!price) {
+      setErrorMessagePrice("Please add your price")
+    } else {
+      setErrorMessagePrice("");
+    }
+      
+    if (expertLocation && price) {
+
     axios
       .put(`${API_URL}/api/expert/${user._id}`, requestBody)
       .then((response) => {
-        navigate("/expert/profile");
+       
+        setSuccessMessage(`You just updated your planty expert profile - it looks pretty`)
+				setTimeout(() => {
+                    
+          navigate("/expert/profile");
+				}, 3000)
+        
+      })
+      .catch((error) => {
+       console.log("error with sign up", error)
       });
-  };
+  }};
 
   return (
     <div className="EditProfile">
-      <h3>Edit Your Profile</h3>
+      <h1 className="detailHeadline">Edit Your Profile</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="edit-profile-box">
@@ -135,6 +161,7 @@ function EditExpertPage(props) {
               value={expertLocation}
               onChange={(e) => setExpertLocation(e.target.value)}
             />
+            <p className="errorText">{errorMessageLocation}</p>
           </div>
         </div>
         <div className="edit-profile-box">
@@ -148,6 +175,7 @@ function EditExpertPage(props) {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
+            <p className="errorText">{errorMessagePrice}</p>
           </div>
         </div>
         <div className="edit-profile-box">
@@ -162,6 +190,9 @@ function EditExpertPage(props) {
             />
           </div>
         </div>
+
+        <p className="successMessage">{successMessage}</p>
+        
         <div className="submit-button">
           <button type="submit" className="small-button button-filled-green">
             Save Changes

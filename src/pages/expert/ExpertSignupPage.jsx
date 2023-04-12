@@ -12,7 +12,11 @@ function ExpertSignupPage() {
     const [password, setPassword] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [errorMessage, setErrorMessage] = useState(undefined)
+    const [errorMessageFirstName, setErrorMessageFirstName] = useState("");
+  const [errorMessageLastName, setErrorMessageLastName] = useState("");
+  const [errorMessageEmail, setErrorMessageEmail] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
     const isExpert = true
 
     const navigate = useNavigate()
@@ -26,15 +30,49 @@ function ExpertSignupPage() {
         e.preventDefault()
         const requestBody = { email, password, firstName, lastName, isExpert };
 
+        if (!email) {
+          setErrorMessageEmail("Please add an email address");
+        } else{
+          setErrorMessageEmail("")
+    
+        }
+
+
+        if (!password){
+          setErrorMessagePassword("Please add a password");
+        } else {
+          setErrorMessagePassword("");
+        }
+    
+        if (!firstName) {
+          setErrorMessageFirstName("Please add your first name");
+        } else {
+          setErrorMessageFirstName("");
+        }
+    
+        if (!lastName) {
+          setErrorMessageLastName("Please add your last name")
+        } else {
+          setErrorMessageLastName("");
+        }
+          
+        if (email && password && firstName && lastName) {
+
+
+
         axios.post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
-        navigate('/expert/login');
+        setSuccessMessage(`You just created your planty expert profile - welcome to planty!`)
+				setTimeout(() => {
+                    
+					navigate("/expert/login")
+				}, 3000)
+        
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      })
-    }
+       console.log("error with sign up", error)
+      });
+    }}
 
   return (
     
@@ -52,6 +90,7 @@ function ExpertSignupPage() {
           value={firstName}
           onChange={handleFirstName}
         />
+        <p className="errorText">{errorMessageFirstName}</p>
 </div>
         </div>
         <div className="signup-box">
@@ -65,6 +104,7 @@ function ExpertSignupPage() {
           value={lastName}
           onChange={handleLastName}
         />
+        <p className="errorText">{errorMessageLastName}</p>
 </div>
         </div>
         <div className="signup-box">
@@ -78,6 +118,7 @@ function ExpertSignupPage() {
           value={email}
           onChange={handleEmail}
         />
+        <p className="errorText">{errorMessageEmail}</p>
            </div>
         </div>
         <div className="signup-box">
@@ -92,15 +133,17 @@ function ExpertSignupPage() {
           value={password}
           onChange={handlePassword}
         />
+         <p className="errorText">{errorMessagePassword}</p>
       </div>
         </div>
         
+        <p className="successMessage">{successMessage}</p>
         <div className="signup-button">
         <button type="submit" className="small-button button-filled-green">Sign Up</button>
         </div>
       </form>
 
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
+     
  
       <p>Already have an account?</p>
       <Link to={"/expert/login"}>Login</Link>
