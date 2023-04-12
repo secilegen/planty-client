@@ -234,6 +234,35 @@ body {
 
 /* Plant details and card */
 
+.addSubs{
+  font-size: 20px;
+  font-weight: bold;
+  color: #c48b84;
+  max-width: 260px;
+ 
+  
+}
+
+.addSubs2{
+  font-size: 20px;
+  font-weight: bold;
+  color: #c48b84;
+  max-width: 260px;
+  text-align: center;
+  margin-left: 50px;
+  
+}
+
+.commonName2{
+  margin-bottom: -2px;
+}
+
+.commonName3{
+font-weight: bold;
+color: #084d26;
+}
+
+
 .plantImage{
   width: 80%;
   margin-top: 20px;
@@ -486,6 +515,56 @@ margin-right: 60px;
   
 }
 
+.bookingExpert{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: white;
+  margin-bottom: 10px;
+  max-width: 80%;
+ margin-left: 37px;
+ border-radius: 10px;
+ padding: 10px;
+}
+
+.bookingExpertImg{
+height: 60px;
+
+
+}
+
+.bookingExpertName{
+  font-weight: bold;
+}
+
+
+
+.bookingExpertRow1{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin-top: -15px;
+  
+}
+
+.bookingExpertRow2{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin: -15px 0px;
+  
+  font-size: 12px;
+  font-weight: bold;
+  
+}
+.addIconBooking {
+  text-align: end;
+}
+
+.align{
+  margin-left: 20px;
+}
 
 .bookingCard{
   display: flex;
@@ -514,9 +593,17 @@ margin-right: 60px;
   font-size: 12px;
   margin-left: -150px;
   margin-top: 20px;
+  align-content: flex-start;
 }
 
 
+
+.bookingCardDate{
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 40px;
+  
+}
 
 .bookingCardReason{
   font-size: 14px;
@@ -560,6 +647,16 @@ margin-right: 60px;
   border-radius: 5px;
   color: white;
   margin-left: 20px;
+  
+ }
+
+ .bookingLocationCard2{
+  background: #c48b84;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-right: 20px;
+ 
   
  }
 
@@ -635,8 +732,9 @@ margin-right: 60px;
   text-align: justify;
 	text-align-last: none;
   max-width: 90%;
-  margin-left: 17px;
+  margin-left: 58px;
   margin-top:-5px;
+  max-width: 250px;
  }
 
  .errorText{
@@ -750,7 +848,7 @@ margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px black;
+ 
   
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -16,6 +16,7 @@ function SignupPage(props) {
   const [errorMessageEmail, setErrorMessageEmail] = useState("");
   const [errorMessagePassword, setErrorMessagePassword] = useState("");
   const [successMessage, setSuccessMessage] = useState('')
+  const [submit, setSubmit] = useState(false)
 
   const isExpert = false;
 
@@ -27,37 +28,49 @@ function SignupPage(props) {
   const handleLastName = (e) => setLastName(e.target.value);
   const handleIsCompany = (e) => setIsCompany(e.target.checked);
 
+
+  useEffect(() => {
+
+    if (submit) {
+  
+      if (!email) {
+        setErrorMessageEmail("Please add an email address");
+      } else{
+        setErrorMessageEmail("")
+  
+      }
+  
+      if (!password){
+        setErrorMessagePassword("Please add a password");
+      } else {
+        setErrorMessagePassword("");
+      }
+  
+      if (!firstName) {
+        setErrorMessageFirstName("Please add your first name");
+      } else {
+        setErrorMessageFirstName("");
+      }
+  
+      if (!lastName) {
+        setErrorMessageLastName("Please add your last name")
+      } else {
+        setErrorMessageLastName("");
+      }
+
+    }
+  
+  }, [email, password, firstName, lastName, submit])
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true)
     const requestBody = { email, password, firstName, lastName, isExpert };
     console.log("Request body on submit page is", requestBody);
 
-    if (!email) {
-      setErrorMessageEmail("Please add an email address");
-    } else{
-      setErrorMessageEmail("")
-
-    }
-
-    if (!password){
-      setErrorMessagePassword("Please add a password");
-    } else {
-      setErrorMessagePassword("");
-    }
-
-    if (!firstName) {
-      setErrorMessageFirstName("Please add your first name");
-    } else {
-      setErrorMessageFirstName("");
-    }
-
-    if (!lastName) {
-      setErrorMessageLastName("Please add your last name")
-    } else {
-      setErrorMessageLastName("");
-    }
+   
       
-    if (email && password && firstName && lastName) {
+    if (email && password) {
 
 
 

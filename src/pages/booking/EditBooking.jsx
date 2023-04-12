@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Calendar from 'react-calendar'
+import Calendar from "react-calendar";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -9,7 +9,10 @@ function EditBooking(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("");
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(new Date());
+  const [errorMessageDescription, setErrorMessageDescription] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [submit, setSubmit] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,13 +23,12 @@ function EditBooking(props) {
     console.log("selected", e.target.value);
   };
 
-
-  const handleSelectReason = e => {
+  const handleSelectReason = (e) => {
     setReasonWhy(e.target.value);
 
     console.log("selected", e.target.value);
   };
-  
+
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
 
@@ -39,25 +41,46 @@ function EditBooking(props) {
         setDescription(oneBooking.description);
         setReasonWhy(oneBooking.reasonWhy);
         setIsOnline(oneBooking.isOnline);
-        setDate(oneBooking.date)
+        setDate(oneBooking.date);
       })
       .catch((error) => console.log(error));
   }, [id]);
 
+  useEffect(() => {
+    if (submit) {
+      if (!description) {
+        setErrorMessageDescription("Please add a description to your booking");
+      } else {
+        setErrorMessageDescription("");
+      }
+    }
+  }, [description, submit]);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setSubmit(true);
     const requestBody = { description, reasonWhy, isOnline, date };
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
-    axios
-      .put(`${API_URL}/api/get-support/${id}`, requestBody, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => {
-        navigate(`/get-support/${id}`);
-      });
+    if (description) {
+      axios
+        .put(`${API_URL}/api/get-support/${id}`, requestBody, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          setSuccessMessage(
+            `You just updated your booking - have a great appointment with your expert`
+          );
+          setTimeout(() => {
+            navigate(`/get-support/${id}`);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.log("error with edit booking", error);
+        });
+    }
   };
 
   const deleteBooking = () => {
@@ -69,7 +92,7 @@ function EditBooking(props) {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-        navigate("/profile"); 
+        navigate("/profile");
       })
       .catch((err) => console.log(err));
   };
@@ -79,12 +102,12 @@ function EditBooking(props) {
       <h1 className="detailHeadline">Edit Your Booking</h1>
 
       <form onSubmit={handleFormSubmit}>
-      <div className="booking-box">
+        <div className="booking-box">
           <div className="booking-label">
             <label>Date</label>
           </div>
           <div className="booking-input">
-            <Calendar onChange={(date) => setDate(date)} value={date}/>
+            <Calendar onChange={(date) => setDate(date)} value={date} />
             {/* <textarea
               type="text"
               name="date"
@@ -104,6 +127,7 @@ function EditBooking(props) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            <p className="errorText">{errorMessageDescription}</p>
           </div>
         </div>
 
@@ -134,19 +158,18 @@ function EditBooking(props) {
             </select>
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <p className="successMessage">{successMessage}</p>
+
         <div className="submit-button">
           <button type="submit" className="small-button button-filled-green">
             Confirm changes
           </button>
         </div>
       </form>
-      <br/>
-      <button
-        onClick={deleteBooking}
-        className="small-button"
-      >
+      <br />
+      <button onClick={deleteBooking} className="small-button">
         Delete booking
       </button>
     </div>
