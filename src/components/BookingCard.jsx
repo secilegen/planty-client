@@ -3,7 +3,9 @@ import addIcon from "../images/addIconSalmon.png";
 import editIcon from "../images/editIcon.png";
 import viewDetails from "../images/viewDetails.png";
 import { Link, useNavigate } from "react-router-dom";
-import pictureTest from "../images/banana-plant.png";
+import pictureTest from "../images/cactus-vertical.png";
+import pictureTest2 from "../images/banana-plant.png";
+import pictureTest3 from "../images/leaves.png";
 
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
@@ -20,11 +22,17 @@ function BookingCard(props) {
 
  
 
-const bookingPicture = () => {
-    if (props.oneBooking.reasonWhy === "Plant Positioning") {
-      return <img src={pictureTest} alt="booking" />;
-    }
+const bookingPicture = (reason) => {
+    if (reason === "Plant Positioning") {
+      return <img src={pictureTest} alt="booking" className="bookingCardImg"/>;
+    } 
+    if (reason === "Support with Disease") {
+      return <img src={pictureTest2} alt="booking" className="bookingCardImg"/>;
+    } 
+    if (reason === "Plant Concept") {
+      return <img src={pictureTest3} alt="booking" className="bookingCardImg"/>;
   };
+}
 
   const [isConfirmed, setIsConfirmed] = useState("pending");
 
@@ -38,6 +46,7 @@ const bookingPicture = () => {
     });
   }
 
+  
 
  
   return (
@@ -57,7 +66,8 @@ const bookingPicture = () => {
             <div key={oneBooking._id}>
               <div className="bookingCard">
                 <div className="bookingCardLeft">
-                  <img src={pictureTest} alt="booking" className="bookingCardImg"/>
+                  {bookingPicture(oneBooking.reasonWhy)}
+                  
                 </div>
 
                 
@@ -66,9 +76,11 @@ const bookingPicture = () => {
                 <div className="bookingCardRight1">
                   <p className="bookingCardReason">{oneBooking.reasonWhy}</p>
                 </div>
+
                 <div>
                 <p>{oneBooking.date}</p>
                 </div>
+
                   <div className="bookingCardLabels">
                     <p className="bookingConfirmedCard">{oneBooking.isConfirmed}</p>
                     <p className="bookingLocationCard">{oneBooking.isOnline}</p>

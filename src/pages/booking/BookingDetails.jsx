@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import editIcon from "../../images/editIcon.png"
 import deleteIcon from "../../images/deleteIcon.png"
 import descriptionIcon from "../../images/descriptionIcon.png"
+import expertIcon from "../../images/plantExpertIcon.png"
 
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
@@ -55,7 +56,7 @@ function BookingDetails(props) {
 
   return (
     <div className="BookingDetails">
-    <h2 className="detailHeadline">Booking Details</h2>
+    <h1 className="detailHeadline">Booking Details</h1>
 
     {booking && (
         <>
@@ -83,10 +84,20 @@ function BookingDetails(props) {
           </div>
           <div>
           <p className='bookingText'>{booking.description}</p>
+
           </div>
           <p className='descriptionHead'>Date</p>
           <p className='bookingText'>{booking.date}</p>
 
+
+          <div className='descriptionRow'>
+          <img src={expertIcon} alt="expert" className='descriptionIcon'/>
+          
+          <p className='descriptionHead expertAlign'>Your Expert: </p>
+          <p className='expertAlign2'>{booking.expert.firstName}</p>
+          <p className='expertAlign3'>{booking.expert.lastName}</p>
+          </div>
+          
           <div className='bookingLabels'>
           <p className='bookingLocation'>{booking.isOnline}</p>
           <p className="bookingConfirmed">{booking.isConfirmed}</p>
@@ -94,8 +105,9 @@ function BookingDetails(props) {
           </div>
         </>
       )}
+    
       <Link to={`/profile`}>
-      <button  className="buttonFramedBooking">Profile</button>
+      <button  className="buttonFramedBooking">Back to profile</button>
       
       </Link>
       </div>

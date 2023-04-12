@@ -9,6 +9,7 @@ function AddUserForm(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [image, setImage] = useState("");
+ 
   
    // ******** this method handles the file upload ********
    const handleFileUpload = (e) => {

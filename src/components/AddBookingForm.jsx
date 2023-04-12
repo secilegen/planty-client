@@ -32,13 +32,7 @@ function AddBookingForm(props) {
   const handleSelectReason = (e) => {
     setReasonWhy(e.target.value);
 
-    if (setReasonWhy("Plant Positioning")) {
-      setImage("banana-plant.png")
-    }
     
-   else if (setReasonWhy === "Plant Concept") {
-      setImage("leaves.png")
-    }
 
     console.log("selected", e.target.value);
   };
@@ -51,7 +45,9 @@ function AddBookingForm(props) {
     
 
 
+
     const requestBody = { description, reasonWhy, isOnline, isConfirmed, image, user:user._id, expert:expert, date };
+
 
 
 

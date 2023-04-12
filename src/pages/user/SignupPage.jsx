@@ -11,7 +11,12 @@ function SignupPage(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isCompany, setIsCompany] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [errorMessageFirstName, setErrorMessageFirstName] = useState("");
+  const [errorMessageLastName, setErrorMessageLastName] = useState("");
+  const [errorMessageEmail, setErrorMessageEmail] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
+
   const isExpert = false;
 
   const navigate = useNavigate();
@@ -25,18 +30,52 @@ function SignupPage(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const requestBody = { email, password, firstName, lastName, isExpert };
-    console.log("Request bosy on submit page is", requestBody);
+    console.log("Request body on submit page is", requestBody);
+
+    if (!email) {
+      setErrorMessageEmail("Please add an email address");
+    } else{
+      setErrorMessageEmail("")
+
+    }
+
+    if (!password){
+      setErrorMessagePassword("Please add a password");
+    } else {
+      setErrorMessagePassword("");
+    }
+
+    if (!firstName) {
+      setErrorMessageFirstName("Please add your first name");
+    } else {
+      setErrorMessageFirstName("");
+    }
+
+    if (!lastName) {
+      setErrorMessageLastName("Please add your last name")
+    } else {
+      setErrorMessageLastName("");
+    }
+      
+    if (email && password && firstName && lastName) {
+
+
+
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
         console.log("Submit response is: ", response);
-        navigate("/login");
+        setSuccessMessage(`You just created your planty profile - welcome to planty!`)
+				setTimeout(() => {
+                    
+					navigate("/login")
+				}, 3000)
+        
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+       console.log("error with sign up", error)
       });
-  };
+  }};
 
   return (
     <div className="SignupPage">
@@ -53,6 +92,7 @@ function SignupPage(props) {
               value={firstName}
               onChange={handleFirstName}
             />
+            <p className="errorText">{errorMessageFirstName}</p>
           </div>
         </div>
         <div className="signup-box">
@@ -66,6 +106,7 @@ function SignupPage(props) {
               value={lastName}
               onChange={handleLastName}
             />
+            <p className="errorText">{errorMessageLastName}</p>
           </div>
         </div>
         <div className="signup-box">
@@ -79,6 +120,7 @@ function SignupPage(props) {
               value={email}
               onChange={handleEmail}
             />
+            <p className="errorText">{errorMessageEmail}</p>
           </div>
         </div>
         <div className="signup-box">
@@ -92,6 +134,7 @@ function SignupPage(props) {
               value={password}
               onChange={handlePassword}
             />
+            <p className="errorText">{errorMessagePassword}</p>
           </div>
         </div>
         <div className="signup-box">
@@ -107,12 +150,15 @@ function SignupPage(props) {
             />
           </div>
         </div>
+
+        <p className="successMessage">{successMessage}</p>
+
         <div className="signup-button">
           <button type="submit" className="small-button button-filled-green">Sign Up</button>
         </div>
       </form>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+     
 
       <p>Already have an account?</p>
       <Link to={"/login"}>Login</Link>

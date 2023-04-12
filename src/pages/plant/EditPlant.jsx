@@ -12,6 +12,11 @@ function EditPlant(props) {
     const [plantHeight, setPlantHeight] = useState("");
     const [birthDate, setBirthDate] = useState("");
     const [currentCondition, setCurrentCondition] = useState("");
+    const [errorMessageNickname, setErrorMessageNickname] = useState("");
+    const [errorMessagePlantHeight, setErrorMessagePlantHeight] = useState("");
+    const [errorMessageBirthDate, setErrorMessageBirthDate] = useState("");
+    const [errorMessageImage, setErrorMessageImage] = useState("");
+    const [successMessage, setSuccessMessage] = useState('')
   
   const { plantId } = useParams();
   const navigate = useNavigate();
@@ -78,19 +83,53 @@ function EditPlant(props) {
     const requestBody = { nickname, sunlightPositioning, image, plantHeight, birthDate, currentCondition };
 
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');  
+const storedToken = localStorage.getItem('authToken');  
 
-    // Send the token through the request "Authorization" Headers  
+// Send the token through the request "Authorization" Headers  
+
+    if (!nickname) {
+      setErrorMessageNickname("Please add a nickname for your plant");
+    } else{
+      setErrorMessageNickname("")
+
+    }
+
+    if (!plantHeight){
+      setErrorMessagePlantHeight("Please tell us the plant height that we can calculate the right watering");
+    } else {
+      setErrorMessagePlantHeight("");
+    }
+
+    if (!birthDate) {
+      setErrorMessageBirthDate("Please add the birth date of your plant");
+    } else {
+      setErrorMessageBirthDate("");
+    }
+
+    if (!image) {
+      setErrorMessageImage("Please upload a plant picture")
+    } else {
+      setErrorMessageImage("");
+    }
+
+    if (nickname && plantHeight && birthDate && image) {
 
     axios
       .put(`${API_URL}/api/plants/${plantId}`, requestBody,
       { headers: { Authorization: `Bearer ${storedToken}` } } 
       )
       .then((response) => {
-        navigate(`/plants/${plantId}`)
+
+        setSuccessMessage(`We updated your plant - you will be redirected to your profile`)
+				setTimeout(() => {
+                    
+					navigate(`/plants/${plantId}`)
+				}, 3000)
+        // navigate(`/plants/${plantId}`)
       });
 
   };
+}
   
   
   const deletePlant = () => {
@@ -112,7 +151,7 @@ function EditPlant(props) {
   
   return (
     <div className="EditPlant">
-      <h3>Edit Your Plant</h3>
+      <h1 className="detailHeadline">Edit Your Plant</h1>
 
       
 
@@ -129,7 +168,7 @@ function EditPlant(props) {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
         />
-
+        <p className="errorText">{errorMessageNickname}</p>
         </div>
         <br/>
 
@@ -154,6 +193,7 @@ function EditPlant(props) {
           name="image"
           onChange={(e) => handleFileUpload(e)}
         />
+        <p className="errorText">{errorMessageImage}</p>
         </div>
         <br/>
 
@@ -168,6 +208,7 @@ function EditPlant(props) {
           value={plantHeight}
           onChange={(e) => setPlantHeight(e.target.value)}
         />
+        <p className="errorText">{errorMessagePlantHeight}</p>
 
         </div>
         <br/>
@@ -182,6 +223,7 @@ function EditPlant(props) {
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
         />
+        <p className="errorText">{errorMessageBirthDate}</p>
         </div>
         <br/>
 
@@ -199,6 +241,8 @@ function EditPlant(props) {
 
        <br/>
        <br/>
+
+       <p className="successMessage">{successMessage}</p>
 
         <button className="small-button button-filled-green" type="submit">Update Your Plant</button>
       </form>
