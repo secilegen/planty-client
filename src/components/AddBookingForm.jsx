@@ -81,6 +81,7 @@ function AddBookingForm(props) {
           console.log("Booking created:", response.data);
 
           setIsConfirmed("pending");
+          setErrorMessageDescription("")
 
           setSuccessMessage(
             `You just created your booking - the expert has to accept your booking in the next step`

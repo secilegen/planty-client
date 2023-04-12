@@ -77,7 +77,7 @@ function ExpertSignupPage() {
 
   return (
     <div className="SignupPage">
-      <h1> Sign Up </h1>
+      <h1 className="detailHeadline"> Sign Up </h1>
       <form onSubmit={handleSubmit}>
         <div className="signup-box">
           <div className="signup-label">

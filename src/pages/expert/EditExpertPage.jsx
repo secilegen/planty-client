@@ -20,6 +20,7 @@ function EditExpertPage(props) {
   const [errorMessagePrice, setErrorMessagePrice] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [loadingImage, setLoadingImage] = useState("")
 
   const { expertId } = useParams();
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function EditExpertPage(props) {
     // image => this name has to be the same as in the model since we pass
 
     uploadData.append("image", e.target.files[0]);
+    setLoadingImage("Loading ...")
 
     service
       .uploadImage(uploadData)
@@ -40,6 +42,7 @@ function EditExpertPage(props) {
         console.log("fileURL", response.fileUrl);
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
+        setLoadingImage("")
         setProfileImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
@@ -193,6 +196,7 @@ function EditExpertPage(props) {
               name="profileImage"
               onChange={(e) => handleFileUpload(e)}
             />
+             <p className="loading">{loadingImage}</p> 
           </div>
         </div>
 

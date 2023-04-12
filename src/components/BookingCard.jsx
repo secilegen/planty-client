@@ -3,9 +3,9 @@ import addIcon from "../images/addIconSalmon.png";
 import editIcon from "../images/editIcon.png";
 import viewDetails from "../images/viewDetails.png";
 import { Link, useNavigate } from "react-router-dom";
-import pictureTest from "../images/cactus-vertical.png";
-import pictureTest2 from "../images/banana-plant.png";
-import pictureTest3 from "../images/leaves.png";
+import positioning from "../images/Positioning.png";
+import support from "../images/Support.png";
+import concept from "../images/Concept.png";
 
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context";
@@ -19,16 +19,16 @@ function BookingCard(props) {
 
   const bookingPicture = (reason) => {
     if (reason === "Plant Positioning") {
-      return <img src={pictureTest} alt="booking" className="bookingCardImg" />;
+      return <img src={positioning} alt="booking" className="bookingCardImg" />;
     }
     if (reason === "Support with Disease") {
       return (
-        <img src={pictureTest2} alt="booking" className="bookingCardImg" />
+        <img src={support} alt="booking" className="bookingCardImg" />
       );
     }
     if (reason === "Plant Concept") {
       return (
-        <img src={pictureTest3} alt="booking" className="bookingCardImg" />
+        <img src={concept} alt="booking" className="bookingCardImg" />
       );
     }
   };

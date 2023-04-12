@@ -27,6 +27,7 @@ function AddPlantForm(props) {
   const [errorMessageImage, setErrorMessageImage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [loadingImage, setLoadingImage] = useState("")
 
   const navigate = useNavigate();
 
@@ -41,6 +42,7 @@ function AddPlantForm(props) {
     // image => this name has to be the same as in the model since we pass
 
     uploadData.append("image", e.target.files[0]);
+    setLoadingImage("Loading ...")
 
     service
       .uploadImage(uploadData)
@@ -48,6 +50,7 @@ function AddPlantForm(props) {
         console.log("fileURL", response.fileUrl);
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
+        setLoadingImage("")
         setImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
@@ -326,6 +329,8 @@ function AddPlantForm(props) {
               name="image"
               onChange={(e) => handleFileUpload(e)}
             />
+            <p className="loading">{loadingImage}</p> 
+            
             <p className="errorText">{errorMessageImage}</p>
           </div>
         </div>

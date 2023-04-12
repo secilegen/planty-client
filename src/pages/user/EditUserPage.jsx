@@ -20,6 +20,7 @@ function EditUserPage() {
   const [errorMessageLastName, setErrorMessageLastName] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [loadingImage, setLoadingImage] = useState("")
 
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function EditUserPage() {
     // image => this name has to be the same as in the model since we pass
 
     uploadData.append("image", e.target.files[0]);
+    setLoadingImage("Loading ...")
 
     service
       .uploadImage(uploadData)
@@ -40,6 +42,7 @@ function EditUserPage() {
         console.log("fileURL", response.fileUrl);
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
+        setLoadingImage("")
         setImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
@@ -195,6 +198,7 @@ function EditUserPage() {
               name="image"
               onChange={(e) => handleFileUpload(e)}
             />
+            <p className="loading">{loadingImage}</p> 
           </div>
         </div>
 

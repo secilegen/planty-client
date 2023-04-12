@@ -77,7 +77,7 @@ function ExpertLoginPage() {
 
   return (
     <div className="LoginPage">
-      <h1>Login</h1>
+      <h1 className="detailHeadline">Login</h1>
 
       <form onSubmit={handleLoginSubmit}>
         <div className="login-box">
