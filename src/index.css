@@ -24,13 +24,32 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   font-size: 10px;
   background-color: #c48b84;
   padding-top: 20px;
-  height: 30px;
+  height: 50px;
   margin-top: 150px;
+  color: white;
+  font-weight: bold;
   /* border: solid 1px red ; */
+}
+
+.LinkedInImg{
+  height: 15px;
+}
+
+.footerText{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -8px;
+}
+.footerLeft{
+  margin-right: 7px;
+}
+.footerRight{
+  margin: 0px 7px;
 }
 
 .navbar{
@@ -162,7 +181,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px black;
   
 }
 
@@ -801,7 +819,7 @@ margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px black;
+
   
 }
 
@@ -916,7 +934,7 @@ margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px black;
+ 
   
 }
 
