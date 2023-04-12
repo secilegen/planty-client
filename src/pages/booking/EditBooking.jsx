@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Calendar from 'react-calendar'
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -8,6 +9,7 @@ function EditBooking(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
   const [isOnline, setIsOnline] = useState("");
+  const [date, setDate] = useState(new Date())
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,13 +39,14 @@ function EditBooking(props) {
         setDescription(oneBooking.description);
         setReasonWhy(oneBooking.reasonWhy);
         setIsOnline(oneBooking.isOnline);
+        setDate(oneBooking.date)
       })
       .catch((error) => console.log(error));
   }, [id]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { description, reasonWhy, isOnline };
+    const requestBody = { description, reasonWhy, isOnline, date };
 
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
@@ -76,6 +79,20 @@ function EditBooking(props) {
       <h3>Edit Your Booking</h3>
 
       <form onSubmit={handleFormSubmit}>
+      <div className="booking-box">
+          <div className="booking-label">
+            <label>Date</label>
+          </div>
+          <div className="booking-input">
+            <Calendar onChange={(date) => setDate(date)} value={date}/>
+            {/* <textarea
+              type="text"
+              name="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            /> */}
+          </div>
+        </div>
         <div className="booking-box">
           <div className="booking-label">
             <label>Description</label>

@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
+import Calendar from 'react-calendar'
 import testImage from "../images/banana-plant.png"
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -12,6 +13,7 @@ function AddBookingForm(props) {
   const [isOnline, setIsOnline] = useState("Online");
   const [isConfirmed, setIsConfirmed] = useState("pending")
   const [image, setImage] = useState("")
+  const [date, setDate] = useState(new Date())
 
   const navigate = useNavigate();
 
@@ -49,7 +51,7 @@ function AddBookingForm(props) {
     
 
 
-    const requestBody = { description, reasonWhy, isOnline, isConfirmed, image, user:user._id, expert:expert };
+    const requestBody = { description, reasonWhy, isOnline, isConfirmed, image, user:user._id, expert:expert, date };
 
 
 
@@ -68,6 +70,7 @@ function AddBookingForm(props) {
         setDescription("");
         setReasonWhy("");
         setIsOnline("Online");
+        setDate("");
 
         console.log("Booking created:", response.data);
 
@@ -94,7 +97,22 @@ function AddBookingForm(props) {
       <h3>Booking</h3>
 
       <form onSubmit={handleSubmit}>
-        <div className="booking-box">
+      <div className="booking-box">
+          <div className="booking-label">
+            <label>Date</label>
+          </div>
+          <div className="booking-input">
+            <Calendar onChange={(date) => setDate(date)} value={date}/>
+            {/* <textarea
+              type="text"
+              name="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            /> */}
+          </div>
+        </div>
+       
+       <div className="booking-box">
           <div className="booking-label">
             <label>Description</label>
           </div>

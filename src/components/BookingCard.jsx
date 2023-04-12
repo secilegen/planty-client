@@ -11,7 +11,6 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
-import pictureTest from "../images/testBooking.png";
 
 
 function BookingCard(props) {
@@ -67,7 +66,9 @@ const bookingPicture = () => {
                 <div className="bookingCardRight1">
                   <p className="bookingCardReason">{oneBooking.reasonWhy}</p>
                 </div>
-
+                <div>
+                <p>{oneBooking.date}</p>
+                </div>
                   <div className="bookingCardLabels">
                     <p className="bookingConfirmedCard">{oneBooking.isConfirmed}</p>
                     <p className="bookingLocationCard">{oneBooking.isOnline}</p>
