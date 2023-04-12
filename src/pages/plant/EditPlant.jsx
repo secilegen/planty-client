@@ -18,6 +18,7 @@ function EditPlant(props) {
   const [errorMessageImage, setErrorMessageImage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [submit, setSubmit] = useState(false);
+  const [loadingImage, setLoadingImage] = useState("")
 
   const { plantId } = useParams();
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ function EditPlant(props) {
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("image", e.target.files[0]);
+    setLoadingImage("Loading ...")
 
     service
       .uploadImage(uploadData)
@@ -38,6 +40,7 @@ function EditPlant(props) {
         console.log("fileURL", response.fileUrl);
         // console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
+        setLoadingImage("")
         setImage(response.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
@@ -197,6 +200,7 @@ function EditPlant(props) {
             name="image"
             onChange={(e) => handleFileUpload(e)}
           />
+           <p className="loading">{loadingImage}</p> 
           <p className="errorText">{errorMessageImage}</p>
         </div>
         <br />

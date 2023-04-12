@@ -29,7 +29,7 @@ body {
   background-color: #c48b84;
   padding-top: 20px;
   height: 50px;
-  margin-top: 150px;
+  margin: 150px -10px -10px -10px;
   color: white;
   font-weight: bold;
   /* border: solid 1px red ; */
@@ -62,6 +62,7 @@ body {
   /* border: solid 1px red ; */
   position: sticky;
   top: 0;
+  margin: -10px -10px 10px -10px;
   /* width: 100vw; */
 
 }
@@ -150,6 +151,7 @@ body {
   margin-bottom: 0px;
   padding-bottom: 0px;
   background-color: #c48b84;
+  margin: -9px 0px 0px -20px;
 }
 
 .header-info {
@@ -392,7 +394,7 @@ margin-right: 60px;
   color:#084d26;
   max-width: 80%;
   text-align: center;
-  margin-left: 40px;
+  margin-left: 30px;
   margin-bottom: 30px;
   
 }
@@ -401,9 +403,8 @@ margin-right: 60px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 35px;
-  margin-right: 40px;
-  margin-bottom: 10px;
+  margin: 10px 40px 10px 35px;
+
  }
 
 
@@ -1039,6 +1040,8 @@ font-size: 24px;
 .home-expert-text > h5{
 background-color: #fdf7f2;
 margin-top: 70px;
+opacity: 75%;
+padding: 7px
 }
 
 .apiImage{
