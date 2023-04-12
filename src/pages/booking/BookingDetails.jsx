@@ -82,7 +82,13 @@ function BookingDetails(props) {
           <img src={descriptionIcon} alt="description" className='descriptionIcon'/>
           <p className='descriptionHead'>Description</p>
           </div>
+          <div>
           <p className='bookingText'>{booking.description}</p>
+
+          </div>
+          <p className='descriptionHead'>Date</p>
+          <p className='bookingText'>{booking.date}</p>
+
 
           <div className='descriptionRow'>
           <img src={expertIcon} alt="expert" className='descriptionIcon'/>

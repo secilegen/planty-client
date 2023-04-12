@@ -15,7 +15,6 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
 
 
-
 function BookingCard(props) {
 
   const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
@@ -78,7 +77,9 @@ const bookingPicture = (reason) => {
                   <p className="bookingCardReason">{oneBooking.reasonWhy}</p>
                 </div>
 
-               
+                <div>
+                <p>{oneBooking.date}</p>
+                </div>
 
                   <div className="bookingCardLabels">
                     <p className="bookingConfirmedCard">{oneBooking.isConfirmed}</p>
