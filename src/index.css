@@ -29,6 +29,7 @@ body {
   background-color: #c48b84;
   padding-top: 20px;
   height: 30px;
+  margin-top: 150px;
   /* border: solid 1px red ; */
 }
 
@@ -201,7 +202,7 @@ body {
   font-weight: 600;
     /* font-size: 12px; */
   padding: 5px 10px;
-  margin: 0px 20px 10px 0px;
+  margin: 0px 20px 10px 20px;
   border-radius: 5px 5px 5px;
   /* width: 60%; */
   text-align: center;
@@ -341,10 +342,11 @@ margin-right: 60px;
 }
 
 .detailHeadline{
-  color: white;
-  max-width: 70%;
+  color:#084d26;
+  max-width: 80%;
   text-align: center;
-  margin-left: 50px;
+  margin-left: 40px;
+  margin-bottom: 30px;
   
 }
 .diseaseHeader{
@@ -637,11 +639,31 @@ margin-right: 60px;
   margin-top:-5px;
  }
 
+ .errorText{
+  color: red;
+  font-size: 12px;
+ }
+
+ .successMessage{
+  color:#c48b84;
+  font-weight: bold ;
+ }
+
  .bookingLabels{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 
+ }
+
+ .expertAlign{
+  margin-right: 5px;
+ 
+ }
+
+ .expertAlign2{
+  margin-right: 5px;
+ 
  }
 
  .buttonFramedBooking{
@@ -653,7 +675,24 @@ padding-left:60px;
 padding-right: 60px;
 }
 
+.buttonFramedApiSearch{
+  background-color: #fdf7f2; 
+  border-color: #c48b84;
+  color: #c48b84;
+  padding: 5px;
+padding-left:20px;
+padding-right: 20px;
+
+margin: 10px;
+}
+
 .buttonFramedBooking:hover{
+  background-color: #fdf7f2; 
+  border: transparent;
+  color: #c48b84
+}
+
+.buttonFramedApiSearch:hover{
   background-color: #fdf7f2; 
   border: transparent;
   color: #c48b84
@@ -900,7 +939,7 @@ margin-top: 70px;
 .searchCard{
   background-color: white;
   width: 80%;
-  border-radius: 5%;
+  border-radius: 3%;
   margin-bottom: 10px;
   margin-left: 35px;
   padding-top:10px;

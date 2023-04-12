@@ -19,10 +19,15 @@ function AddPlantForm(props) {
   const [birthDate, setBirthDate] = useState("");
   const [currentCondition, setCurrentCondition] = useState("Thriving");
   const [apiId, setApiId] = useState("");
-  const [fetching, setFetching] = useState(true);
+  const [fetching, setFetching] = useState(false);
   const [plant, setPlant] = useState([]);
   const [query, setQuery] = useState("");
-  const [errorMessage, setErrorMesage] = useState("");
+  const [errorMessageNickname, setErrorMessageNickname] = useState("");
+  const [errorMessagePlantHeight, setErrorMessagePlantHeight] = useState("");
+  const [errorMessageBirthDate, setErrorMessageBirthDate] = useState("");
+  const [errorMessageImage, setErrorMessageImage] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
+
 
   const navigate = useNavigate();
 
@@ -65,7 +70,9 @@ function AddPlantForm(props) {
 
   useEffect(() => {
     console.log("useEffect - initial render");
+   
     if (query !== "") {
+      setFetching(true)
       axios
         .get(apiURL, { params: { q: query } })
         .then((response) => {
@@ -76,14 +83,17 @@ function AddPlantForm(props) {
           console.log("show api plants", response);
           console.log("query", query);
           console.log("plants", plant.length);
+          setFetching(false)
         })
 
         .catch((error) => {
           console.log("Error calling API" + error);
         });
+
     } else if (query === "") {
       setPlant([]);
     }
+    
   }, [query]);
 
   // Thanks to Henrique it works
@@ -113,9 +123,36 @@ function AddPlantForm(props) {
 
     // Error handling
 
+
+
     if (!nickname) {
-      setErrorMesage("We need a nickname for your plant");
+      setErrorMessageNickname("Please add a nickname for your plant");
+    } else{
+      setErrorMessageNickname("")
+
     }
+
+    if (!plantHeight){
+      setErrorMessagePlantHeight("Please tell us the plant height that we can calculate the right watering");
+    } else {
+      setErrorMessagePlantHeight("");
+    }
+
+    if (!birthDate) {
+      setErrorMessageBirthDate("Please add the birth date of your plant");
+    } else {
+      setErrorMessageBirthDate("");
+    }
+
+    if (!image) {
+      setErrorMessageImage("Please upload a plant picture")
+    } else {
+      setErrorMessageImage("");
+    }
+      
+    if (nickname && plantHeight && birthDate && image) {
+      
+    
 
     axios
       .post(`${API_URL}/api/plants`, requestBody)
@@ -130,18 +167,27 @@ function AddPlantForm(props) {
         setApiId("");
         setCommon_Name("");
         setWatering("");
-        // setImageAPI("");
+       
 
-        navigate("/profile");
+        setSuccessMessage(`We added your plant to your profile - you will be redirected to your profile`)
+				setTimeout(() => {
+                    
+					navigate("/profile")
+				}, 3000)
+
+        // navigate("/profile");
 
         console.log("add plant", response);
       })
-      .catch((error) => console.log(error));
-  };
+      .catch(error => {
+
+      console.log("We  couldn't add your plant to your profile - try it again", error)
+    })};
+}
 
   return (
     <div className="AddPlant">
-      {fetching && <p className="loading">Loading ...</p>}
+      {/* {fetching && <p className="loading">Loading ...</p>} */}
 
       <div className="booking-box">
           <div className="booking-label">
@@ -158,10 +204,10 @@ function AddPlantForm(props) {
       />
       </div>
       </div>
-      {/* {search(plant).map((result) => { */}
-
-      {plant.map((result) => {
+      {fetching ?<p className="loading">Loading ...</p> :  
+      plant.map((result) => {
         return (
+          
           
           <div key={result.id} className="apiPlant">
           <div className="searchCard">
@@ -210,11 +256,13 @@ function AddPlantForm(props) {
                 className="inputSearch"
               />
             </p>
+
+            
             
             </div>
             </div>
             {/* <p>Plant Id: {result.id}</p> */}
-            <button className="small-button" type="button" onClick={()=> {handleClick(result.common_name, result.watering, result.id)}}>add to plant profile</button>
+            <button className="buttonFramedApiSearch" type="button" onClick={()=> {handleClick(result.common_name, result.watering, result.id)}}>add to plant profile</button>
           </div>
           </div>
         );
@@ -222,6 +270,7 @@ function AddPlantForm(props) {
 
       <form onSubmit={handleSubmit}>
         <div className="booking-box">
+       
           <div className="booking-label">
             <label>Nickname</label>
           </div>
@@ -233,6 +282,7 @@ function AddPlantForm(props) {
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
             />
+             <p className="errorText">{errorMessageNickname}</p>
           </div>
         </div>
 
@@ -260,6 +310,7 @@ function AddPlantForm(props) {
               name="image"
               onChange={(e) => handleFileUpload(e)}
             />
+            <p className="errorText">{errorMessageImage}</p>
           </div>
         </div>
 
@@ -275,6 +326,7 @@ function AddPlantForm(props) {
               value={plantHeight}
               onChange={(e) => setPlantHeight(e.target.value)}
             />
+             <p className="errorText">{errorMessagePlantHeight}</p>
           </div>
         </div>
 
@@ -290,6 +342,7 @@ function AddPlantForm(props) {
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
             />
+             <p className="errorText">{errorMessageBirthDate}</p>
           </div>
         </div>
 
@@ -305,6 +358,8 @@ function AddPlantForm(props) {
             </select>
           </div>
         </div>
+
+        <p className="successMessage">{successMessage}</p>
 
         <button type="submit" className="small-button button-filled-green">Submit</button>
       </form>

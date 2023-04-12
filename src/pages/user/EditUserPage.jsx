@@ -16,6 +16,9 @@ function EditUserPage() {
   const [typeOfCompany, setTypeOfCompany] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [image, setImage] = useState("");
+  const [errorMessageFirstName, setErrorMessageFirstName] = useState("");
+  const [errorMessageLastName, setErrorMessageLastName] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
 
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -65,16 +68,40 @@ function EditUserPage() {
       typeOfCompany,
       image,
     };
+
+    if (!firstName) {
+      setErrorMessageFirstName("Please add your first name");
+    } else {
+      setErrorMessageFirstName("");
+    }
+
+    if (!lastName) {
+      setErrorMessageLastName("Please add your last name")
+    } else {
+      setErrorMessageLastName("");
+    }
+      
+    if (firstName && lastName) {
+
     axios
       .put(`${API_URL}/api/user/${user._id}`, requestBody)
       .then((response) => {
         console.log("Updated user info:", response);
-        navigate(`/profile`);
+        setSuccessMessage(`You just updated your planty profile - it looks pretty`)
+				setTimeout(() => {
+                    
+					navigate("/profile")
+				}, 3000)
+        
+      })
+      .catch((error) => {
+       console.log("error with sign up", error)
       });
-  };
+  }};
+
   return (
     <div className="EditProfile">
-      <h3>Edit Profile</h3>
+      <h1 className="detailHeadline">Edit Your Profile</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="edit-profile-box">
@@ -88,6 +115,7 @@ function EditUserPage() {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
+            <p className="errorText">{errorMessageFirstName}</p>
           </div>
         </div>
         <div className="edit-profile-box">
@@ -101,6 +129,7 @@ function EditUserPage() {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
+             <p className="errorText">{errorMessageLastName}</p>
           </div>
         </div>
         <div className="edit-profile-box">
@@ -162,6 +191,8 @@ function EditUserPage() {
             />
           </div>
         </div>
+
+        <p className="successMessage">{successMessage}</p>
         <div className="submit-button">
           <button type="submit" className="small-button button-filled-green">
             Save Changes
