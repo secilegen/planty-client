@@ -161,6 +161,11 @@ function PlantDetails(props) {
           <DiseaseCard disease={plant.disease} getPlant={getPlant} />
         </>
       )}
+      <br/>
+      <Link to={`/profile`}>
+      <button  className="buttonFramedBooking">Back to profile</button>
+      
+      </Link>
     </div>
   );
 }

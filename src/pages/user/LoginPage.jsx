@@ -9,7 +9,9 @@ const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [errorMessageEmail, setErrorMessageEmail] = useState("");
+  const [errorMessagePassword, setErrorMessagePassword] = useState("");
+  const [successMessage, setSuccessMessage] = useState('')
   
   const navigate = useNavigate();
 
@@ -23,21 +25,42 @@ function LoginPage(props) {
 
     e.preventDefault();
     const requestBody = { email, password };
- 
+
+    if (!email) {
+      setErrorMessageEmail("Please add an email address");
+    } else{
+      setErrorMessageEmail("")
+
+    }
+
+    if (!password){
+      setErrorMessagePassword("Please add a password");
+    } else {
+      setErrorMessagePassword("");
+    }
+
+
+ if (email && password) {
+
     axios.post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
         console.log('JWT token', response.data.authToken );
       
+
+        setSuccessMessage(`You successfully logged in - welcome back!`)
+				setTimeout(() => {
+                    
+					navigate("/")
+				}, 3000)
+       
         storeToken(response.data.authToken)
         authenticateUser()
-
-        navigate('/')                                
+                                     
       })
       .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
+        console.log("error with login", error)
       })
-  };
+  }};
   
   return (
     <div className="LoginPage">
@@ -55,6 +78,7 @@ function LoginPage(props) {
           value={email}
           onChange={handleEmail}
         />
+         <p className="errorText">{errorMessageEmail}</p>
         </div>
         </div>
         <div className="login-box">
@@ -68,13 +92,17 @@ function LoginPage(props) {
           value={password}
           onChange={handlePassword}
         />
+        <p className="errorText">{errorMessagePassword}</p>
         </div>
         </div>
+
+        <p className="successMessage">{successMessage}</p>
+
         <div className="login-button">
         <button type="submit" className="small-button button-filled-green">Login</button>
         </div>
       </form>
-      { errorMessage && <p className="error-message">{errorMessage}</p> }
+     
 
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>

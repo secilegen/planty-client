@@ -73,7 +73,7 @@ function EditBooking(props) {
 
   return (
     <div className="EditBooking">
-      <h3>Edit Your Booking</h3>
+      <h1 className="detailHeadline">Edit Your Booking</h1>
 
       <form onSubmit={handleFormSubmit}>
         <div className="booking-box">
@@ -117,16 +117,18 @@ function EditBooking(props) {
             </select>
           </div>
         </div>
+        <br/>
+        <br/>
         <div className="submit-button">
           <button type="submit" className="small-button button-filled-green">
             Confirm changes
           </button>
         </div>
       </form>
-      
+      <br/>
       <button
         onClick={deleteBooking}
-        className="small-button button-filled-green"
+        className="small-button"
       >
         Delete booking
       </button>
