@@ -159,7 +159,7 @@ function PlantDetails(props) {
             {/* <div>Watering amount: {plant.plantHeight * 0.4 * sunFactor * apiWaterFactor *5}</div> */}
           </div>
           </div>
-
+<br/>
         <hr width="65%" />
           <br/>
           <DiseaseCard disease={plant.disease} getPlant={getPlant} />
