@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 import DiseaseCard from "../../components/DiseaseCard";
 import editIcon from "../../images/editIcon.png";
 import deleteIcon from "../../images/deleteIcon.png";
