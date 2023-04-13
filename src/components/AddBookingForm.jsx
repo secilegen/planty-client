@@ -42,7 +42,7 @@ function AddBookingForm(props) {
       if (!description) {
         setErrorMessageDescription("Please add a description to your booking");
       } else {
-        setErrorMessageDescription("");
+        setErrorMessageDescription(" ");
       }
     }
   }, [description, submit]);

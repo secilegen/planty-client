@@ -20,6 +20,8 @@ function BookingSelection(props) {
         .catch(err=>console.log(err))
     }
 
+  
+
     useEffect(()=>{
         getExperts();
     }, [])
@@ -46,9 +48,12 @@ function BookingSelection(props) {
                 <p className="bookingLocationCard2">{expert.expertLocation}</p>
                 <p className="bookingLocationCard2">{expert.price} €</p>
                 </div>
+
+               
                 
                 </div>
                 <img src={addIcon} alt="add icon" height="30px" onClick={()=>props.selectExpert(expert._id)} className="addIconBooking"/>
+                
                 </div>
                 </div>)
         })}
