@@ -12,11 +12,11 @@ function AddPlantForm(props) {
   const [common_name, setCommon_Name] = useState("");
   const [watering, setWatering] = useState("");
   const [nickname, setNickname] = useState("");
-  const [sunlightPositioning, setSunlightPositioning] = useState("Low");
+  const [sunlightPositioning, setSunlightPositioning] = useState("");
   const [image, setImage] = useState("");
   const [plantHeight, setPlantHeight] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [currentCondition, setCurrentCondition] = useState("Thriving");
+  const [currentCondition, setCurrentCondition] = useState("");
   const [apiId, setApiId] = useState("");
   const [fetching, setFetching] = useState(false);
   const [plant, setPlant] = useState([]);
@@ -158,15 +158,7 @@ function AddPlantForm(props) {
         .post(`${API_URL}/api/plants`, requestBody)
         .then((response) => {
           // Reset the state
-          setNickname("");
-          setSunlightPositioning("Low");
-          setImage("");
-          setPlantHeight("");
-          setBirthDate("");
-          setCurrentCondition("Thriving");
-          setApiId("");
-          setCommon_Name("");
-          setWatering("");
+      
 
           setSuccessMessage(
             `We added your plant to your profile - you will be redirected to your profile`
@@ -311,6 +303,7 @@ function AddPlantForm(props) {
           </div>
           <div className="booking-input">
             <select value={sunlightPositioning} onChange={handleSelectSunlight}>
+            <option>Select</option>
               <option value="Low">Low</option>
               <option value="Moderate">Moderate</option>
               <option value="High">High</option>
@@ -373,6 +366,7 @@ function AddPlantForm(props) {
           </div>
           <div className="booking-input">
             <select value={currentCondition} onChange={handleSelectCondition}>
+            <option>Select</option>
               <option value="Thriving">Thriving</option>
               <option value="Needs some attention">Needs some attention</option>
               <option value="Not good condition">Not good condition</option>

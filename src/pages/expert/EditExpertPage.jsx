@@ -123,6 +123,7 @@ function EditExpertPage(props) {
               value={experienceLevel}
               onChange={(e) => setExperienceLevel(e.target.value)}
             >
+            <option>Select</option>
               <option value="1-3 years">1-3 years</option>
               <option value="4-6 years">4-6 years</option>
               <option value="more than 6 years">more than 6 years</option>
@@ -156,6 +157,7 @@ function EditExpertPage(props) {
               value={availableOnline}
               onChange={(e) => setAvailableOnline(e.target.value)}
             >
+            <option>Select</option>
               <option value="true">Yes</option>
               <option value="false">No</option>
             </select>

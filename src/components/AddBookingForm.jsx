@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 function AddBookingForm(props) {
   const [description, setDescription] = useState("");
   const [reasonWhy, setReasonWhy] = useState("");
-  const [isOnline, setIsOnline] = useState("Online");
+  const [isOnline, setIsOnline] = useState("");
   const [isConfirmed, setIsConfirmed] = useState("pending");
   const [errorMessageDescription, setErrorMessageDescription] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -73,15 +73,11 @@ function AddBookingForm(props) {
           headers: { Authorization: `Bearer ${storedToken}` },
         })
         .then((response) => {
-          setDescription("");
-          setReasonWhy("");
-          setIsOnline("Online");
-          setDate("");
+        
 
           console.log("Booking created:", response.data);
 
           setIsConfirmed("pending");
-          setErrorMessageDescription("")
 
           setSuccessMessage(
             `You just created your booking - the expert has to accept your booking in the next step`
@@ -105,14 +101,18 @@ function AddBookingForm(props) {
           <div className="booking-label">
             <label>Date</label>
           </div>
-          <div className="booking-input">
-            <Calendar onChange={(date) => setDate(date)} value={date} />
+          <div className="calendar">
+            <Calendar className="calendarStyle" onChange={(date) => setDate(date)} value={date} />
             {/* <textarea
               type="text"
               name="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             /> */}
+            <div className="selectedDate2">
+        <span className="selectedDate">Selected Date:</span>
+        <p className="commonName3">{date.toDateString()}</p>
+      </div>
           </div>
         </div>
 
@@ -136,6 +136,7 @@ function AddBookingForm(props) {
           </div>
           <div className="booking-input">
             <select value={reasonWhy} onChange={handleSelectReason}>
+            <option>Select</option>
               <option value="Plant Positioning">Plant Positioning</option>
               <option value="Support with Disease">Support with Disease</option>
               <option value="Plant Concept">Plant Concept</option>
@@ -149,6 +150,7 @@ function AddBookingForm(props) {
           </div>
           <div className="booking-input">
             <select value={isOnline} onChange={handleSelectOnline}>
+            <option>Select</option>
               <option value="Online">Online</option>
               <option value="Offline">Offline</option>
             </select>
