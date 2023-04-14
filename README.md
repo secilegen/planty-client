@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Planty - Happy Plants, Happy Holmes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is not an easy job to be a Plant parent, there are thousands of plant species out there. They all require special care, love and nutrients. Some people are naturals, but some are simply not good at it. We help plant lovers and parents to take care of theirs plants.
+[Planty](https://planty-by-ns.netlify.app/).
 
 ## Available Scripts
 
