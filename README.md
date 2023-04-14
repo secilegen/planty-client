@@ -1,11 +1,23 @@
 # Planty - Happy Plants, Happy Holmes
 
-It is not an easy job to be a Plant parent, there are thousands of plant species out there. They all require special care, love and nutrients. Some people are naturals, but some are simply not good at it. We help plant lovers and parents to take care of theirs plants.
-[Planty](https://planty-by-ns.netlify.app/).
+It is not an easy job to be a Plant parent, there are thousands of plant species out there. They all require special care, love and nutrients. Some people are naturals, but some are simply not good at it. We help plant lovers and parents to take care of theirs plants with [Planty](https://planty-by-ns.netlify.app/).
 
-## Available Scripts
+## Features 
 
-In the project directory, you can run:
+- Sign up and login as a plant parent or expert
+- Create a profile
+
+Plant parents:
+- Add, edit and delete your plants
+- Add diseases, when there is one and get information about the treatment
+- We calculate the watering for you
+- Find an expert and book an appointment with an expert
+- Get inspired by random plants on your home
+
+Expert:
+- Show your availability
+- Accept or reject bookings from users
+- 
 
 ### `npm start`
 
