@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams,Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import addIcon from "../../images/addIconGreen.png"
+import avatar from "../../images/human.png"
 
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
@@ -34,7 +35,8 @@ function BookingSelection(props) {
                 <div key={expert._id}>
                 <div className="bookingExpert">
                 <div className="booking ExpertLeft">
-                <img src={expert.profileImage} alt="expert" className="bookingExpertImg"/>
+                {expert.profileImage ? <img src={props.expert.profileImage} alt="avatar" className="bookingExpertImg"/> : <img src={avatar} alt="avatar" className="bookingExpertImg"/>}
+
                 </div>
 
                 <div className="bookingExpertRight">
