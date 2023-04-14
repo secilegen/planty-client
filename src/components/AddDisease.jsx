@@ -59,7 +59,7 @@ function AddDisease(props) {
   return (
     <div>
     
-    <h2 className="detailHeadline">Add a disease to your planty</h2>
+    <h2 className="detailHeadline">Add a disease to your plant</h2>
 
     {diseaseAll.map(disease => {
       console.log("disease", disease)

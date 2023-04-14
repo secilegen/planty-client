@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import avatar from '../images/human.png'
+import editIcon from "../images/editIcon.png"
+
 
 
 function ExpertHeader(props) {
@@ -18,19 +20,19 @@ function ExpertHeader(props) {
           {props.expert.firstName} {props.expert.lastName}
         </h1>
         <Link to="./edit">
-          <button>Edit Profile</button>
+        <img src={editIcon} alt="edit icon" height="25px" />
         </Link>
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
          {props.expert.image ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
-        <div className="profile-header-bottom-image">
+        <div className="profile-header-bottom-info">
           <p>
-            <span>{avgRating}</span> rating
+            <span>{avgRating}</span><br />  rating
           </p>
           <p>
-            <span>{numberOfBookings}</span> bookings
+            <span>{numberOfBookings}</span><br />  bookings
           </p>
         </div>
       </div>

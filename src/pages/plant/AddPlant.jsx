@@ -11,7 +11,7 @@ function AddPlant() {
   return (
     <div>
     
-    <h1 className="detailHeadline">Add your Planty</h1>
+    <h1 className="detailHeadline">Add your plant</h1>
  
     <AddPlantForm/>
     
