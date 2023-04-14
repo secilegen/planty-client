@@ -82,7 +82,7 @@ function PlantCard(props) {
                 </div>
               </div>
               {/* <p className="plantCardDiseaseLabel">{showDisease(onePlant.disease)}</p> */}
-              {onePlant.disease.length > 0 && (<p className="plantCardDiseaseLabel">your planty has a disease</p>)}
+              {onePlant.disease.length > 0 && (<p className="plantCardDiseaseLabel">Your plant has a disease</p>)}
             </div>
           );
         })}
