@@ -6,17 +6,17 @@ import editIcon from "../images/editIcon.png"
 
 
 function ExpertHeader(props) {
-  const numberOfBookings = props.expert.bookings.length;
-  let ratingSum;
-  // for (let i = 0; i < props.expert.bookings.length; i++) {
-  //   ratingSum += +props.expert.bookings[i].rating;
-  // }
-  const avgRating = ratingSum / props.expert.bookings.length;
-  ratingSum = props.expert.bookings[1].rating + props.expert.bookings[2].rating
-  console.log("Expert from props is", props.expert);
-  console.log("Experts bookings are", props.expert.bookings)
-  console.log(props.expert.bookings.length)
-  console.log(ratingSum)
+  // const numberOfBookings = props.expert.bookings.length;
+  // let ratingSum;
+  // // for (let i = 0; i < props.expert.bookings.length; i++) {
+  // //   ratingSum += +props.expert.bookings[i].rating;
+  // // }
+  // const avgRating = ratingSum / props.expert.bookings.length;
+  // ratingSum = props.expert.bookings[1].rating + props.expert.bookings[2].rating
+  // console.log("Expert from props is", props.expert);
+  // console.log("Experts bookings are", props.expert.bookings)
+  // console.log(props.expert.bookings.length)
+  // console.log(ratingSum)
   return (
     <div className="profile-header">
       <div className="profile-header-top">
