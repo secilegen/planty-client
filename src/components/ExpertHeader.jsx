@@ -6,7 +6,7 @@ import editIcon from "../images/editIcon.png"
 
 
 function ExpertHeader(props) {
-  // const numberOfBookings = props.expert.bookings.length;
+  const numberOfBookings = props.expert.bookings.length;
   // let ratingSum;
   // // for (let i = 0; i < props.expert.bookings.length; i++) {
   // //   ratingSum += +props.expert.bookings[i].rating;
@@ -29,7 +29,7 @@ function ExpertHeader(props) {
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
-         {props.expert.profileImage ? <img src={props.expert.profileeImage} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
+         {props.expert.profileImage ? <img src={props.expert.profileImage} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
         <div className="profile-header-bottom-info">
         {/* <p>
