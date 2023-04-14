@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { AuthContext } from "../../context/auth.context"; 
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import editIcon from "../../images/editIcon.png"
@@ -12,6 +13,8 @@ import calendarIcon from "../../images/calendarIconBlack.png"
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005'
 
 function BookingDetails(props) {
+    const { isLoggedIn, user, logOutUser, isExpert } = useContext(AuthContext);
+
     const [booking, setBooking] = useState(null)
     const { id } = useParams();
     const navigate = useNavigate();
@@ -59,14 +62,13 @@ function BookingDetails(props) {
     <div className="BookingDetails">
     <h1 className="detailHeadline">Booking Details</h1>
 
-    {booking && (
+    {booking && !isExpert && (
         <>
       <div className='bookingDetailCard'>
         <div className='bookingDetailHeader'>
         <div className='bookingDetailLeft'>
           <p className='bookingDetailReason'>{booking.reasonWhy}</p>
           </div>
-
           <div className='bookingDetailRight'> 
           <Link to={`/get-support/edit/${id}`}>
         <img src={editIcon} alt='"edit' className="bookingDetailsEdit"/>
@@ -76,7 +78,7 @@ function BookingDetails(props) {
       <img src={deleteIcon} alt="delete" onClick={deleteBooking} className="bookingDetailsDelete"/>
         {/* <button onClick={deleteBooking}>Delete Booking</button> */}
       </Link>
-</div>
+      </div>
       </div>
           
           <div className='descriptionRow'>
@@ -107,13 +109,60 @@ function BookingDetails(props) {
           <p className="bookingConfirmed">{booking.isConfirmed}</p>
           </div>
           </div>
-        </>
-      )}
-    
-      <Link to={`/profile`}>
+          <Link to={`/profile`}>
       <button  className="buttonFramedBooking">Back to profile</button>
       
       </Link>
+        </>
+        
+      )}
+    
+    {booking && isExpert && (
+        <>
+      <div className='bookingDetailCard'>
+        <div className='bookingDetailHeader'>
+        <div className='bookingDetailLeft'>
+          <p className='bookingDetailReason'>{booking.reasonWhy}</p>
+          </div>
+          
+      </div>
+          
+          <div className='descriptionRow'>
+          <img src={descriptionIcon} alt="description" className='descriptionIcon'/>
+          <p className='descriptionHead'>Description</p>
+          </div>
+          <div>
+          <p className='bookingText'>{booking.description}</p>
+
+          </div>
+
+          <div className='descriptionRow'>
+          <img src={calendarIcon} alt="expert" className='descriptionIcon'/>
+          <p className='descriptionHead expertAlign'>Date</p>
+          <p className='expertAlign2'>{booking.date}</p>
+          </div>
+
+          <div className='descriptionRow'>
+          <img src={expertIcon} alt="user" className='descriptionIcon'/>
+          
+          <p className='descriptionHead expertAlign'>Booked by: </p>
+          <p className='expertAlign2'>{booking.user.firstName} {booking.user.lastName}</p>
+         
+          </div>
+          
+          <div className='bookingLabels'>
+          <p className='bookingLocation'>{booking.isOnline}</p>
+          <p className="bookingConfirmed">{booking.isConfirmed}</p>
+          </div>
+          </div>
+          <Link to={`/expert/profile`}>
+      <button  className="buttonFramedBooking">Back to profile</button>
+      
+      </Link>
+        </>
+      )}
+    
+      
       </div>
   )
 }
