@@ -42,6 +42,8 @@ It is not an easy job to be a Plant parent, there are thousands of plant species
 - [Icons8](https://icons8.com/)
 - [MDN](https://developer.mozilla.org/en-US/)
 - [w3 Schools](https://www.w3schools.com/graphics/game_components.asp)
+- [Stack overflow](https://stackoverflow.com/)
+- [Ironhack Student Portal](https://next.ironhack.com/us/en/web-development)
 
 # Image sources
 
