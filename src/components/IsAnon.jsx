@@ -18,6 +18,7 @@ function IsAnon( { children } ) {
   wrapperStyle={{}}
   wrapperClass=""
   visible={true}
+  alignSelf="center"
 />;
  
   if (isLoggedIn) {
