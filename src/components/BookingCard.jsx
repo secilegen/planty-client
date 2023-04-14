@@ -82,7 +82,29 @@ function BookingCard(props) {
                       </p>
                     </div>
 
-                    <div className="bookingCardIcons">
+                  
+
+                      {isExpert && oneBooking.isConfirmed === "pending" && (
+                        <div className="expertBooking">
+                          <button
+                          className="expertAccept"
+                            onClick={() =>
+                              handleClick("accepted", oneBooking._id)
+                            }
+                          >
+                            Accept
+                          </button>
+                          <button
+                           className="expertReject"
+                            onClick={() =>
+                              handleClick("rejected", oneBooking._id)
+                            }
+                          >
+                            Reject
+                          </button>
+                        </div>
+                      )}
+                      <div className="bookingCardIcons">
                       <Link to={`/get-support/${oneBooking._id}`}>
                         <img
                           src={viewDetails}
@@ -95,24 +117,6 @@ function BookingCard(props) {
                         <img src={editIcon} alt="edit icon" height="25px" />
                       </Link>
 
-                      {isExpert && oneBooking.isConfirmed === "pending" && (
-                        <div>
-                          <button
-                            onClick={() =>
-                              handleClick("accepted", oneBooking._id)
-                            }
-                          >
-                            Accept
-                          </button>
-                          <button
-                            onClick={() =>
-                              handleClick("rejected", oneBooking._id)
-                            }
-                          >
-                            Reject
-                          </button>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>

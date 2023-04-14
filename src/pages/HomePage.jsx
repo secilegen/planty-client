@@ -66,10 +66,12 @@ function HomePage() {
           {!isExpert && user && (<>
               <PlantCard plants={userToView.myPlants}/>
               <div>
-            <h1>Get help with your plants</h1>
-            <h5>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
+            <h1 className='homeHeader'>Get help with your plants</h1>
+            <h5 className='homeContent'>Are you struggling with taking care of your plants? Planty experts are here to help you. Book a consultation service with one of Planty experts now!</h5>
             <Link to="/get-support"> <CtaButton cta="Book an expert" className="button-filled"/> </Link>
           </div>
+          <br/>
+  
           </>
             )}
           {user &&   <BookingCard bookings={userToView.bookings}/>

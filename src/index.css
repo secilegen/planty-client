@@ -52,6 +52,16 @@ body {
   margin: 0px 7px;
 }
 
+.monstera{
+  width: 30px;
+  margin-left: 20px;
+}
+
+.thankYou{
+  font-size: 50px;
+  color: #084d26;
+}
+
 .navbar{
   list-style: none;
   display: flex;
@@ -117,6 +127,7 @@ body {
   border-color: #c48b84; 
   /* border: transparent; */
   color: #fdf7f2;
+  margin-left: 15px;
 }
 
 .button-filled:hover{
@@ -140,6 +151,16 @@ body {
 .home{
   /* border: solid 1px yellow; */
   width: 100vw;
+}
+
+.homeHeader{
+  max-width: 90%;
+  margin-left: 10px;
+}
+
+.homeContent{
+  max-width: 90%;
+  margin-left: 10px;
 }
 
 .header{
@@ -675,6 +696,44 @@ margin-right: 60px;
  
 }
 
+.inspirationCard{
+  background-color: white;
+  border-radius: 5%;
+  padding: 15px;
+  max-width: 82%;
+  margin-left: 20px;
+}
+
+.inspiration{
+  margin-top: 50px;
+  
+}
+
+.inspirationCommon{
+  color: #084d26;
+  font-size: 26px;
+}
+
+.inspirationSci{
+  color:#c48b84;
+  margin-top: -10px;
+}
+
+.inspirationImg{
+  max-width: 85%;
+}
+
+.inspirationRow{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+  margin-bottom: -10px;
+}
+
+
+
+
 .bookingExpert{
   display: flex;
   flex-direction: row;
@@ -1016,7 +1075,6 @@ margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: solid 1px black;
   
 }
 
@@ -1169,6 +1227,35 @@ font-size: 24px;
 
 
 }
+
+.expertBooking{
+  display: flex;
+  flex-direction: row;
+ margin-left: -73px;
+ margin-bottom: 15px;
+ 
+}
+
+.expertAccept{
+  margin-right: 5px;
+  background-color:#084d26;
+  opacity: 60%;;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+.expertReject{
+  margin-right: 5px;
+  background-color:red;
+  opacity: 60%;;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
 /* .overlay{
   display: flex;
   align-items: center;
