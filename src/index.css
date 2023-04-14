@@ -1128,16 +1128,25 @@ align-items: center;
 width: 100%;
 }
 
+.profile-header-bottom-image{
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  /* border: solid 1px red; */
+  margin-left: 40px;
+
+}
 .profile-header-bottom-image >img {
 border-radius: 50%;
-width: 150px;
+width: 100px;
 }
+
 .profile-header-bottom-info{
 display: flex;
 flex-direction: row;
 /* border: solid 1px black; */
 justify-content: space-around;
-width: 80%;
+width: 50%;
 }
 
 .profile-header-bottom-info span{

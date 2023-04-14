@@ -49,10 +49,10 @@ function BookingCard(props) {
     <div>
       <div className="diseaseHeader">
         <h2>My Bookings</h2>
-
+        {!isExpert &&
         <Link to={`/get-support`}>
           <img src={addIcon} alt="add icon" height="30px" />
-        </Link>
+        </Link>}
       </div>
 
       <div>

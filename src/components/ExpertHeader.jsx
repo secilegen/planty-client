@@ -6,13 +6,17 @@ import editIcon from "../images/editIcon.png"
 
 
 function ExpertHeader(props) {
-  let ratingSum;
-  for (let i = 0; i < props.expert.bookings.length; i++) {
-    ratingSum = ratingSum + props.expert.bookings[i].rating;
-  }
-  const avgRating = ratingSum / props.expert.bookings.length;
   const numberOfBookings = props.expert.bookings.length;
+  let ratingSum;
+  // for (let i = 0; i < props.expert.bookings.length; i++) {
+  //   ratingSum += +props.expert.bookings[i].rating;
+  // }
+  const avgRating = ratingSum / props.expert.bookings.length;
+  ratingSum = props.expert.bookings[1].rating + props.expert.bookings[2].rating
   console.log("Expert from props is", props.expert);
+  console.log("Experts bookings are", props.expert.bookings)
+  console.log(props.expert.bookings.length)
+  console.log(ratingSum)
   return (
     <div className="profile-header">
       <div className="profile-header-top">
@@ -25,11 +29,14 @@ function ExpertHeader(props) {
       </div>
       <div className="profile-header-bottom">
         <div className="profile-header-bottom-image">
-         {props.expert.image ? <img src={props.expert.image} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
+         {props.expert.profileImage ? <img src={props.expert.profileeImage} alt="avatar"/> : <img src={avatar} alt="avatar"/>}
         </div>
         <div className="profile-header-bottom-info">
-          <p>
+        {/* <p>
             <span>{avgRating}</span><br />  rating
+          </p> */}
+          <p>
+            <span>5</span><br />  rating
           </p>
           <p>
             <span>{numberOfBookings}</span><br />  bookings

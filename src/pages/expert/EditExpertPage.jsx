@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import service from "../../api/service";
+import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -162,18 +163,28 @@ function EditExpertPage(props) {
               <option value="false">No</option>
             </select>
 
-            <label>Location</label>
+          </div>
+          </div>
+
+          <div className="edit-profile-box">
+
+          <div className="edit-profile-label">
+
+          <label>Location</label>
           </div>
           <div className="edit-profile-input">
-            <input
+          <CountryDropdown
+          value={expertLocation}
+          onChange={(expertLocation) => setExpertLocation(expertLocation)} />
+            {/* <input
               type="text"
               name="expertLocation"
               value={expertLocation}
               onChange={(e) => setExpertLocation(e.target.value)}
-            />
+            /> */}
             <p className="errorText">{errorMessageLocation}</p>
           </div>
-        </div>
+          </div>
         <div className="edit-profile-box">
           <div className="edit-profile-label">
             <label>Price</label>
