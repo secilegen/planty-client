@@ -822,119 +822,6 @@ border-radius: 50%;
   margin-left: 20px;
 }
 
-.bookingCard{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background: white;
- margin-bottom: 10px;
- max-width: 90%;
- margin-left: 20px;
- border-radius: 15px;
-}
-.bookingCardImg{
-  width:30%;
-  margin-top: 15px;
-  margin-left: 10px;
-  
-}
-
-.bookingCardLeft{
-  margin-left: -140px;
-}
-
-.bookingCardRight p{
-  display: flex;
-  flex-direction: row;
-  font-size: 12px;
-  margin-left: -150px;
-  margin-top: 20px;
-  align-content: flex-start;
-}
-
-
-
-.bookingCardDate{
-  font-size: 14px;
-  font-weight: bold;
-  margin-left: 40px;
-  
-}
-
-.bookingCardReason{
-  font-size: 14px;
-  font-weight: bold;
-  
-}
-.bookingCardRight1{
-  margin-left: 30px;
-  text-align: left;
-}
-
-.bookingCardIcons{
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-  
-}
-
-.bookingCardLabels{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
- margin-left: -25px;
-  margin-top: -15px;
-
- }
-
- .bookingConfirmedCard{
-  background: #084d26;
-  
-  border-radius: 5px;
-  color: white;
-  margin-right: 10px;
-  padding: 5px;
-  
- }
-
- .bookingLocationCard{
-  background: #c48b84;
-  padding: 5px;
-  border-radius: 5px;
-  color: white;
-  margin-left: 20px;
-  
- }
-
- .bookingLocationCard2{
-  background: #c48b84;
-  padding: 5px;
-  border-radius: 5px;
-  color: white;
-  margin-right: 20px;
- 
-  
- }
-
- .bookingConfirmed{
-  background: #084d26;
-  
-  border-radius: 5px;
-  color: white;
-  margin-right: 20px;
-  padding: 5px 10px;
-  
- }
-
- .bookingLocation{
-  background: #c48b84;
-  padding: 5px 20px;
-  border-radius: 5px;
-  color: white;
-  margin-left: 15px;
-  
- }
-
  .bookingDetailCard{
   background-color: white;
   border-radius: 20px;
@@ -1269,33 +1156,6 @@ font-size: 24px;
 
 }
 
-.expertBooking{
-  display: flex;
-  flex-direction: row;
- margin-left: -73px;
- margin-bottom: 15px;
- 
-}
-
-.expertAccept{
-  margin-right: 5px;
-  background-color:#084d26;
-  opacity: 60%;;
-  color: white;
-  border-style: none;
-  border-radius: 5px;
-  padding: 4px 10px;
-}
-
-.expertReject{
-  margin-right: 5px;
-  background-color:red;
-  opacity: 60%;;
-  color: white;
-  border-style: none;
-  border-radius: 5px;
-  padding: 4px 10px;
-}
 
 /* .overlay{
   display: flex;
@@ -1376,7 +1236,183 @@ padding: 7px
 }
 
 
+.bookingCard{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  background: white;
+ margin-bottom: 10px;
+ max-width: 90%;
+ margin-left: 20px;
+ border-radius: 15px;
+ /* border: black 1px solid; */
+}
+.bookingCardImg{
+  width: 90%;
+  margin-top: 15px;
+  margin-left: 10px;
+  /* border: yellow 1px solid; */
+
+}
+
+.bookingCardLeft{
+  /* margin-left: -140px; */
+  /* border: magenta 1px solid; */
+  width: 40%
+  ;
+}
+
+.bookingCardRight p{
+  display: flex;
+  flex-direction: row;
+  /* font-size: 12px; */
+  /* margin-left: -150px; */
+  margin-top: 20px;
+  align-content: flex-start;
+}
+
+.bookingCardRight {
+  /* border: blue 1px solid; */
+  width: 60%;
+
+}
+
+.bookingCardRightTop{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookingCardInfo{
+  font-size: 12px;
+  /* margin-left: 40px; */
+  
+}
+.bookingCardInfo > span {
+  font-weight: bold;
+
+}
+
+.bookingCardReason{
+  font-size: 16px;
+  font-weight: bold;
+  
+}
+.bookingCardRight1{
+  margin-left: 10px;
+  text-align: left;
+}
+
+.bookingCardIcons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 5px;
+  align-self: flex-end;
+  /* border: solid 1px violet; */
+  
+}
+
+.bookingCardLabels{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ /* margin-left: -25px;
+  margin-top: -15px; */
+  /* border: turquoise 1px solid; */
 
 
+ }
 
+ .bookingConfirmedCard{
+  background: #084d26;
+  
+  border-radius: 5px;
+  color: white;
+  margin-right: 10px;
+  padding: 5px;
+  
+ }
+
+ .bookingLocationCard{
+  background: #c48b84;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 20px;
+  
+ }
+
+ .bookingLocationCard2{
+  background: #c48b84;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  margin-right: 20px;
+ 
+  
+ }
+
+ .bookingConfirmed{
+  background: #084d26;
+  
+  border-radius: 5px;
+  color: white;
+  margin-right: 20px;
+  padding: 5px 10px;
+  
+ }
+
+ .bookingLocation{
+  background: #c48b84;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 15px;
+  
+ }
+
+
+ .expertBooking{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* margin-left: -73px; */
+  margin-bottom: 15px;
+ 
+}
+
+.expertAccept{
+  margin-right: 5px;
+  background-color:#084d26;
+  /* opacity: 60%;; */
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-family: "Montserrat Alternates", Helvetica, Arial, sans-serif;
+
+}
+
+.expertReject{
+  margin-right: 5px;
+  background-color:red;
+  /* opacity: 60%;; */
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-family: "Montserrat Alternates", Helvetica, Arial, sans-serif;
+
+}
+
+.bookingCardHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 10px;
+ }
 

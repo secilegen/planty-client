@@ -47,15 +47,16 @@ function BookingCard(props) {
 
   return (
     <div>
-      <div className="diseaseHeader">
+      <div className="bookingCardHeader">
         <h2>My Bookings</h2>
-        {!isExpert &&
+        {!isExpert && 
         <Link to={`/get-support`}>
           <img src={addIcon} alt="add icon" height="30px" />
-        </Link>}
+        </Link>
+        }
       </div>
 
-      <div>
+      
         {props?.bookings &&
           props.bookings.map((oneBooking) => {
             return (
@@ -67,20 +68,43 @@ function BookingCard(props) {
 
                   <div className="bookingCardRight">
                     <div className="bookingCardRight1">
+                      <div className="bookingCardRightTop">
+                      <div>
                       <p className="bookingCardReason">
                         {oneBooking.reasonWhy}
-                      </p>
-                      <p className="bookingCardDate">Date: {oneBooking.date}</p>
+                      </p> 
+
+                      </div>
+                      <div className="bookingCardIcons">
+                      <Link to={`/get-support/${oneBooking._id}`}>
+                        <img
+                          src={viewDetails}
+                          alt="details icon"
+                          height="25px"
+                        />
+                      </Link>
+
+                      <Link to={`/get-support/edit/${oneBooking._id}`}>
+                        <img src={editIcon} alt="edit icon" height="25px" />
+                      </Link>
+
+                    </div>
+                      </div>
+                      
+                      <p className="bookingCardInfo"><span>Date: </span> {oneBooking.date}</p>
+                      <p className="bookingCardInfo"><span>Status: </span>  {oneBooking.isConfirmed}</p>
+                      <p className="bookingCardInfo"><span>Location: </span>  {oneBooking.isOnline}</p>
+
                     </div>
 
-                    <div className="bookingCardLabels">
+                    {/* <div className="bookingCardLabels">
                       <p className="bookingConfirmedCard">
                         {oneBooking.isConfirmed}
                       </p>
                       <p className="bookingLocationCard">
                         {oneBooking.isOnline}
                       </p>
-                    </div>
+                    </div> */}
 
                   
 
@@ -104,26 +128,13 @@ function BookingCard(props) {
                           </button>
                         </div>
                       )}
-                      <div className="bookingCardIcons">
-                      <Link to={`/get-support/${oneBooking._id}`}>
-                        <img
-                          src={viewDetails}
-                          alt="details icon"
-                          height="25px"
-                        />
-                      </Link>
-
-                      <Link to={`/get-support/edit/${oneBooking._id}`}>
-                        <img src={editIcon} alt="edit icon" height="25px" />
-                      </Link>
-
-                    </div>
+                      
                   </div>
                 </div>
               </div>
             );
           })}
-      </div>
+      
       <div>
         {props?.bookings.length === 0 && <p>You don't have any bookings</p>}</div>
     </div>
