@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import linkedIn from "../images/linkedIn.png"
+import ThankYou from './ThankYou'
+import monstera from "../images/monsteraIcon.png"
 
 function Footer() {
   return (
@@ -23,9 +25,16 @@ function Footer() {
        <Link to="https://www.linkedin.com/in/nadine-machmeier/">
         <img src={linkedIn} alt="linkedin" className='LinkedInImg'/>
         </Link>
+        
+
+        <Link to="/profile/about">
+        <img src={monstera} alt="monstera" className='monstera'/>
+        </Link>
+
+        </div>
         </div>
 
-    </div>
+   
   )
 }
 

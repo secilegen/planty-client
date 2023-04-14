@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import sunIcon from "../images/sunIconBlack.png"
+import waterIcon from "../images/wateringIconBlack.png"
 
 const apiURL = "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
 // https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237&page=12
@@ -23,14 +25,23 @@ function PlantForInspiration(props) {
     // ,[])
   return ( <div> 
     {props.randomPlant.default_image.small_url && (
-    <div>
-      <h2>Planty Inspiration</h2>
-        <img src={props.randomPlant.default_image.small_url}/>
-        <h1>{props.randomPlant.common_name}</h1>
-        <h3>"{props.randomPlant.scientific_name}"</h3>
+    <div className='inspiration'>
+      <h2 className='inspirationHeader'>Your Planty Inspiration</h2>
+      <div  className='inspirationCard'>
+        <img src={props.randomPlant.default_image.small_url} className="inspirationImg"/>
+        <h2 className='inspirationCommon'>{props.randomPlant.common_name}</h2>
+        <p className='inspirationSci'>"{props.randomPlant.scientific_name}"</p>
         {/* Sunlight needs to be mapped or filtered, come back later */}
-        <h3>{props.randomPlant.sunlight[1]}</h3>
-        <h3>{props.randomPlant.watering}</h3>
+
+        <div className='inspirationRow'>
+        <img src={sunIcon} alt="sun" className="plantDetailIcon"/>
+        <p className='inspirationContent'>Sunlight Position: {props.randomPlant.sunlight[1]}</p>
+        </div>
+        <div className='inspirationRow'>
+        <img src={waterIcon} alt="sun"className="plantDetailIcon"/>
+        <p className='inspirationContent'>Watering: {props.randomPlant.watering}</p>
+        </div>
+        </div>
         </div>
    ) 
    } 

@@ -106,7 +106,7 @@ function EditBooking(props) {
           <div className="booking-label">
             <label>Date</label>
           </div>
-          <div className="booking-input">
+          <div className="calendar">
             <Calendar onChange={(date) => setDate(date)} value={date} />
             {/* <textarea
               type="text"
@@ -114,7 +114,13 @@ function EditBooking(props) {
               value={date}
               onChange={(e) => setDate(e.target.value)}
             /> */}
+      
+
+
+
           </div>
+
+          
         </div>
         <div className="booking-box">
           <div className="booking-label">
