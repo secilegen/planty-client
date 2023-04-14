@@ -35,7 +35,7 @@ function BookingSelection(props) {
                 <div key={expert._id}>
                 <div className="bookingExpert">
                 <div className="booking ExpertLeft">
-                {props.expert.profileImage ? <img src={props.expert.profileImage} alt="avatar" className="bookingExpertImg"/> : <img src={avatar} alt="avatar" className="bookingExpertImg"/>}
+                {expert.profileImage ? <img src={expert.profileImage} alt="avatar" className="bookingExpertImg"/> : <img src={avatar} alt="avatar" className="bookingExpertImg"/>}
 
                 </div>
 
