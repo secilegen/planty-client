@@ -124,6 +124,8 @@ function BookingCard(props) {
             );
           })}
       </div>
+      <div>
+        {props?.bookings.length === 0 && <p>You don't have any bookings</p>}</div>
     </div>
   );
 }

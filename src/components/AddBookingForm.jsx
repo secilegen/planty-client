@@ -94,7 +94,7 @@ function AddBookingForm(props) {
 
   return (
     <div className="AddBookingForm">
-      <h3 className="addSubs">2 Add your booking information</h3>
+      <h3 className="addSubs">2. Add your booking information</h3>
 
       <form onSubmit={handleSubmit}>
         <div className="booking-box">
@@ -120,6 +120,9 @@ function AddBookingForm(props) {
           <div className="booking-label">
             <label>Description</label>
           </div>
+          <div className="booking-description">
+            <p>Shortly describe your expectation with this booking</p>
+          </div>
           <div className="booking-input">
             <textarea
               type="text"
@@ -134,6 +137,9 @@ function AddBookingForm(props) {
           <div className="booking-label">
             <label>Reason Why</label>
           </div>
+          <div className="booking-description">
+            <p>Select the option that describes your booking request best</p>
+          </div>
           <div className="booking-input">
             <select value={reasonWhy} onChange={handleSelectReason}>
             <option>Select</option>
@@ -147,6 +153,9 @@ function AddBookingForm(props) {
         <div className="booking-box">
           <div className="booking-label">
             <label>Select location</label>
+          </div>
+          <div className="booking-description">
+            <p>Set your preference on online vs offline bookings</p>
           </div>
           <div className="booking-input">
             <select value={isOnline} onChange={handleSelectOnline}>

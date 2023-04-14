@@ -88,6 +88,8 @@ function PlantCard(props) {
         })}
       </div>
       <br/>
+      <div> {props?.plants.length === 0 && <p>You don't have any plants</p>}</div>
+
     </div>
   );
 }

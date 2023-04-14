@@ -12,7 +12,7 @@ function EditUserPage() {
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isCompany, setIsCompany] = useState("");
+  // const [isCompany, setIsCompany] = useState("");
   const [typeOfCompany, setTypeOfCompany] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [image, setImage] = useState("");
@@ -55,7 +55,7 @@ function EditUserPage() {
         const userToEdit = response.data;
         setFirstName(userToEdit.firstName);
         setLastName(userToEdit.lastName);
-        setIsCompany(userToEdit.isCompany);
+        // setIsCompany(userToEdit.isCompany);
         setCompanyName(userToEdit.companyName);
         setTypeOfCompany(userToEdit.setTypeOfCompany);
       })
@@ -84,7 +84,7 @@ function EditUserPage() {
     const requestBody = {
       firstName,
       lastName,
-      isCompany,
+      // isCompany,
       companyName,
       typeOfCompany,
       image,
@@ -141,7 +141,7 @@ function EditUserPage() {
             <p className="errorText">{errorMessageLastName}</p>
           </div>
         </div>
-        <div className="edit-profile-box">
+        {/* <div className="edit-profile-box">
           <div className="edit-profile-label">
             <label>Business User</label>
           </div>
@@ -153,7 +153,7 @@ function EditUserPage() {
               onChange={(e) => setIsCompany(e.target.value)}
             />
           </div>
-        </div>
+        </div> */}
         <div className="edit-profile-box">
           <div className="edit-profile-label">
             <label>Company Name</label>

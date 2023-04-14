@@ -12,7 +12,7 @@ function AddBooking() {
     console.log("select expert", id)
   }
   return (
-    <div>
+    <div className='add-booking-page'>
     <h1 className="detailHeadline">Book an expert</h1>
     <BookingSelection selectExpert={selectExpert}/>
     <AddBookingForm expert={selectedExpert}/>
