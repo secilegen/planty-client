@@ -14,6 +14,7 @@ import axios from 'axios'
  
 const API_URL = process.env.REACT_APP_API_URL ||'http://localhost:5005' ;
 
+const apiURL = "https://perenual.com/api/species-list?key=sk-9XCm64257488f0aa2237";
 
 function HomePage() {
   const {isLoggedIn, user, logOutUser, isExpert} = useContext(AuthContext)
@@ -41,6 +42,21 @@ function HomePage() {
     )
   },[user])
 
+    const randomPage = Math.floor(Math.random() * 200) + 1;
+    const randomId = Math.floor(Math.random() * 31);
+
+    const [randomPlant, setRandomPlant] = useState("")
+
+    useEffect(()=>{
+        axios
+        .get(`${apiURL}&page=${randomPage}`)
+        .then((response)=>{
+            setRandomPlant(response.data.data[`${randomId}`])
+            console.log('Response for random plant is', response.data.data[`${randomId}`])
+        })
+        .catch(err=>console.log('Error accessing random plant', err))
+    }
+    ,[])
   return (
     <div className="home">
       { !isLoading && ( isLoggedIn && (
@@ -56,17 +72,22 @@ function HomePage() {
           </div>
           </>
             )}
-          {user &&  <BookingCard bookings={userToView.bookings}/> }
+          {user &&   <BookingCard bookings={userToView.bookings}/>
+                }
           </div>
-          
-        {/* <PlantForInspiration/> */}
+          {randomPlant && <PlantForInspiration randomPlant={randomPlant}/>}
+
         </div>
       )
       ) 
       
       }
       {/* {isLoading && <h1>Loading</h1>} */}
-      {!isLoggedIn && <GuestHomePage/>}
+      {!isLoggedIn && <><GuestHomePage/> 
+      {randomPlant && <PlantForInspiration randomPlant={randomPlant}/>}
+
+      </>
+      }
       
     </div>
   )
