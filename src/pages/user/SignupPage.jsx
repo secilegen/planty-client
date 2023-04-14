@@ -10,7 +10,7 @@ function SignupPage(props) {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isCompany, setIsCompany] = useState(false);
+  // const [isCompany, setIsCompany] = useState(false);
   const [errorMessageFirstName, setErrorMessageFirstName] = useState("");
   const [errorMessageLastName, setErrorMessageLastName] = useState("");
   const [errorMessageEmail, setErrorMessageEmail] = useState("");
@@ -26,7 +26,7 @@ function SignupPage(props) {
   const handlePassword = (e) => setPassword(e.target.value);
   const handleFirstName = (e) => setFirstName(e.target.value);
   const handleLastName = (e) => setLastName(e.target.value);
-  const handleIsCompany = (e) => setIsCompany(e.target.checked);
+  // const handleIsCompany = (e) => setIsCompany(e.target.checked);
 
 
   useEffect(() => {
@@ -150,7 +150,7 @@ function SignupPage(props) {
             <p className="errorText">{errorMessagePassword}</p>
           </div>
         </div>
-        <div className="signup-box">
+        {/* <div className="signup-box">
           <div className="signup-label">
             <label>I would like to sign up as a business owner</label>
           </div>
@@ -162,7 +162,7 @@ function SignupPage(props) {
               onChange={handleIsCompany}
             />
           </div>
-        </div>
+        </div> */}
 
         <p className="successMessage">{successMessage}</p>
 

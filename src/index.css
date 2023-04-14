@@ -132,25 +132,31 @@ body {
   border-color: #c48b84; 
   /* border: transparent; */
   color: #fdf7f2;
-  margin-left: 15px;
+  height: 40px;
+  /* margin-left: 15px; */
 }
 
 .button-filled:hover{
-  background-color: lightgray; 
-  color: white;
+  background-color: #084d26; 
+  color: #fdf7f2;
   transition: 0.5s;
+  border-color: #084d26; 
+
 }
 
 .button-framed{
   background-color: #fdf7f2; 
   border-color: #c48b84;
-  color: #c48b84
+  color: #c48b84;
+  height: 40px;
+
 }
 
 .button-framed:hover{
   background-color: #fdf7f2; 
-  border: transparent;
-  color: #c48b84
+  color: #084d26;
+  border-color: #084d26;
+
 }
 
 .home{
@@ -197,9 +203,6 @@ body {
   color: #084d26;
 }
 
-.home-expert{
-
-}
 
 .home-expert-image{
   width: 100%;
@@ -285,7 +288,8 @@ body {
   font-weight: bold;
   color: #c48b84;
   max-width: 260px;
- 
+  /* border: #d10000 1px solid; */
+
   
 }
 
@@ -295,7 +299,7 @@ body {
   color: #c48b84;
   max-width: 260px;
   text-align: center;
-  margin-left: 50px;
+  /* border: #d10000 1px solid; */
   
 }
 
@@ -736,6 +740,14 @@ margin-right: 60px;
   margin-bottom: -10px;
 }
 
+.inspirationHeader h1{
+  font-size: 36px;
+  color: #084d26;
+}
+
+.inspirationHeader img {
+  width: 50px;
+}
 
 
 
@@ -754,14 +766,23 @@ margin-right: 60px;
 
 .bookingExpertImg{
 height: 60px;
-
+border-radius: 50%;
 
 }
+
 
 .bookingExpertName{
   font-weight: bold;
 }
 
+.bookingExpertLeft {
+  width: 20%;
+}
+
+.bookingExpertRight {
+  width: 70%;
+  margin-left: 20px;
+}
 
 
 .bookingExpertRow1{
@@ -782,6 +803,17 @@ height: 60px;
   font-weight: bold;
   
 }
+.bookingExpertRow3 {
+  display: flex;
+  align-items: flex-start;
+}
+
+.bookingExpertRow3 > p{
+  font-size: 10px;
+  /* margin: -15px 0px; */
+
+}
+
 .addIconBooking {
   text-align: end;
 }
@@ -1089,7 +1121,7 @@ margin: 10px;
   align-items: center;
   /* border: solid 1px magenta; */
   width: 80vw;
-  margin-left: 25px;
+  /* margin-left: 25px; */
 }
 
 .booking-label{
@@ -1106,6 +1138,10 @@ margin: 10px;
   width: 100%;
   
 } */
+.booking-description{
+  font-size: 10px;
+  font-style: italic;
+}
 
 .AddBookingForm > form {
   margin: 20px;
@@ -1326,8 +1362,18 @@ padding: 7px
   margin-bottom: 2px;
 }
 
+.add-booking-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-
+.booking-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: solid black 1px; */
+}
 
 
 

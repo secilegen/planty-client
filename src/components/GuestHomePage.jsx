@@ -11,7 +11,7 @@ function GuestHomePage() {
       <div className="header">
         <img src={Header} className="header-image" />
         <div className="header-info">
-          <h1>Happy plants, happy homes</h1>
+          <h1>Happy plants,<br/> happy homes</h1>
           <h5 className='homeContent'>
             We know how hard it can get to keep your plants alive. Planty is
             here to support you with caring tips and more to make your plants
