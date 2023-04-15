@@ -175,9 +175,11 @@ function EditBooking(props) {
         </div>
       </form>
       <br />
+      <div className="submit-button">
       <button onClick={deleteBooking} className="small-button">
         Delete booking
       </button>
+      </div>
     </div>
   );
 }
