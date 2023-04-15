@@ -9,7 +9,7 @@ function AddPlant() {
 
   
   return (
-    <div>
+    <div className='AddPlant'>
     
     <h1 className="detailHeadline">Add your plant</h1>
  

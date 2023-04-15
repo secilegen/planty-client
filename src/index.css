@@ -1416,3 +1416,8 @@ padding: 7px
   margin: 10px;
  }
 
+.AddPlant {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
